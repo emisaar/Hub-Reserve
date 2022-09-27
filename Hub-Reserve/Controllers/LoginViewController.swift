@@ -9,6 +9,12 @@ import UIKit
 
 class LoginViewController: UIViewController {
 
+    @IBAction func login(_ sender: UIButton) {
+        let nextScreen = storyboard! .instantiateViewController(withIdentifier: "main") as! UITabBarController
+        nextScreen.modalPresentationStyle = .fullScreen
+        self.present(nextScreen, animated: false, completion: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

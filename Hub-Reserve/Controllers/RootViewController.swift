@@ -7,14 +7,26 @@
 
 import UIKit
 
-class RootViewController: UIViewController {
+class RootViewController: UIViewController, UIScrollViewDelegate {
 
+//    @IBOutlet weak var scrollView: UIScrollView!
+//
+//    @IBOutlet weak var pageControl: UIPageControl!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        // scrollView.delegate = self
     }
     
+//    func scrollViewDidScroll(_ scrollView: UIScrollView){
+//
+//        let pageIndex = Int(scrollView.contentOffset.x/375)
+//
+//        pageControl.currentPage = pageIndex
+//    }
 
     /*
     // MARK: - Navigation

@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E80C5BF928E122D70031515D /* ReservadoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80C5BF828E122D70031515D /* ReservadoTableViewCell.swift */; };
+		E80D88B928E2C9A40029B15A /* Stats.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80D88B828E2C9A40029B15A /* Stats.swift */; };
+		E80D88BD28E2CBFF0029B15A /* StatsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80D88BC28E2CBFF0029B15A /* StatsTableViewController.swift */; };
+		E80D88BF28E2CC8B0029B15A /* StatsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80D88BE28E2CC8B0029B15A /* StatsTableViewCell.swift */; };
+		E832B79E28E0EBAF006D2FFE /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E832B79D28E0EBAF006D2FFE /* ProfileViewController.swift */; };
+		E832B7A028E0EF49006D2FFE /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E832B79F28E0EF49006D2FFE /* ProfileTableViewCell.swift */; };
+		E832B7A228E0F19E006D2FFE /* ProfileOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E832B7A128E0F19E006D2FFE /* ProfileOptions.swift */; };
 		E86B0EE328D6B9C700C02D29 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86B0EE228D6B9C700C02D29 /* RootViewController.swift */; };
 		E8964D9928D6ADD0001EEAA0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8964D9828D6ADD0001EEAA0 /* AppDelegate.swift */; };
 		E8964D9B28D6ADD0001EEAA0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8964D9A28D6ADD0001EEAA0 /* SceneDelegate.swift */; };
@@ -16,9 +23,19 @@
 		E8BDCC8128D76CC300480589 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BDCC8028D76CC300480589 /* LoginViewController.swift */; };
 		E8BDCC8328D76CDF00480589 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BDCC8228D76CDF00480589 /* RegisterViewController.swift */; };
 		E8BDCC8528D7CA4100480589 /* RecoverPwdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BDCC8428D7CA4100480589 /* RecoverPwdViewController.swift */; };
+		E8C81E4528DCDDD200C826C4 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C81E4428DCDDD200C826C4 /* CalendarViewController.swift */; };
+		E8F6100628DD724200F14A44 /* ReservationsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F6100528DD724200F14A44 /* ReservationsTableViewController.swift */; };
+		E8F6100828DD725500F14A44 /* Reservation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F6100728DD725500F14A44 /* Reservation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E80C5BF828E122D70031515D /* ReservadoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservadoTableViewCell.swift; sourceTree = "<group>"; };
+		E80D88B828E2C9A40029B15A /* Stats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stats.swift; sourceTree = "<group>"; };
+		E80D88BC28E2CBFF0029B15A /* StatsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsTableViewController.swift; sourceTree = "<group>"; };
+		E80D88BE28E2CC8B0029B15A /* StatsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsTableViewCell.swift; sourceTree = "<group>"; };
+		E832B79D28E0EBAF006D2FFE /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		E832B79F28E0EF49006D2FFE /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
+		E832B7A128E0F19E006D2FFE /* ProfileOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileOptions.swift; sourceTree = "<group>"; };
 		E86B0EE228D6B9C700C02D29 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		E8964D9528D6ADD0001EEAA0 /* Hub-Reserve.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hub-Reserve.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8964D9828D6ADD0001EEAA0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -30,6 +47,9 @@
 		E8BDCC8028D76CC300480589 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		E8BDCC8228D76CDF00480589 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		E8BDCC8428D7CA4100480589 /* RecoverPwdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoverPwdViewController.swift; sourceTree = "<group>"; };
+		E8C81E4428DCDDD200C826C4 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		E8F6100528DD724200F14A44 /* ReservationsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationsTableViewController.swift; sourceTree = "<group>"; };
+		E8F6100728DD725500F14A44 /* Reservation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reservation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,18 +82,44 @@
 		E8964D9728D6ADD0001EEAA0 /* Hub-Reserve */ = {
 			isa = PBXGroup;
 			children = (
+				E8F6100428DD71E100F14A44 /* Models */,
+				E8F6100328DD71D800F14A44 /* Controllers */,
 				E8964D9828D6ADD0001EEAA0 /* AppDelegate.swift */,
 				E8964D9A28D6ADD0001EEAA0 /* SceneDelegate.swift */,
 				E8964D9E28D6ADD0001EEAA0 /* Main.storyboard */,
-				E8BDCC8428D7CA4100480589 /* RecoverPwdViewController.swift */,
-				E8BDCC8228D76CDF00480589 /* RegisterViewController.swift */,
-				E8BDCC8028D76CC300480589 /* LoginViewController.swift */,
-				E86B0EE228D6B9C700C02D29 /* RootViewController.swift */,
 				E8964DA128D6ADD2001EEAA0 /* Assets.xcassets */,
 				E8964DA328D6ADD2001EEAA0 /* LaunchScreen.storyboard */,
 				E8964DA628D6ADD2001EEAA0 /* Info.plist */,
 			);
 			path = "Hub-Reserve";
+			sourceTree = "<group>";
+		};
+		E8F6100328DD71D800F14A44 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				E8F6100528DD724200F14A44 /* ReservationsTableViewController.swift */,
+				E8C81E4428DCDDD200C826C4 /* CalendarViewController.swift */,
+				E8BDCC8428D7CA4100480589 /* RecoverPwdViewController.swift */,
+				E8BDCC8228D76CDF00480589 /* RegisterViewController.swift */,
+				E8BDCC8028D76CC300480589 /* LoginViewController.swift */,
+				E86B0EE228D6B9C700C02D29 /* RootViewController.swift */,
+				E832B79D28E0EBAF006D2FFE /* ProfileViewController.swift */,
+				E832B79F28E0EF49006D2FFE /* ProfileTableViewCell.swift */,
+				E80C5BF828E122D70031515D /* ReservadoTableViewCell.swift */,
+				E80D88BC28E2CBFF0029B15A /* StatsTableViewController.swift */,
+				E80D88BE28E2CC8B0029B15A /* StatsTableViewCell.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		E8F6100428DD71E100F14A44 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E8F6100728DD725500F14A44 /* Reservation.swift */,
+				E832B7A128E0F19E006D2FFE /* ProfileOptions.swift */,
+				E80D88B828E2C9A40029B15A /* Stats.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -147,9 +193,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E832B7A228E0F19E006D2FFE /* ProfileOptions.swift in Sources */,
+				E8C81E4528DCDDD200C826C4 /* CalendarViewController.swift in Sources */,
 				E8BDCC8128D76CC300480589 /* LoginViewController.swift in Sources */,
+				E80D88B928E2C9A40029B15A /* Stats.swift in Sources */,
+				E80D88BD28E2CBFF0029B15A /* StatsTableViewController.swift in Sources */,
+				E80D88BF28E2CC8B0029B15A /* StatsTableViewCell.swift in Sources */,
+				E832B79E28E0EBAF006D2FFE /* ProfileViewController.swift in Sources */,
+				E832B7A028E0EF49006D2FFE /* ProfileTableViewCell.swift in Sources */,
+				E8F6100828DD725500F14A44 /* Reservation.swift in Sources */,
+				E80C5BF928E122D70031515D /* ReservadoTableViewCell.swift in Sources */,
 				E8BDCC8328D76CDF00480589 /* RegisterViewController.swift in Sources */,
 				E8964D9928D6ADD0001EEAA0 /* AppDelegate.swift in Sources */,
+				E8F6100628DD724200F14A44 /* ReservationsTableViewController.swift in Sources */,
 				E86B0EE328D6B9C700C02D29 /* RootViewController.swift in Sources */,
 				E8964D9B28D6ADD0001EEAA0 /* SceneDelegate.swift in Sources */,
 				E8BDCC8528D7CA4100480589 /* RecoverPwdViewController.swift in Sources */,
@@ -307,6 +363,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -335,6 +392,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
