@@ -20,6 +20,9 @@
 		E8964DA028D6ADD0001EEAA0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8964D9E28D6ADD0001EEAA0 /* Main.storyboard */; };
 		E8964DA228D6ADD2001EEAA0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E8964DA128D6ADD2001EEAA0 /* Assets.xcassets */; };
 		E8964DA528D6ADD2001EEAA0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8964DA328D6ADD2001EEAA0 /* LaunchScreen.storyboard */; };
+		E8B73C6728E4C0DE00E3E6C8 /* AboutHubPagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B73C6628E4C0DE00E3E6C8 /* AboutHubPagesViewController.swift */; };
+		E8B73C6928E4EA4900E3E6C8 /* View.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8B73C6828E4EA4900E3E6C8 /* View.xib */; };
+		E8B73C6D28E4EBB100E3E6C8 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B73C6C28E4EBB100E3E6C8 /* View.swift */; };
 		E8BDCC8128D76CC300480589 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BDCC8028D76CC300480589 /* LoginViewController.swift */; };
 		E8BDCC8328D76CDF00480589 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BDCC8228D76CDF00480589 /* RegisterViewController.swift */; };
 		E8BDCC8528D7CA4100480589 /* RecoverPwdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BDCC8428D7CA4100480589 /* RecoverPwdViewController.swift */; };
@@ -44,6 +47,9 @@
 		E8964DA128D6ADD2001EEAA0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E8964DA428D6ADD2001EEAA0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E8964DA628D6ADD2001EEAA0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E8B73C6628E4C0DE00E3E6C8 /* AboutHubPagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutHubPagesViewController.swift; sourceTree = "<group>"; };
+		E8B73C6828E4EA4900E3E6C8 /* View.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = View.xib; sourceTree = "<group>"; };
+		E8B73C6C28E4EBB100E3E6C8 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		E8BDCC8028D76CC300480589 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		E8BDCC8228D76CDF00480589 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		E8BDCC8428D7CA4100480589 /* RecoverPwdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoverPwdViewController.swift; sourceTree = "<group>"; };
@@ -87,6 +93,8 @@
 				E8964D9828D6ADD0001EEAA0 /* AppDelegate.swift */,
 				E8964D9A28D6ADD0001EEAA0 /* SceneDelegate.swift */,
 				E8964D9E28D6ADD0001EEAA0 /* Main.storyboard */,
+				E8B73C6C28E4EBB100E3E6C8 /* View.swift */,
+				E8B73C6828E4EA4900E3E6C8 /* View.xib */,
 				E8964DA128D6ADD2001EEAA0 /* Assets.xcassets */,
 				E8964DA328D6ADD2001EEAA0 /* LaunchScreen.storyboard */,
 				E8964DA628D6ADD2001EEAA0 /* Info.plist */,
@@ -108,6 +116,7 @@
 				E80C5BF828E122D70031515D /* ReservadoTableViewCell.swift */,
 				E80D88BC28E2CBFF0029B15A /* StatsTableViewController.swift */,
 				E80D88BE28E2CC8B0029B15A /* StatsTableViewCell.swift */,
+				E8B73C6628E4C0DE00E3E6C8 /* AboutHubPagesViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -180,6 +189,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8B73C6928E4EA4900E3E6C8 /* View.xib in Resources */,
 				E8964DA528D6ADD2001EEAA0 /* LaunchScreen.storyboard in Resources */,
 				E8964DA228D6ADD2001EEAA0 /* Assets.xcassets in Resources */,
 				E8964DA028D6ADD0001EEAA0 /* Main.storyboard in Resources */,
@@ -206,6 +216,8 @@
 				E8BDCC8328D76CDF00480589 /* RegisterViewController.swift in Sources */,
 				E8964D9928D6ADD0001EEAA0 /* AppDelegate.swift in Sources */,
 				E8F6100628DD724200F14A44 /* ReservationsTableViewController.swift in Sources */,
+				E8B73C6728E4C0DE00E3E6C8 /* AboutHubPagesViewController.swift in Sources */,
+				E8B73C6D28E4EBB100E3E6C8 /* View.swift in Sources */,
 				E86B0EE328D6B9C700C02D29 /* RootViewController.swift in Sources */,
 				E8964D9B28D6ADD0001EEAA0 /* SceneDelegate.swift in Sources */,
 				E8BDCC8528D7CA4100480589 /* RecoverPwdViewController.swift in Sources */,

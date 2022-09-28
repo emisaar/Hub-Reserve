@@ -16,7 +16,26 @@ class CalendarViewController: UIViewController {
     }
     
     func createCalendar() {
-        //let calendar = UICalendarView()
+        if #available(iOS 16.0, *) {
+            let calendar = UICalendarView()
+            calendar.translatesAutoresizingMaskIntoConstraints = false
+            
+            calendar.calendar = .current
+            calendar.locale = .current
+            calendar.fontDesign = .rounded
+            calendar.delegate = self
+            
+            view.addSubview(calendar)
+            NSLayoutConstraint.activate([
+                calendar.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+                calendar.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
+                calendar.heightAnchor.constraint(equalToConstant: 400),
+                calendar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
+            ])
+                
+        } else {
+            // Fallback on earlier versions
+        }
     }
 
     /*
@@ -29,4 +48,12 @@ class CalendarViewController: UIViewController {
     }
     */
 
+}
+
+
+@available(iOS 16.0, *)
+extension CalendarViewController: UICalendarViewDelegate {
+    func calendarView(_ calendarView: UICalendarView, decorationFor dateComponents: DateComponents) -> UICalendarView.Decoration? {
+        return nil
+    }
 }
