@@ -2,27 +2,37 @@
 //  ProfileViewController.swift
 //  Hub-Reserve
 //
-//  Created by Emi Saucedo on 25/09/22.
+//  Created by Emi Saucedo on 28/09/22.
 //
 
 import UIKit
 
 class ProfileViewController: UIViewController {
 
-    var profileOptions = ProfileOptions.profileOptionList()
-    
-    @IBOutlet weak var icon: UIImageView!
-    
-//    @IBOutlet var tableView: UITableView!
+//    var user = User
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        tableView.delegate = self
-//        tableView.dataSource = self
+
         // Do any additional setup after loading the view.
     }
     
+//    @IBAction func unwindToProfileTableView(segue: UIStoryboardSegue) {
+//        guard segue.identifier == "saveUnwind",
+//            let sourceViewController = segue.source as? EditProfileTableViewController,
+//              let edit = sourceViewController.user else { return }
 
+//        if let selectedIndexPath = tableView.indexPathForSelectedRow {
+//            user[selectedIndexPath.row] = user
+//            tableView.reloadRows(at: [selectedIndexPath], with: .none)
+//        } else {
+//            let newIndexPath = IndexPath(row: user.count, section: 0)
+//            user.append(reserva)
+//            tableView.insertRows(at: [newIndexPath], with: .automatic)
+        }
+//    }
+
+    
     /*
     // MARK: - Navigation
 
@@ -33,27 +43,4 @@ class ProfileViewController: UIViewController {
     }
     */
 
-}
-
-//extension ProfileViewController: UITableViewDelegate {
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        print("Tapped")
-//    }
-//}
-//
-//extension ProfileViewController: UITableViewDataSource {
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return 3
-//    }
-//
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ProfileTableViewCell
-//
-//        // Configure the cell...
-//        let index = indexPath.row
-//        let profOpt = profileOptions[index]
-//        cell.update(po: profOpt)
-//
-//        return cell
-//    }
 //}

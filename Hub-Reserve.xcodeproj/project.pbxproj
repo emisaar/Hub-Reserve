@@ -11,9 +11,11 @@
 		E80D88B928E2C9A40029B15A /* Stats.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80D88B828E2C9A40029B15A /* Stats.swift */; };
 		E80D88BD28E2CBFF0029B15A /* StatsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80D88BC28E2CBFF0029B15A /* StatsTableViewController.swift */; };
 		E80D88BF28E2CC8B0029B15A /* StatsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80D88BE28E2CC8B0029B15A /* StatsTableViewCell.swift */; };
-		E832B79E28E0EBAF006D2FFE /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E832B79D28E0EBAF006D2FFE /* ProfileViewController.swift */; };
-		E832B7A028E0EF49006D2FFE /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E832B79F28E0EF49006D2FFE /* ProfileTableViewCell.swift */; };
-		E832B7A228E0F19E006D2FFE /* ProfileOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E832B7A128E0F19E006D2FFE /* ProfileOptions.swift */; };
+		E861C39128E64BCC00240044 /* ReserveView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E861C39028E64BCC00240044 /* ReserveView.xib */; };
+		E861C39328E64BE700240044 /* ReserveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E861C39228E64BE700240044 /* ReserveView.swift */; };
+		E861C39528E64C2700240044 /* RoomsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E861C39428E64C2700240044 /* RoomsViewController.swift */; };
+		E861C39728E64C3900240044 /* SoftwareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E861C39628E64C3900240044 /* SoftwareViewController.swift */; };
+		E861C39928E64C5300240044 /* HardwareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E861C39828E64C5300240044 /* HardwareViewController.swift */; };
 		E86B0EE328D6B9C700C02D29 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86B0EE228D6B9C700C02D29 /* RootViewController.swift */; };
 		E8964D9928D6ADD0001EEAA0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8964D9828D6ADD0001EEAA0 /* AppDelegate.swift */; };
 		E8964D9B28D6ADD0001EEAA0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8964D9A28D6ADD0001EEAA0 /* SceneDelegate.swift */; };
@@ -27,6 +29,9 @@
 		E8BDCC8328D76CDF00480589 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BDCC8228D76CDF00480589 /* RegisterViewController.swift */; };
 		E8BDCC8528D7CA4100480589 /* RecoverPwdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BDCC8428D7CA4100480589 /* RecoverPwdViewController.swift */; };
 		E8C81E4528DCDDD200C826C4 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C81E4428DCDDD200C826C4 /* CalendarViewController.swift */; };
+		E8E722D828E549E200D0BB63 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E722D728E549E200D0BB63 /* User.swift */; };
+		E8E722DA28E54BB300D0BB63 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E722D928E54BB300D0BB63 /* ProfileViewController.swift */; };
+		E8E722DE28E54BF400D0BB63 /* EditProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E722DD28E54BF400D0BB63 /* EditProfileTableViewController.swift */; };
 		E8F6100628DD724200F14A44 /* ReservationsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F6100528DD724200F14A44 /* ReservationsTableViewController.swift */; };
 		E8F6100828DD725500F14A44 /* Reservation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F6100728DD725500F14A44 /* Reservation.swift */; };
 /* End PBXBuildFile section */
@@ -36,9 +41,11 @@
 		E80D88B828E2C9A40029B15A /* Stats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stats.swift; sourceTree = "<group>"; };
 		E80D88BC28E2CBFF0029B15A /* StatsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsTableViewController.swift; sourceTree = "<group>"; };
 		E80D88BE28E2CC8B0029B15A /* StatsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsTableViewCell.swift; sourceTree = "<group>"; };
-		E832B79D28E0EBAF006D2FFE /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		E832B79F28E0EF49006D2FFE /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
-		E832B7A128E0F19E006D2FFE /* ProfileOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileOptions.swift; sourceTree = "<group>"; };
+		E861C39028E64BCC00240044 /* ReserveView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReserveView.xib; sourceTree = "<group>"; };
+		E861C39228E64BE700240044 /* ReserveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReserveView.swift; sourceTree = "<group>"; };
+		E861C39428E64C2700240044 /* RoomsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomsViewController.swift; sourceTree = "<group>"; };
+		E861C39628E64C3900240044 /* SoftwareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoftwareViewController.swift; sourceTree = "<group>"; };
+		E861C39828E64C5300240044 /* HardwareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HardwareViewController.swift; sourceTree = "<group>"; };
 		E86B0EE228D6B9C700C02D29 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		E8964D9528D6ADD0001EEAA0 /* Hub-Reserve.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hub-Reserve.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8964D9828D6ADD0001EEAA0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -54,6 +61,9 @@
 		E8BDCC8228D76CDF00480589 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		E8BDCC8428D7CA4100480589 /* RecoverPwdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoverPwdViewController.swift; sourceTree = "<group>"; };
 		E8C81E4428DCDDD200C826C4 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		E8E722D728E549E200D0BB63 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		E8E722D928E54BB300D0BB63 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		E8E722DD28E54BF400D0BB63 /* EditProfileTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileTableViewController.swift; sourceTree = "<group>"; };
 		E8F6100528DD724200F14A44 /* ReservationsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationsTableViewController.swift; sourceTree = "<group>"; };
 		E8F6100728DD725500F14A44 /* Reservation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reservation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -93,6 +103,8 @@
 				E8964D9828D6ADD0001EEAA0 /* AppDelegate.swift */,
 				E8964D9A28D6ADD0001EEAA0 /* SceneDelegate.swift */,
 				E8964D9E28D6ADD0001EEAA0 /* Main.storyboard */,
+				E861C39028E64BCC00240044 /* ReserveView.xib */,
+				E861C39228E64BE700240044 /* ReserveView.swift */,
 				E8B73C6C28E4EBB100E3E6C8 /* View.swift */,
 				E8B73C6828E4EA4900E3E6C8 /* View.xib */,
 				E8964DA128D6ADD2001EEAA0 /* Assets.xcassets */,
@@ -111,12 +123,15 @@
 				E8BDCC8228D76CDF00480589 /* RegisterViewController.swift */,
 				E8BDCC8028D76CC300480589 /* LoginViewController.swift */,
 				E86B0EE228D6B9C700C02D29 /* RootViewController.swift */,
-				E832B79D28E0EBAF006D2FFE /* ProfileViewController.swift */,
-				E832B79F28E0EF49006D2FFE /* ProfileTableViewCell.swift */,
 				E80C5BF828E122D70031515D /* ReservadoTableViewCell.swift */,
 				E80D88BC28E2CBFF0029B15A /* StatsTableViewController.swift */,
 				E80D88BE28E2CC8B0029B15A /* StatsTableViewCell.swift */,
 				E8B73C6628E4C0DE00E3E6C8 /* AboutHubPagesViewController.swift */,
+				E8E722D928E54BB300D0BB63 /* ProfileViewController.swift */,
+				E861C39828E64C5300240044 /* HardwareViewController.swift */,
+				E8E722DD28E54BF400D0BB63 /* EditProfileTableViewController.swift */,
+				E861C39428E64C2700240044 /* RoomsViewController.swift */,
+				E861C39628E64C3900240044 /* SoftwareViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -125,8 +140,8 @@
 			isa = PBXGroup;
 			children = (
 				E8F6100728DD725500F14A44 /* Reservation.swift */,
-				E832B7A128E0F19E006D2FFE /* ProfileOptions.swift */,
 				E80D88B828E2C9A40029B15A /* Stats.swift */,
+				E8E722D728E549E200D0BB63 /* User.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -190,6 +205,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E8B73C6928E4EA4900E3E6C8 /* View.xib in Resources */,
+				E861C39128E64BCC00240044 /* ReserveView.xib in Resources */,
 				E8964DA528D6ADD2001EEAA0 /* LaunchScreen.storyboard in Resources */,
 				E8964DA228D6ADD2001EEAA0 /* Assets.xcassets in Resources */,
 				E8964DA028D6ADD0001EEAA0 /* Main.storyboard in Resources */,
@@ -203,21 +219,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E832B7A228E0F19E006D2FFE /* ProfileOptions.swift in Sources */,
 				E8C81E4528DCDDD200C826C4 /* CalendarViewController.swift in Sources */,
 				E8BDCC8128D76CC300480589 /* LoginViewController.swift in Sources */,
 				E80D88B928E2C9A40029B15A /* Stats.swift in Sources */,
 				E80D88BD28E2CBFF0029B15A /* StatsTableViewController.swift in Sources */,
 				E80D88BF28E2CC8B0029B15A /* StatsTableViewCell.swift in Sources */,
-				E832B79E28E0EBAF006D2FFE /* ProfileViewController.swift in Sources */,
-				E832B7A028E0EF49006D2FFE /* ProfileTableViewCell.swift in Sources */,
+				E8E722DE28E54BF400D0BB63 /* EditProfileTableViewController.swift in Sources */,
 				E8F6100828DD725500F14A44 /* Reservation.swift in Sources */,
+				E861C39528E64C2700240044 /* RoomsViewController.swift in Sources */,
+				E8E722DA28E54BB300D0BB63 /* ProfileViewController.swift in Sources */,
 				E80C5BF928E122D70031515D /* ReservadoTableViewCell.swift in Sources */,
+				E861C39928E64C5300240044 /* HardwareViewController.swift in Sources */,
+				E8E722D828E549E200D0BB63 /* User.swift in Sources */,
 				E8BDCC8328D76CDF00480589 /* RegisterViewController.swift in Sources */,
 				E8964D9928D6ADD0001EEAA0 /* AppDelegate.swift in Sources */,
 				E8F6100628DD724200F14A44 /* ReservationsTableViewController.swift in Sources */,
+				E861C39328E64BE700240044 /* ReserveView.swift in Sources */,
 				E8B73C6728E4C0DE00E3E6C8 /* AboutHubPagesViewController.swift in Sources */,
 				E8B73C6D28E4EBB100E3E6C8 /* View.swift in Sources */,
+				E861C39728E64C3900240044 /* SoftwareViewController.swift in Sources */,
 				E86B0EE328D6B9C700C02D29 /* RootViewController.swift in Sources */,
 				E8964D9B28D6ADD0001EEAA0 /* SceneDelegate.swift in Sources */,
 				E8BDCC8528D7CA4100480589 /* RecoverPwdViewController.swift in Sources */,

@@ -663,6 +663,51 @@
             </objects>
             <point key="canvasLocation" x="7108.6956521739139" y="-221.65178571428569"/>
         </scene>
+        <!--RoomsReserve-->
+        <scene sceneID="Asg-kl-dHr">
+            <objects>
+                <viewController title="RoomsReserve" id="uQb-QZ-gBb" customClass="RoomsViewController" customModule="Hub_Reserve" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="fLo-T4-0xS">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="iH5-WS-CT8"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lpV-uZ-Eau" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6080" y="2107"/>
+        </scene>
+        <!--SoftwareReserve-->
+        <scene sceneID="r17-k9-k7r">
+            <objects>
+                <viewController title="SoftwareReserve" id="q0g-Ys-7K4" customClass="SoftwareViewController" customModule="Hub_Reserve" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="aE2-yT-euF">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="KLz-RX-LW5"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WYz-EN-s6I" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6877" y="2107"/>
+        </scene>
+        <!--HardwareReserve-->
+        <scene sceneID="wSD-wM-x9x">
+            <objects>
+                <viewController title="HardwareReserve" id="7yN-uY-K1d" customClass="HardwareViewController" customModule="Hub_Reserve" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="9SG-TU-WyA">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="B9h-Kf-R5e"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rTx-fC-9Us" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="7691" y="2107"/>
+        </scene>
         <!--Resources-->
         <scene sceneID="6Ra-Xp-xJ8">
             <objects>
@@ -1402,7 +1447,7 @@ Servicio y Políticas de Seguridad</string>
                                                                         <state key="normal" title="Button"/>
                                                                         <buttonConfiguration key="configuration" style="plain"/>
                                                                         <connections>
-                                                                            <segue destination="7nD-mR-6iW" kind="presentation" modalPresentationStyle="fullScreen" id="q4e-di-0qO"/>
+                                                                            <segue destination="FNW-Vr-k0l" kind="presentation" id="eJA-X7-m48"/>
                                                                         </connections>
                                                                     </button>
                                                                 </subviews>
@@ -1576,20 +1621,17 @@ Servicio y Políticas de Seguridad</string>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Qbl-r9-MwO"/>
-                    <connections>
-                        <outlet property="icon" destination="wHN-zC-rbu" id="n5D-QL-1SL"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Web-xL-cH0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="10969.565217391306" y="1344.6428571428571"/>
         </scene>
-        <!--Table View Controller-->
+        <!--EditProfile-->
         <scene sceneID="4pE-ML-Wbi">
             <objects>
-                <tableViewController id="XtA-yj-mhm" sceneMemberID="viewController">
+                <tableViewController title="EditProfile" id="XtA-yj-mhm" customClass="EditProfileTableViewController" customModule="Hub_Reserve" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="j5Q-Bd-EBp">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="838"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <sections>
@@ -1678,10 +1720,16 @@ Servicio y Políticas de Seguridad</string>
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="3CN-Le-kEM"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="FYZ-hk-Gvr"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="newName" destination="piC-TM-EVe" id="jsu-UL-1c8"/>
+                        <outlet property="newPwd1" destination="CSw-Ql-iwJ" id="jr7-05-Am8"/>
+                        <outlet property="newPwd2" destination="ijs-6X-Ioy" id="cwc-aM-ie3"/>
+                        <outlet property="saveButton" destination="FYZ-hk-Gvr" id="dqi-zg-hLk"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="npa-3b-lKk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="12997" y="1345"/>
+            <point key="canvasLocation" x="12754" y="1345"/>
         </scene>
         <!--Favoritos-->
         <scene sceneID="6NO-m7-uij">
@@ -1764,24 +1812,6 @@ Servicio y Políticas de Seguridad</string>
             <point key="canvasLocation" x="11002.898550724638" y="604.6875"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="8X7-3Z-B2S">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="7nD-mR-6iW" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="KBK-j2-IfD">
-                        <rect key="frame" x="0.0" y="48" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="XtA-yj-mhm" kind="relationship" relationship="rootViewController" id="9yf-m2-nvQ"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="VVp-CN-kQt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="12059" y="1345"/>
-        </scene>
-        <!--Navigation Controller-->
         <scene sceneID="j0N-6U-gga">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Lki-9k-qDl" sceneMemberID="viewController">
@@ -1798,6 +1828,24 @@ Servicio y Políticas de Seguridad</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TPR-i7-UBu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3239" y="67"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="pow-8X-rqY">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="FNW-Vr-k0l" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="QuH-Rk-m9X">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="XtA-yj-mhm" kind="relationship" relationship="rootViewController" id="O4i-g6-Edo"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zfZ-tK-fRH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="11823" y="1345"/>
         </scene>
     </scenes>
     <resources>
