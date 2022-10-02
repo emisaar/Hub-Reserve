@@ -680,10 +680,10 @@
             </objects>
             <point key="canvasLocation" x="7861" y="-1004"/>
         </scene>
-        <!--RoomsReserve-->
+        <!--Reserve-->
         <scene sceneID="Asg-kl-dHr">
             <objects>
-                <viewController title="RoomsReserve" id="uQb-QZ-gBb" customClass="RoomsViewController" customModule="Hub_Reserve" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Reserve" id="uQb-QZ-gBb" customClass="ReserveViewController" customModule="Hub_Reserve" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fLo-T4-0xS">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -3008,7 +3008,7 @@ Servicio y Políticas de Seguridad</string>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="1hp-L3-T1Q"/>
+        <segue reference="NOc-TG-8hI"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Computo" width="173" height="100.5"/>

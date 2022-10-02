@@ -36,6 +36,7 @@
 		E89861FD28EA16C3003342DE /* SoftwaresTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89861FC28EA16C3003342DE /* SoftwaresTableViewController.swift */; };
 		E89861FF28EA16D2003342DE /* HardwaresTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89861FE28EA16D2003342DE /* HardwaresTableViewController.swift */; };
 		E898620128EA16DD003342DE /* HardwareTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E898620028EA16DD003342DE /* HardwareTableViewCell.swift */; };
+		E898620528EA28DD003342DE /* ReserveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E898620428EA28DD003342DE /* ReserveViewController.swift */; };
 		E8B73C6728E4C0DE00E3E6C8 /* AboutHubPagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B73C6628E4C0DE00E3E6C8 /* AboutHubPagesViewController.swift */; };
 		E8B73C6928E4EA4900E3E6C8 /* View.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8B73C6828E4EA4900E3E6C8 /* View.xib */; };
 		E8B73C6D28E4EBB100E3E6C8 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B73C6C28E4EBB100E3E6C8 /* View.swift */; };
@@ -85,6 +86,7 @@
 		E89861FC28EA16C3003342DE /* SoftwaresTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoftwaresTableViewController.swift; sourceTree = "<group>"; };
 		E89861FE28EA16D2003342DE /* HardwaresTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HardwaresTableViewController.swift; sourceTree = "<group>"; };
 		E898620028EA16DD003342DE /* HardwareTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HardwareTableViewCell.swift; sourceTree = "<group>"; };
+		E898620428EA28DD003342DE /* ReserveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReserveViewController.swift; sourceTree = "<group>"; };
 		E8B73C6628E4C0DE00E3E6C8 /* AboutHubPagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutHubPagesViewController.swift; sourceTree = "<group>"; };
 		E8B73C6828E4EA4900E3E6C8 /* View.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = View.xib; sourceTree = "<group>"; };
 		E8B73C6C28E4EBB100E3E6C8 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
@@ -238,6 +240,7 @@
 				E8BDCC8228D76CDF00480589 /* RegisterViewController.swift */,
 				E8BDCC8028D76CC300480589 /* LoginViewController.swift */,
 				E861C39428E64C2700240044 /* RoomsViewController.swift */,
+				E898620428EA28DD003342DE /* ReserveViewController.swift */,
 				E861C39628E64C3900240044 /* SoftwareViewController.swift */,
 				E861C39828E64C5300240044 /* HardwareViewController.swift */,
 				E8C81E4428DCDDD200C826C4 /* CalendarViewController.swift */,
@@ -359,6 +362,7 @@
 				E89861FB28EA16B8003342DE /* SoftwareTableViewCell.swift in Sources */,
 				E89861F328EA11A2003342DE /* RoomTableViewCell.swift in Sources */,
 				E8BDCC8328D76CDF00480589 /* RegisterViewController.swift in Sources */,
+				E898620528EA28DD003342DE /* ReserveViewController.swift in Sources */,
 				E84154DB28E91E8D00AB023D /* HistorialTableViewCell.swift in Sources */,
 				E8964D9928D6ADD0001EEAA0 /* AppDelegate.swift in Sources */,
 				E8357A0228E965AD0088A4DF /* AddFavTableViewController.swift in Sources */,
