@@ -21,6 +21,10 @@ class RoomsViewController: UIViewController {
     let EndDatePicker = UIDatePicker()
 
     
+    @IBAction func textFieldDoneEditing(sender:UITextField){
+        sender.resignFirstResponder()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

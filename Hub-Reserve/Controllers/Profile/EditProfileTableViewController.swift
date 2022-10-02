@@ -29,6 +29,13 @@ class EditProfileTableViewController: UITableViewController {
         saveButton.isEnabled = !name.isEmpty
     }
     
+    
+    // Cerrar teclado
+    // Conectar con item y cambiar conexión a did end on exit
+    @IBAction func textFieldDoneEditing(sender:UITextField){
+        sender.resignFirstResponder()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

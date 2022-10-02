@@ -9,6 +9,10 @@ import UIKit
 
 class RegisterViewController: UIViewController {
 
+    @IBAction func textFieldDoneEditing(sender:UITextField){
+        sender.resignFirstResponder()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

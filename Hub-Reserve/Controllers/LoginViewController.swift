@@ -15,6 +15,12 @@ class LoginViewController: UIViewController {
         self.present(nextScreen, animated: false, completion: nil)
     }
     
+    
+    // Cerrar teclado
+    @IBAction func textFieldDoneEditing(sender:UITextField){
+        sender.resignFirstResponder()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
