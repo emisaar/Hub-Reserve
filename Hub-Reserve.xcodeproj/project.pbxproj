@@ -27,6 +27,15 @@
 		E8964DA028D6ADD0001EEAA0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8964D9E28D6ADD0001EEAA0 /* Main.storyboard */; };
 		E8964DA228D6ADD2001EEAA0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E8964DA128D6ADD2001EEAA0 /* Assets.xcassets */; };
 		E8964DA528D6ADD2001EEAA0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8964DA328D6ADD2001EEAA0 /* LaunchScreen.storyboard */; };
+		E89861F128EA118A003342DE /* RoomsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89861F028EA118A003342DE /* RoomsTableViewController.swift */; };
+		E89861F328EA11A2003342DE /* RoomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89861F228EA11A2003342DE /* RoomTableViewCell.swift */; };
+		E89861F528EA125F003342DE /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89861F428EA125F003342DE /* Room.swift */; };
+		E89861F728EA1597003342DE /* Software.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89861F628EA1597003342DE /* Software.swift */; };
+		E89861F928EA159F003342DE /* Hardware.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89861F828EA159F003342DE /* Hardware.swift */; };
+		E89861FB28EA16B8003342DE /* SoftwareTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89861FA28EA16B8003342DE /* SoftwareTableViewCell.swift */; };
+		E89861FD28EA16C3003342DE /* SoftwaresTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89861FC28EA16C3003342DE /* SoftwaresTableViewController.swift */; };
+		E89861FF28EA16D2003342DE /* HardwaresTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89861FE28EA16D2003342DE /* HardwaresTableViewController.swift */; };
+		E898620128EA16DD003342DE /* HardwareTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E898620028EA16DD003342DE /* HardwareTableViewCell.swift */; };
 		E8B73C6728E4C0DE00E3E6C8 /* AboutHubPagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B73C6628E4C0DE00E3E6C8 /* AboutHubPagesViewController.swift */; };
 		E8B73C6928E4EA4900E3E6C8 /* View.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8B73C6828E4EA4900E3E6C8 /* View.xib */; };
 		E8B73C6D28E4EBB100E3E6C8 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B73C6C28E4EBB100E3E6C8 /* View.swift */; };
@@ -67,6 +76,15 @@
 		E8964DA128D6ADD2001EEAA0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E8964DA428D6ADD2001EEAA0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E8964DA628D6ADD2001EEAA0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E89861F028EA118A003342DE /* RoomsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomsTableViewController.swift; sourceTree = "<group>"; };
+		E89861F228EA11A2003342DE /* RoomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomTableViewCell.swift; sourceTree = "<group>"; };
+		E89861F428EA125F003342DE /* Room.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
+		E89861F628EA1597003342DE /* Software.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Software.swift; sourceTree = "<group>"; };
+		E89861F828EA159F003342DE /* Hardware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hardware.swift; sourceTree = "<group>"; };
+		E89861FA28EA16B8003342DE /* SoftwareTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoftwareTableViewCell.swift; sourceTree = "<group>"; };
+		E89861FC28EA16C3003342DE /* SoftwaresTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoftwaresTableViewController.swift; sourceTree = "<group>"; };
+		E89861FE28EA16D2003342DE /* HardwaresTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HardwaresTableViewController.swift; sourceTree = "<group>"; };
+		E898620028EA16DD003342DE /* HardwareTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HardwareTableViewCell.swift; sourceTree = "<group>"; };
 		E8B73C6628E4C0DE00E3E6C8 /* AboutHubPagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutHubPagesViewController.swift; sourceTree = "<group>"; };
 		E8B73C6828E4EA4900E3E6C8 /* View.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = View.xib; sourceTree = "<group>"; };
 		E8B73C6C28E4EBB100E3E6C8 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
@@ -130,6 +148,33 @@
 			path = "Hub-Reserve";
 			sourceTree = "<group>";
 		};
+		E89861ED28EA114F003342DE /* Rooms */ = {
+			isa = PBXGroup;
+			children = (
+				E89861F028EA118A003342DE /* RoomsTableViewController.swift */,
+				E89861F228EA11A2003342DE /* RoomTableViewCell.swift */,
+			);
+			path = Rooms;
+			sourceTree = "<group>";
+		};
+		E89861EE28EA115B003342DE /* Software */ = {
+			isa = PBXGroup;
+			children = (
+				E89861FC28EA16C3003342DE /* SoftwaresTableViewController.swift */,
+				E89861FA28EA16B8003342DE /* SoftwareTableViewCell.swift */,
+			);
+			path = Software;
+			sourceTree = "<group>";
+		};
+		E89861EF28EA1162003342DE /* Hardware */ = {
+			isa = PBXGroup;
+			children = (
+				E89861FE28EA16D2003342DE /* HardwaresTableViewController.swift */,
+				E898620028EA16DD003342DE /* HardwareTableViewCell.swift */,
+			);
+			path = Hardware;
+			sourceTree = "<group>";
+		};
 		E8DE550428E941C6006F6DAA /* Historial */ = {
 			isa = PBXGroup;
 			children = (
@@ -180,6 +225,9 @@
 		E8F6100328DD71D800F14A44 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				E89861ED28EA114F003342DE /* Rooms */,
+				E89861EE28EA115B003342DE /* Software */,
+				E89861EF28EA1162003342DE /* Hardware */,
 				E8DE550A28E9428D006F6DAA /* Profile */,
 				E8DE550928E9427A006F6DAA /* Stats */,
 				E8DE550828E94260006F6DAA /* Reservations */,
@@ -206,6 +254,9 @@
 				E8E722D728E549E200D0BB63 /* User.swift */,
 				E84154D428E91C9000AB023D /* Historial.swift */,
 				E8DE550228E940D8006F6DAA /* Favorites.swift */,
+				E89861F428EA125F003342DE /* Room.swift */,
+				E89861F628EA1597003342DE /* Software.swift */,
+				E89861F828EA159F003342DE /* Hardware.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -285,21 +336,28 @@
 			files = (
 				E8C81E4528DCDDD200C826C4 /* CalendarViewController.swift in Sources */,
 				E8DE550C28E942FE006F6DAA /* FavTableViewCell.swift in Sources */,
+				E89861F928EA159F003342DE /* Hardware.swift in Sources */,
 				E8BDCC8128D76CC300480589 /* LoginViewController.swift in Sources */,
 				E80D88B928E2C9A40029B15A /* Stats.swift in Sources */,
 				E8DE550628E9421F006F6DAA /* FavoritesTableViewController.swift in Sources */,
 				E80D88BD28E2CBFF0029B15A /* StatsTableViewController.swift in Sources */,
+				E89861FF28EA16D2003342DE /* HardwaresTableViewController.swift in Sources */,
 				E80D88BF28E2CC8B0029B15A /* StatsTableViewCell.swift in Sources */,
 				E8E722DE28E54BF400D0BB63 /* EditProfileTableViewController.swift in Sources */,
 				E8357A0628E96A240088A4DF /* EditReservationsTableViewController.swift in Sources */,
+				E89861F128EA118A003342DE /* RoomsTableViewController.swift in Sources */,
+				E898620128EA16DD003342DE /* HardwareTableViewCell.swift in Sources */,
 				E8F6100828DD725500F14A44 /* Reservation.swift in Sources */,
 				E84154D928E91E3800AB023D /* HistorialTableViewController.swift in Sources */,
+				E89861F728EA1597003342DE /* Software.swift in Sources */,
 				E861C39528E64C2700240044 /* RoomsViewController.swift in Sources */,
 				E8E722DA28E54BB300D0BB63 /* ProfileViewController.swift in Sources */,
 				E80C5BF928E122D70031515D /* ReservadoTableViewCell.swift in Sources */,
 				E84154D528E91C9000AB023D /* Historial.swift in Sources */,
 				E861C39928E64C5300240044 /* HardwareViewController.swift in Sources */,
 				E8E722D828E549E200D0BB63 /* User.swift in Sources */,
+				E89861FB28EA16B8003342DE /* SoftwareTableViewCell.swift in Sources */,
+				E89861F328EA11A2003342DE /* RoomTableViewCell.swift in Sources */,
 				E8BDCC8328D76CDF00480589 /* RegisterViewController.swift in Sources */,
 				E84154DB28E91E8D00AB023D /* HistorialTableViewCell.swift in Sources */,
 				E8964D9928D6ADD0001EEAA0 /* AppDelegate.swift in Sources */,
@@ -308,11 +366,13 @@
 				E861C39328E64BE700240044 /* ReserveView.swift in Sources */,
 				E8B73C6728E4C0DE00E3E6C8 /* AboutHubPagesViewController.swift in Sources */,
 				E8B73C6D28E4EBB100E3E6C8 /* View.swift in Sources */,
+				E89861FD28EA16C3003342DE /* SoftwaresTableViewController.swift in Sources */,
 				E861C39728E64C3900240044 /* SoftwareViewController.swift in Sources */,
 				E86B0EE328D6B9C700C02D29 /* RootViewController.swift in Sources */,
 				E8964D9B28D6ADD0001EEAA0 /* SceneDelegate.swift in Sources */,
 				E8BDCC8528D7CA4100480589 /* RecoverPwdViewController.swift in Sources */,
 				E8DE550328E940D8006F6DAA /* Favorites.swift in Sources */,
+				E89861F528EA125F003342DE /* Room.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -34,13 +34,13 @@ class RoomsViewController: UIViewController {
         super.viewDidLoad()
 
         resourceTextField.inputView = roomsPickerView
-        resourceTextField.placeholder = "Seleccione sala"
+        resourceTextField.placeholder = "Seleccionar..."
         resourceTextField.textAlignment = .center
         
-        InitialDateTextField.placeholder = "Seleccione fecha y hora inicio"
+        InitialDateTextField.placeholder = "Seleccionar..."
         InitialDateTextField.textAlignment = .center
         
-        EndDateTextField.placeholder = "Seleccione fecha y hora fin"
+        EndDateTextField.placeholder = "Seleccionar..."
         EndDateTextField.textAlignment = .center
         
         roomsPickerView.delegate = self
