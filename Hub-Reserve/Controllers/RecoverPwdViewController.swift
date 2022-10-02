@@ -9,6 +9,9 @@ import UIKit
 
 class RecoverPwdViewController: UIViewController {
 
+    @IBAction func sendMail(_ sender: Any) {
+        showAlertMailValidation()
+    }
     
     @IBAction func textFieldDoneEditing(sender:UITextField){
         sender.resignFirstResponder()
@@ -20,6 +23,16 @@ class RecoverPwdViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    func showAlertMailValidation(){
+        // Create Alert View
+        let alertView = UIAlertController(title: "Constraseña actualizada", message: "Su contraseña ha sido actualizada correctamente.", preferredStyle: .alert)
+        alertView.addAction(UIAlertAction(title:"Aceptar", style: .default, handler: {(_) in self.changeScreen()}))
+        self.present(alertView, animated: true, completion: nil)
+    }
+    
+    func changeScreen(){
+        view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+    }
 
     /*
     // MARK: - Navigation

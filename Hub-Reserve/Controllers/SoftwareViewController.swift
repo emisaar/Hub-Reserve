@@ -13,6 +13,10 @@ class SoftwareViewController: UIViewController {
     @IBOutlet weak var InitialDateTextField: UITextField!
     @IBOutlet weak var EndDateTextField: UITextField!
     
+    @IBAction func reserveBtn(_ sender: Any) {
+        showAlertReservationDone()
+    }
+    
     let license = ["Adobe Photoshop", "Microsoft Office 365", "Norton Antivirus", "Matlab", "Packet Tracer"]
     
     var licensesPickerView = UIPickerView()
@@ -110,6 +114,19 @@ class SoftwareViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    func showAlertReservationDone(){
+        // Create Alert View
+        let alertView = UIAlertController(title: "Registro exitoso", message: "Su reservación ha sido registrada exitosamente", preferredStyle: .alert)
+        alertView.addAction(UIAlertAction(title:"Aceptar", style: .default, handler: {(_) in self.changeScreen()}))
+        self.present(alertView, animated: true, completion: nil)
+    }
+    
+    func changeScreen(){
+        let nextScreen = storyboard! .instantiateViewController(withIdentifier: "main") as! UITabBarController
+        nextScreen.modalPresentationStyle = .fullScreen
+        self.present(nextScreen, animated: true, completion: nil)
+    }
 
 }
 
