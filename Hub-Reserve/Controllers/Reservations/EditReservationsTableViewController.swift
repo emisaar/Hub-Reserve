@@ -56,47 +56,31 @@ class EditReservationsTableViewController: UITableViewController {
         
         if let reserva = reserva {
             nombreTextField.text = reserva.name
+            
             startDate.text = reserva.startDate
+            
             endDate.text = reserva.endDate
-            var id = Int(resourceIDTextField.text!)
-            id = reserva.resourceID
-            var status = Int(statusTextField.text!)
-            status = reserva.resourceID
+           
+            resourceIDTextField.text = String(reserva.resourceID)
+
+            statusTextField.text = String(reserva.status)
             
-            
-//
-//            var startDate = dateFormatter.string(from: startDatePicker.date)
-//
-////            startDatePicker.date = reserva.startDate
-//            startDate = reserva.startDate
-//
-//            var endDate = dateFormatter.string(from: endDatePicker.date)
-//
-//            endDate = reserva.endDate
-//
-//            var id = Int(resourceIDTextField.text!)
-//
-//            id = reserva.resourceID
-//
-//            var status = Int(statusTextField.text!)
-//
-//            status = reserva.status
-            
-            title = "Edit reserva"
+            title = "Editar reserva"
         }
         else{
-            title = "Insert reserva"
+            title = "Insertar reserva"
         }
         //paso 3 invocar la función updateSaveButtonState()
         updateSaveButtonState()
     }
-
-    @IBAction func datePickerChanged(_ sender: UIDatePicker) {
+    
+    @IBAction func textEditingChanged(_ sender: UITextField) {
         updateSaveButtonState()
     }
     
     // MARK: - Table view data source
 
+    /*
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 0
@@ -106,6 +90,7 @@ class EditReservationsTableViewController: UITableViewController {
         // #warning Incomplete implementation, return the number of rows
         return 0
     }
+    */
 
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -175,6 +160,7 @@ class EditReservationsTableViewController: UITableViewController {
         let startDate = startDate.text ?? ""
         
         let endDate = endDate.text ?? ""
+        
         
         let resourceID = resourceIDTextField.text ?? ""
 

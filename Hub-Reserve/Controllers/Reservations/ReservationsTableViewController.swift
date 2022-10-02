@@ -25,6 +25,8 @@ class ReservationsTableViewController: UITableViewController {
 
     // MARK: - Table view data source
 
+    /*PASO 0 crear método unwindToEmojiTableView para cerrar la vista de la tabla estática
+     Luego de la definición se deben crear los segues de tipo unwind, es decir, segues hacia el proxy EXIT*/
     @IBAction func unwindToEmojiTableView(segue: UIStoryboardSegue) {
         guard segue.identifier == "saveUnwind",
             let sourceViewController = segue.source as? EditReservationsTableViewController,
@@ -38,6 +40,31 @@ class ReservationsTableViewController: UITableViewController {
             reservations.append(reserva)
             tableView.insertRows(at: [newIndexPath], with: .automatic)
         }
+    }
+    
+    /*
+     leer esta nota
+     With prepare(for:sender:), UIKit creates the view controller and passes the instance to the starting point view controller’s prepare(for:sender:) for configuration. With an IBSegueAction, you create the view controller fully configured and pass it to UIKit for display
+     */
+    
+    @IBSegueAction func editReserva(_ coder: NSCoder, sender: Any?, segueIdentifier: String?) -> EditReservationsTableViewController? {
+        if let cell = sender as? UITableViewCell, let indexPath = tableView.indexPath(for: cell) {
+            // Editing Emoji
+            let reservaToEdit = reservations[indexPath.row]
+            return EditReservationsTableViewController(coder: coder, r: reservaToEdit)
+        } else {
+            // Adding Emoji
+            return EditReservationsTableViewController(coder: coder, r: nil)
+        }
+    }
+    @IBAction func editButtonTapped(_ sender: UIBarButtonItem) {
+        let tableViewEditingMode = tableView.isEditing
+            tableView.setEditing(!tableViewEditingMode, animated: true)
+    }
+    
+    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
+        let movedReservation = reservations.remove(at: fromIndexPath.row)
+        reservations.insert(movedReservation, at: to.row)
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -62,14 +89,8 @@ class ReservationsTableViewController: UITableViewController {
         return cell
     }
     
-    @IBAction func editButtonTapped(_ sender: UIBarButtonItem) {
-        let tableViewEditingMode = tableView.isEditing
-            tableView.setEditing(!tableViewEditingMode, animated: true)
-    }
-    
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-        let movedReservation = reservations.remove(at: fromIndexPath.row)
-        reservations.insert(movedReservation, at: to.row)
+    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .delete
     }
     
     // Override to support editing the table view.
