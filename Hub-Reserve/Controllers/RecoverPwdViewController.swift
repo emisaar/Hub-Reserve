@@ -25,7 +25,7 @@ class RecoverPwdViewController: UIViewController {
     
     func showAlertMailValidation(){
         // Create Alert View
-        let alertView = UIAlertController(title: "Constraseña actualizada", message: "Su contraseña ha sido actualizada correctamente.", preferredStyle: .alert)
+        let alertView = UIAlertController(title: "Aviso", message: "Hemos enviado un correo electrónico para restablecer su contraseña.", preferredStyle: .alert)
         alertView.addAction(UIAlertAction(title:"Aceptar", style: .default, handler: {(_) in self.changeScreen()}))
         self.present(alertView, animated: true, completion: nil)
     }

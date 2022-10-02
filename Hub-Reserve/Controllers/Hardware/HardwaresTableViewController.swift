@@ -11,6 +11,8 @@ class HardwaresTableViewController: UITableViewController {
     
     var hardwares = Hardware.hardwareList()
     
+    var cellLabel = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -92,6 +94,17 @@ class HardwaresTableViewController: UITableViewController {
         cell.update(r: resource)
         
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        cellLabel = hardwares[indexPath.row].name
+
+//        performSegue(withIdentifier: "Reservar", sender: nil)
+        
+        let vc = storyboard?.instantiateViewController(withIdentifier: "Reservar") as? ReserveViewController
+        vc?.resourceText = cellLabel
+        vc?.idResourceText = String(3)
+        navigationController?.pushViewController(vc!, animated: true)
     }
     
     override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {

@@ -8,19 +8,25 @@
 import UIKit
 
 class ReserveViewController: UIViewController {
+    
+    var reservations = Reservation.reservationList()
 
     @IBOutlet weak var resourceTextField: UITextField!
+    @IBOutlet weak var idResourceTextField: UITextField!
     @IBOutlet weak var InitialDateTextField: UITextField!
     @IBOutlet weak var EndDateTextField: UITextField!
-    
-    
+
     @IBAction func reserveBtn(_ sender: Any) {
+//        addReserve()
         showAlertReservationDone()
     }
     
-    let salas = ["Sala 1", "Sala 2", "Sala 3", "Sala 4", "Sala 5"]
+    @IBOutlet weak var reservar: UIButton!
+    
+//    let salas = ["Sala 1", "Sala 2", "Sala 3", "Sala 4", "Sala 5"]
     
     var resourceText = ""
+    var idResourceText = ""
     
     var roomsPickerView = UIPickerView()
     
@@ -37,9 +43,12 @@ class ReserveViewController: UIViewController {
 
 //        resourceTextField.inputView = roomsPickerView
         resourceTextField.text = resourceText
-        
         resourceTextField.placeholder = "Seleccionar..."
         resourceTextField.textAlignment = .center
+        
+        idResourceTextField.text = idResourceText
+        idResourceTextField.placeholder = "Seleccionar..."
+        idResourceTextField.textAlignment = .center
         
         InitialDateTextField.placeholder = "Seleccionar..."
         InitialDateTextField.textAlignment = .center
@@ -47,13 +56,44 @@ class ReserveViewController: UIViewController {
         EndDateTextField.placeholder = "Seleccionar..."
         EndDateTextField.textAlignment = .center
         
-        roomsPickerView.delegate = self
-        roomsPickerView.dataSource = self
+//        roomsPickerView.delegate = self
+//        roomsPickerView.dataSource = self
         
         createInitialDatePicker()
         createEndDatePicker()
+        
+        // Actualizar botón
+        updateSaveButtonState()
     }
 
+    func updateSaveButtonState() {
+        let nombre = resourceTextField.text ?? ""
+
+        let startDate = InitialDateTextField.text ?? ""
+        
+        let endDate = EndDateTextField.text ?? ""
+        
+        reservar.isEnabled = !nombre.isEmpty && !startDate.isEmpty && !endDate.isEmpty
+    }
+    
+//    func addReserve() {
+//        let nombre = resourceTextField.text ?? ""
+//
+//        let startDate = InitialDateTextField.text ?? ""
+//
+//        let endDate = EndDateTextField.text ?? ""
+//
+//        let resourceID = idResourceTextField.text ?? ""
+//
+//        let reserva = Reservation(name: nombre, startDate: startDate, endDate: endDate, resourceID: Int(resourceID)!, status: 1)
+//
+//        reservations.append(reserva)
+//    }
+    
+    @IBAction func textEditingChanged(_ sender: UITextField) {
+        updateSaveButtonState()
+    }
+    
     func createToolbarInitialDate() -> UIToolbar {
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
@@ -137,21 +177,24 @@ class ReserveViewController: UIViewController {
 
 }
 
-extension ReserveViewController: UIPickerViewDataSource, UIPickerViewDelegate {
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return salas.count
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return salas[row]
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        resourceTextField.text = salas[row]
-        resourceTextField.resignFirstResponder()
-    }
-}
+/*
+ extension ReserveViewController: UIPickerViewDataSource, UIPickerViewDelegate {
+ func numberOfComponents(in pickerView: UIPickerView) -> Int {
+ return 1
+ }
+ 
+ func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+ return salas.count
+ }
+ 
+ func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+ return salas[row]
+ }
+ 
+ func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+ resourceTextField.text = salas[row]
+ resourceTextField.resignFirstResponder()
+ }
+ 
+ }
+ */

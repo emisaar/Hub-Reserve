@@ -683,13 +683,13 @@
         <!--Reserve-->
         <scene sceneID="Asg-kl-dHr">
             <objects>
-                <viewController title="Reserve" id="uQb-QZ-gBb" customClass="ReserveViewController" customModule="Hub_Reserve" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Reservar" title="Reserve" id="uQb-QZ-gBb" customClass="ReserveViewController" customModule="Hub_Reserve" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fLo-T4-0xS">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="VOq-yo-jr3">
-                                <rect key="frame" x="0.0" y="92" width="414" height="721"/>
+                                <rect key="frame" x="0.0" y="48" width="414" height="814"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mjQ-BJ-0vR">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="98.5"/>
@@ -713,25 +713,28 @@
                                         <rect key="frame" x="0.0" y="98.5" width="414" height="401.5"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Wrt-DU-GuB">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="301.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="361.5"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E6k-87-vJd">
-                                                        <rect key="frame" x="0.0" y="0.0" width="414" height="100.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="414" height="90.5"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Jhm-NK-zEW">
-                                                                <rect key="frame" x="28" y="8" width="358" height="84.5"/>
+                                                                <rect key="frame" x="28" y="8" width="358" height="74.5"/>
                                                                 <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nombre del recurso" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PeO-qA-YeP">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="358" height="42.5"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nombre del recurso (No editable)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PeO-qA-YeP">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="358" height="37"/>
                                                                         <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="18"/>
                                                                         <color key="textColor" name="AccentColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cwc-6k-bY1">
-                                                                        <rect key="frame" x="0.0" y="42.5" width="358" height="42"/>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cwc-6k-bY1">
+                                                                        <rect key="frame" x="0.0" y="37" width="358" height="37.5"/>
+                                                                        <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                                                        <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <fontDescription key="fontDescription" name="AvenirNext-Italic" family="Avenir Next" pointSize="17"/>
                                                                         <textInputTraits key="textInputTraits"/>
                                                                         <connections>
+                                                                            <action selector="textEditingChanged:" destination="uQb-QZ-gBb" eventType="editingDidEnd" id="vw2-kA-hqg"/>
                                                                             <action selector="textFieldDoneEditingWithSender:" destination="uQb-QZ-gBb" eventType="editingDidEndOnExit" id="8OE-ND-Tqn"/>
                                                                         </connections>
                                                                     </textField>
@@ -746,23 +749,58 @@
                                                             <constraint firstAttribute="trailingMargin" secondItem="Jhm-NK-zEW" secondAttribute="trailing" constant="20" id="Tra-sF-Jsg"/>
                                                         </constraints>
                                                     </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LKI-ih-1Dh">
+                                                        <rect key="frame" x="0.0" y="90.5" width="414" height="90.5"/>
+                                                        <subviews>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="m5x-sz-vzc">
+                                                                <rect key="frame" x="28" y="8" width="358" height="74.5"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ID del recurso (No editable)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ao3-m1-nNc">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="358" height="37"/>
+                                                                        <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="18"/>
+                                                                        <color key="textColor" name="AccentColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="D5o-F8-3vZ">
+                                                                        <rect key="frame" x="0.0" y="37" width="358" height="37.5"/>
+                                                                        <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                                                        <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <fontDescription key="fontDescription" name="AvenirNext-Italic" family="Avenir Next" pointSize="17"/>
+                                                                        <textInputTraits key="textInputTraits"/>
+                                                                        <connections>
+                                                                            <action selector="textEditingChanged:" destination="uQb-QZ-gBb" eventType="editingDidEnd" id="sDc-pS-yLo"/>
+                                                                            <action selector="textFieldDoneEditingWithSender:" destination="uQb-QZ-gBb" eventType="editingDidEndOnExit" id="e5X-nX-aWL"/>
+                                                                        </connections>
+                                                                    </textField>
+                                                                </subviews>
+                                                            </stackView>
+                                                        </subviews>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <constraints>
+                                                            <constraint firstItem="m5x-sz-vzc" firstAttribute="leading" secondItem="LKI-ih-1Dh" secondAttribute="leadingMargin" constant="20" id="0nQ-Cw-s4w"/>
+                                                            <constraint firstAttribute="bottomMargin" secondItem="m5x-sz-vzc" secondAttribute="bottom" id="Ga5-Wc-i8O"/>
+                                                            <constraint firstItem="m5x-sz-vzc" firstAttribute="top" secondItem="LKI-ih-1Dh" secondAttribute="topMargin" id="Vwx-rI-Q3D"/>
+                                                            <constraint firstAttribute="trailingMargin" secondItem="m5x-sz-vzc" secondAttribute="trailing" constant="20" id="YEU-OM-Htb"/>
+                                                        </constraints>
+                                                    </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eae-S2-3re">
-                                                        <rect key="frame" x="0.0" y="100.5" width="414" height="100.5"/>
+                                                        <rect key="frame" x="0.0" y="181" width="414" height="90"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="A6A-Aw-4IA">
-                                                                <rect key="frame" x="28" y="8" width="358" height="84.5"/>
+                                                                <rect key="frame" x="28" y="8" width="358" height="74"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Selecciona la fecha y hora de inicio" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P8T-Zj-n6A">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="358" height="42.5"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="358" height="37"/>
                                                                         <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="18"/>
                                                                         <color key="textColor" name="AccentColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XVk-Yd-1tw">
-                                                                        <rect key="frame" x="0.0" y="42.5" width="358" height="42"/>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                        <rect key="frame" x="0.0" y="37" width="358" height="37"/>
+                                                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
                                                                         <textInputTraits key="textInputTraits"/>
                                                                         <connections>
+                                                                            <action selector="textEditingChanged:" destination="uQb-QZ-gBb" eventType="editingDidEnd" id="BPQ-mU-K3g"/>
                                                                             <action selector="textFieldDoneEditingWithSender:" destination="uQb-QZ-gBb" eventType="editingDidEndOnExit" id="39Z-QL-xLx"/>
                                                                         </connections>
                                                                     </textField>
@@ -778,22 +816,23 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bus-1Y-ev1">
-                                                        <rect key="frame" x="0.0" y="201" width="414" height="100.5"/>
+                                                        <rect key="frame" x="0.0" y="271" width="414" height="90.5"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="8Gu-av-LpK">
-                                                                <rect key="frame" x="28" y="8" width="358" height="84.5"/>
+                                                                <rect key="frame" x="28" y="8" width="358" height="74.5"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Selecciona la fecha y hora de término" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hvh-V7-RiH">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="358" height="42.5"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="358" height="37.5"/>
                                                                         <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="18"/>
                                                                         <color key="textColor" name="AccentColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gzS-o8-wBF">
-                                                                        <rect key="frame" x="0.0" y="42.5" width="358" height="42"/>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                        <rect key="frame" x="0.0" y="37.5" width="358" height="37"/>
+                                                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
                                                                         <textInputTraits key="textInputTraits"/>
                                                                         <connections>
+                                                                            <action selector="textEditingChanged:" destination="uQb-QZ-gBb" eventType="editingDidEnd" id="7WH-1f-hdr"/>
                                                                             <action selector="textFieldDoneEditingWithSender:" destination="uQb-QZ-gBb" eventType="editingDidEndOnExit" id="NHA-Ml-LmJ"/>
                                                                         </connections>
                                                                     </textField>
@@ -815,18 +854,18 @@
                                         <constraints>
                                             <constraint firstItem="Wrt-DU-GuB" firstAttribute="top" secondItem="8xH-Rw-TPz" secondAttribute="top" id="Af5-R1-Sgx"/>
                                             <constraint firstItem="Wrt-DU-GuB" firstAttribute="leading" secondItem="8xH-Rw-TPz" secondAttribute="leading" id="elL-56-fb6"/>
-                                            <constraint firstAttribute="bottom" secondItem="Wrt-DU-GuB" secondAttribute="bottom" constant="100" id="kbY-Xr-m3i"/>
+                                            <constraint firstAttribute="bottom" secondItem="Wrt-DU-GuB" secondAttribute="bottom" constant="40" id="kbY-Xr-m3i"/>
                                             <constraint firstAttribute="trailing" secondItem="Wrt-DU-GuB" secondAttribute="trailing" id="qBl-M5-7Uy"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gGh-jS-6qG">
-                                        <rect key="frame" x="0.0" y="500" width="414" height="221"/>
+                                        <rect key="frame" x="0.0" y="500" width="414" height="314"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ifo-FA-OIS">
-                                                <rect key="frame" x="0.0" y="4" width="414" height="70.5"/>
+                                                <rect key="frame" x="0.0" y="4" width="414" height="163.5"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uOj-H1-cKz" userLabel="Registrarse">
-                                                        <rect key="frame" x="73" y="10.5" width="268" height="50"/>
+                                                        <rect key="frame" x="73" y="57" width="268" height="50"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="268" id="0Wv-W7-9iL"/>
                                                             <constraint firstAttribute="height" constant="50" id="UYJ-4m-pNm"/>
@@ -837,7 +876,7 @@
                                                             <fontDescription key="titleFontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="18"/>
                                                         </buttonConfiguration>
                                                         <connections>
-                                                            <action selector="reserveBtn:" destination="uQb-QZ-gBb" eventType="touchUpInside" id="27V-ca-JLi"/>
+                                                            <action selector="reserveBtn:" destination="uQb-QZ-gBb" eventType="touchUpInside" id="VEF-lt-Wfr"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -876,6 +915,8 @@
                     <connections>
                         <outlet property="EndDateTextField" destination="gzS-o8-wBF" id="8mB-bc-kBS"/>
                         <outlet property="InitialDateTextField" destination="XVk-Yd-1tw" id="F7r-ge-d1w"/>
+                        <outlet property="idResourceTextField" destination="D5o-F8-3vZ" id="D1D-UJ-gnB"/>
+                        <outlet property="reservar" destination="uOj-H1-cKz" id="fha-aX-wOI"/>
                         <outlet property="resourceTextField" destination="cwc-6k-bY1" id="fKF-Fi-zff"/>
                     </connections>
                 </viewController>
@@ -1287,7 +1328,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rTx-fC-9Us" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="10462" y="3035"/>
+            <point key="canvasLocation" x="10397" y="3406"/>
         </scene>
         <!--Add Fav Table View Controller-->
         <scene sceneID="jqt-VW-Av7">
@@ -1584,7 +1625,6 @@
                                     <outlet property="icon" destination="E7a-Mo-wXt" id="1WD-Be-Tle"/>
                                     <outlet property="resourceLabel" destination="Ty5-T4-Anh" id="gXX-rx-Dvj"/>
                                     <outlet property="statusLabel" destination="6lz-6X-weK" id="zv2-Wt-cu1"/>
-                                    <segue destination="uQb-QZ-gBb" kind="show" id="1hp-L3-T1Q"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -1661,7 +1701,6 @@
                                     <outlet property="icon" destination="0F0-Lo-HWG" id="sgA-gS-HPp"/>
                                     <outlet property="resourceLabel" destination="Z0S-fT-8nC" id="39v-eW-UOZ"/>
                                     <outlet property="statusLabel" destination="Nz9-kv-3uF" id="N5n-3F-Qqe"/>
-                                    <segue destination="uQb-QZ-gBb" kind="show" id="Cx4-dS-csc"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -1738,7 +1777,6 @@
                                     <outlet property="icon" destination="tzl-xH-BHU" id="1rb-Cg-DaE"/>
                                     <outlet property="resourceLabel" destination="mMn-Pk-1Yd" id="nMO-c1-DnT"/>
                                     <outlet property="statusLabel" destination="mk4-5t-dTW" id="oUH-eO-KkD"/>
-                                    <segue destination="uQb-QZ-gBb" kind="show" identifier="Reservar" id="NOc-TG-8hI"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -3007,9 +3045,6 @@ Servicio y Políticas de Seguridad</string>
             <point key="canvasLocation" x="11569.565217391306" y="2108.7053571428569"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="NOc-TG-8hI"/>
-    </inferredMetricsTieBreakers>
     <resources>
         <image name="Computo" width="173" height="100.5"/>
         <image name="Licencias" width="172.5" height="100"/>

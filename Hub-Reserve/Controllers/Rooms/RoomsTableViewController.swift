@@ -95,8 +95,13 @@ class RoomsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         cellLabel = rooms[indexPath.row].name
+
+//        performSegue(withIdentifier: "Reservar", sender: nil)
         
-        performSegue(withIdentifier: "Reservar", sender: cellLabel)
+        let vc = storyboard?.instantiateViewController(withIdentifier: "Reservar") as? ReserveViewController
+        vc?.resourceText = cellLabel
+        vc?.idResourceText = String(1)
+        navigationController?.pushViewController(vc!, animated: true)
     }
     
     override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
@@ -169,6 +174,7 @@ class RoomsTableViewController: UITableViewController {
     }
     */
 
+    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -177,8 +183,9 @@ class RoomsTableViewController: UITableViewController {
         if segue.identifier == "Reservar"{
             // Pass the selected object to the new view controller.
             let nextScreen = segue.destination as! ReserveViewController
-            
+
             nextScreen.resourceText = cellLabel
         }
     }
+    */
 }

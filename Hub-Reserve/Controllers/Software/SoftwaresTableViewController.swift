@@ -11,6 +11,8 @@ class SoftwaresTableViewController: UITableViewController {
     
     var softwares = Software.softwareList()
     
+    var cellLabel = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -92,6 +94,17 @@ class SoftwaresTableViewController: UITableViewController {
         cell.update(r: resource)
         
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        cellLabel = softwares[indexPath.row].name
+
+//        performSegue(withIdentifier: "Reservar", sender: nil)
+        
+        let vc = storyboard?.instantiateViewController(withIdentifier: "Reservar") as? ReserveViewController
+        vc?.resourceText = cellLabel
+        vc?.idResourceText = String(2)
+        navigationController?.pushViewController(vc!, animated: true)
     }
     
     override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
