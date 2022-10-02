@@ -11,6 +11,9 @@
 		E80D88B928E2C9A40029B15A /* Stats.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80D88B828E2C9A40029B15A /* Stats.swift */; };
 		E80D88BD28E2CBFF0029B15A /* StatsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80D88BC28E2CBFF0029B15A /* StatsTableViewController.swift */; };
 		E80D88BF28E2CC8B0029B15A /* StatsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80D88BE28E2CC8B0029B15A /* StatsTableViewCell.swift */; };
+		E84154D528E91C9000AB023D /* Historial.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84154D428E91C9000AB023D /* Historial.swift */; };
+		E84154D928E91E3800AB023D /* HistorialTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84154D828E91E3800AB023D /* HistorialTableViewController.swift */; };
+		E84154DB28E91E8D00AB023D /* HistorialTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84154DA28E91E8D00AB023D /* HistorialTableViewCell.swift */; };
 		E861C39128E64BCC00240044 /* ReserveView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E861C39028E64BCC00240044 /* ReserveView.xib */; };
 		E861C39328E64BE700240044 /* ReserveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E861C39228E64BE700240044 /* ReserveView.swift */; };
 		E861C39528E64C2700240044 /* RoomsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E861C39428E64C2700240044 /* RoomsViewController.swift */; };
@@ -41,6 +44,9 @@
 		E80D88B828E2C9A40029B15A /* Stats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stats.swift; sourceTree = "<group>"; };
 		E80D88BC28E2CBFF0029B15A /* StatsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsTableViewController.swift; sourceTree = "<group>"; };
 		E80D88BE28E2CC8B0029B15A /* StatsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsTableViewCell.swift; sourceTree = "<group>"; };
+		E84154D428E91C9000AB023D /* Historial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Historial.swift; sourceTree = "<group>"; };
+		E84154D828E91E3800AB023D /* HistorialTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistorialTableViewController.swift; sourceTree = "<group>"; };
+		E84154DA28E91E8D00AB023D /* HistorialTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistorialTableViewCell.swift; sourceTree = "<group>"; };
 		E861C39028E64BCC00240044 /* ReserveView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReserveView.xib; sourceTree = "<group>"; };
 		E861C39228E64BE700240044 /* ReserveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReserveView.swift; sourceTree = "<group>"; };
 		E861C39428E64C2700240044 /* RoomsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomsViewController.swift; sourceTree = "<group>"; };
@@ -118,6 +124,8 @@
 			isa = PBXGroup;
 			children = (
 				E8F6100528DD724200F14A44 /* ReservationsTableViewController.swift */,
+				E84154D828E91E3800AB023D /* HistorialTableViewController.swift */,
+				E84154DA28E91E8D00AB023D /* HistorialTableViewCell.swift */,
 				E8C81E4428DCDDD200C826C4 /* CalendarViewController.swift */,
 				E8BDCC8428D7CA4100480589 /* RecoverPwdViewController.swift */,
 				E8BDCC8228D76CDF00480589 /* RegisterViewController.swift */,
@@ -142,6 +150,7 @@
 				E8F6100728DD725500F14A44 /* Reservation.swift */,
 				E80D88B828E2C9A40029B15A /* Stats.swift */,
 				E8E722D728E549E200D0BB63 /* User.swift */,
+				E84154D428E91C9000AB023D /* Historial.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -226,12 +235,15 @@
 				E80D88BF28E2CC8B0029B15A /* StatsTableViewCell.swift in Sources */,
 				E8E722DE28E54BF400D0BB63 /* EditProfileTableViewController.swift in Sources */,
 				E8F6100828DD725500F14A44 /* Reservation.swift in Sources */,
+				E84154D928E91E3800AB023D /* HistorialTableViewController.swift in Sources */,
 				E861C39528E64C2700240044 /* RoomsViewController.swift in Sources */,
 				E8E722DA28E54BB300D0BB63 /* ProfileViewController.swift in Sources */,
 				E80C5BF928E122D70031515D /* ReservadoTableViewCell.swift in Sources */,
+				E84154D528E91C9000AB023D /* Historial.swift in Sources */,
 				E861C39928E64C5300240044 /* HardwareViewController.swift in Sources */,
 				E8E722D828E549E200D0BB63 /* User.swift in Sources */,
 				E8BDCC8328D76CDF00480589 /* RegisterViewController.swift in Sources */,
+				E84154DB28E91E8D00AB023D /* HistorialTableViewCell.swift in Sources */,
 				E8964D9928D6ADD0001EEAA0 /* AppDelegate.swift in Sources */,
 				E8F6100628DD724200F14A44 /* ReservationsTableViewController.swift in Sources */,
 				E861C39328E64BE700240044 /* ReserveView.swift in Sources */,
