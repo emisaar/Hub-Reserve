@@ -136,10 +136,10 @@
 				E80D88BE28E2CC8B0029B15A /* StatsTableViewCell.swift */,
 				E8B73C6628E4C0DE00E3E6C8 /* AboutHubPagesViewController.swift */,
 				E8E722D928E54BB300D0BB63 /* ProfileViewController.swift */,
-				E861C39828E64C5300240044 /* HardwareViewController.swift */,
 				E8E722DD28E54BF400D0BB63 /* EditProfileTableViewController.swift */,
 				E861C39428E64C2700240044 /* RoomsViewController.swift */,
 				E861C39628E64C3900240044 /* SoftwareViewController.swift */,
+				E861C39828E64C5300240044 /* HardwareViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
