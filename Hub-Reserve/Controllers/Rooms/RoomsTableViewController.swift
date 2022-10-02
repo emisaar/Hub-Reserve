@@ -93,9 +93,16 @@ class RoomsTableViewController: UITableViewController {
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        cellLabel = rooms[indexPath.row].name
+        
+        performSegue(withIdentifier: "Reservar", sender: cellLabel)
+    }
+    
     override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         return .delete
     }
+
     
     /* UNCOMMENT FOR EDITABLE TABLES
     // Override to support editing the table view.
@@ -167,7 +174,11 @@ class RoomsTableViewController: UITableViewController {
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-        let nextScreen = segue.destination as! ReserveViewController
+        if segue.identifier == "Reservar"{
+            // Pass the selected object to the new view controller.
+            let nextScreen = segue.destination as! ReserveViewController
+            
+            nextScreen.resourceText = cellLabel
+        }
     }
 }
