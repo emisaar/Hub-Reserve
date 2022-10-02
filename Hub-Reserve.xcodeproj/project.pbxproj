@@ -32,6 +32,9 @@
 		E8BDCC8328D76CDF00480589 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BDCC8228D76CDF00480589 /* RegisterViewController.swift */; };
 		E8BDCC8528D7CA4100480589 /* RecoverPwdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BDCC8428D7CA4100480589 /* RecoverPwdViewController.swift */; };
 		E8C81E4528DCDDD200C826C4 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C81E4428DCDDD200C826C4 /* CalendarViewController.swift */; };
+		E8DE550328E940D8006F6DAA /* Favorites.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DE550228E940D8006F6DAA /* Favorites.swift */; };
+		E8DE550628E9421F006F6DAA /* FavoritesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DE550528E9421F006F6DAA /* FavoritesTableViewController.swift */; };
+		E8DE550C28E942FE006F6DAA /* FavTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DE550B28E942FE006F6DAA /* FavTableViewCell.swift */; };
 		E8E722D828E549E200D0BB63 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E722D728E549E200D0BB63 /* User.swift */; };
 		E8E722DA28E54BB300D0BB63 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E722D928E54BB300D0BB63 /* ProfileViewController.swift */; };
 		E8E722DE28E54BF400D0BB63 /* EditProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E722DD28E54BF400D0BB63 /* EditProfileTableViewController.swift */; };
@@ -67,6 +70,9 @@
 		E8BDCC8228D76CDF00480589 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		E8BDCC8428D7CA4100480589 /* RecoverPwdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoverPwdViewController.swift; sourceTree = "<group>"; };
 		E8C81E4428DCDDD200C826C4 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		E8DE550228E940D8006F6DAA /* Favorites.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favorites.swift; sourceTree = "<group>"; };
+		E8DE550528E9421F006F6DAA /* FavoritesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesTableViewController.swift; sourceTree = "<group>"; };
+		E8DE550B28E942FE006F6DAA /* FavTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavTableViewCell.swift; sourceTree = "<group>"; };
 		E8E722D728E549E200D0BB63 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		E8E722D928E54BB300D0BB63 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		E8E722DD28E54BF400D0BB63 /* EditProfileTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileTableViewController.swift; sourceTree = "<group>"; };
@@ -120,26 +126,68 @@
 			path = "Hub-Reserve";
 			sourceTree = "<group>";
 		};
-		E8F6100328DD71D800F14A44 /* Controllers */ = {
+		E8DE550428E941C6006F6DAA /* Historial */ = {
+			isa = PBXGroup;
+			children = (
+				E84154D828E91E3800AB023D /* HistorialTableViewController.swift */,
+				E84154DA28E91E8D00AB023D /* HistorialTableViewCell.swift */,
+			);
+			path = Historial;
+			sourceTree = "<group>";
+		};
+		E8DE550728E94227006F6DAA /* Favorites */ = {
+			isa = PBXGroup;
+			children = (
+				E8DE550528E9421F006F6DAA /* FavoritesTableViewController.swift */,
+				E8DE550B28E942FE006F6DAA /* FavTableViewCell.swift */,
+			);
+			path = Favorites;
+			sourceTree = "<group>";
+		};
+		E8DE550828E94260006F6DAA /* Reservations */ = {
 			isa = PBXGroup;
 			children = (
 				E8F6100528DD724200F14A44 /* ReservationsTableViewController.swift */,
-				E84154D828E91E3800AB023D /* HistorialTableViewController.swift */,
-				E84154DA28E91E8D00AB023D /* HistorialTableViewCell.swift */,
-				E8C81E4428DCDDD200C826C4 /* CalendarViewController.swift */,
-				E8BDCC8428D7CA4100480589 /* RecoverPwdViewController.swift */,
-				E8BDCC8228D76CDF00480589 /* RegisterViewController.swift */,
-				E8BDCC8028D76CC300480589 /* LoginViewController.swift */,
-				E86B0EE228D6B9C700C02D29 /* RootViewController.swift */,
 				E80C5BF828E122D70031515D /* ReservadoTableViewCell.swift */,
+			);
+			path = Reservations;
+			sourceTree = "<group>";
+		};
+		E8DE550928E9427A006F6DAA /* Stats */ = {
+			isa = PBXGroup;
+			children = (
 				E80D88BC28E2CBFF0029B15A /* StatsTableViewController.swift */,
 				E80D88BE28E2CC8B0029B15A /* StatsTableViewCell.swift */,
-				E8B73C6628E4C0DE00E3E6C8 /* AboutHubPagesViewController.swift */,
+			);
+			path = Stats;
+			sourceTree = "<group>";
+		};
+		E8DE550A28E9428D006F6DAA /* Profile */ = {
+			isa = PBXGroup;
+			children = (
 				E8E722D928E54BB300D0BB63 /* ProfileViewController.swift */,
 				E8E722DD28E54BF400D0BB63 /* EditProfileTableViewController.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		E8F6100328DD71D800F14A44 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				E8DE550A28E9428D006F6DAA /* Profile */,
+				E8DE550928E9427A006F6DAA /* Stats */,
+				E8DE550828E94260006F6DAA /* Reservations */,
+				E8DE550428E941C6006F6DAA /* Historial */,
+				E8DE550728E94227006F6DAA /* Favorites */,
+				E86B0EE228D6B9C700C02D29 /* RootViewController.swift */,
+				E8B73C6628E4C0DE00E3E6C8 /* AboutHubPagesViewController.swift */,
+				E8BDCC8228D76CDF00480589 /* RegisterViewController.swift */,
+				E8BDCC8028D76CC300480589 /* LoginViewController.swift */,
 				E861C39428E64C2700240044 /* RoomsViewController.swift */,
 				E861C39628E64C3900240044 /* SoftwareViewController.swift */,
 				E861C39828E64C5300240044 /* HardwareViewController.swift */,
+				E8C81E4428DCDDD200C826C4 /* CalendarViewController.swift */,
+				E8BDCC8428D7CA4100480589 /* RecoverPwdViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -151,6 +199,7 @@
 				E80D88B828E2C9A40029B15A /* Stats.swift */,
 				E8E722D728E549E200D0BB63 /* User.swift */,
 				E84154D428E91C9000AB023D /* Historial.swift */,
+				E8DE550228E940D8006F6DAA /* Favorites.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -229,8 +278,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				E8C81E4528DCDDD200C826C4 /* CalendarViewController.swift in Sources */,
+				E8DE550C28E942FE006F6DAA /* FavTableViewCell.swift in Sources */,
 				E8BDCC8128D76CC300480589 /* LoginViewController.swift in Sources */,
 				E80D88B928E2C9A40029B15A /* Stats.swift in Sources */,
+				E8DE550628E9421F006F6DAA /* FavoritesTableViewController.swift in Sources */,
 				E80D88BD28E2CBFF0029B15A /* StatsTableViewController.swift in Sources */,
 				E80D88BF28E2CC8B0029B15A /* StatsTableViewCell.swift in Sources */,
 				E8E722DE28E54BF400D0BB63 /* EditProfileTableViewController.swift in Sources */,
@@ -253,6 +304,7 @@
 				E86B0EE328D6B9C700C02D29 /* RootViewController.swift in Sources */,
 				E8964D9B28D6ADD0001EEAA0 /* SceneDelegate.swift in Sources */,
 				E8BDCC8528D7CA4100480589 /* RecoverPwdViewController.swift in Sources */,
+				E8DE550328E940D8006F6DAA /* Favorites.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

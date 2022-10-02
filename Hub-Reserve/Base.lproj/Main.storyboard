@@ -1673,13 +1673,13 @@ Servicio y Políticas de Seguridad</string>
         <!--Favorites-->
         <scene sceneID="cWv-LL-ehW">
             <objects>
-                <tableViewController title="Favorites" id="sat-yv-g4Q" sceneMemberID="viewController">
+                <tableViewController title="Favorites" id="sat-yv-g4Q" customClass="FavoritesTableViewController" customModule="Hub_Reserve" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="prc-Ia-9jg">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="amp-V5-p27">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="amp-V5-p27" customClass="FavTableViewCell" customModule="Hub_Reserve" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="50" width="414" height="82.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="amp-V5-p27" id="zwN-l4-Y8w">
@@ -1712,6 +1712,10 @@ Servicio y Políticas de Seguridad</string>
                                         <constraint firstItem="KEj-uc-bHz" firstAttribute="top" secondItem="zwN-l4-Y8w" secondAttribute="topMargin" id="PuL-lh-Vlr"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="icon" destination="Wft-3D-XkT" id="qU5-6k-Q5x"/>
+                                    <outlet property="resourceLabel" destination="f7j-4K-h1a" id="Cfk-Xt-4bo"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
