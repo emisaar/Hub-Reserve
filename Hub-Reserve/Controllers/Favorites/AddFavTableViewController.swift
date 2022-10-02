@@ -1,20 +1,19 @@
 //
-//  FavoritesViewController.swift
+//  AddFavTableViewController.swift
 //  Hub-Reserve
 //
-//  Created by Emi Saucedo on 01/10/22.
+//  Created by Emi Saucedo on 02/10/22.
 //
 
 import UIKit
 
-class FavoritesTableViewController: UITableViewController {
+class AddFavTableViewController: UITableViewController {
 
-    var favorites = Favorites.favoritesList()
+    var favorito: Favorites?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -27,53 +26,23 @@ class FavoritesTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        return 0
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return favorites.count
+        return 0
     }
 
-    
+    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! FavTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
 
         // Configure the cell...
-        let index = indexPath.row
-        let resource = favorites[index]
-        cell.update(r: resource)
-        
+
         return cell
     }
-    
-    @IBAction func editButtonTapped(_ sender: UIBarButtonItem) {
-        let tableViewEditingMode = tableView.isEditing
-            tableView.setEditing(!tableViewEditingMode, animated: true)
-    }
-    
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-        let movedReservation = favorites.remove(at: fromIndexPath.row)
-        favorites.insert(movedReservation, at: to.row)
-    }
-    
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            let alertView = UIAlertController(title: "Advertencia", message: "¿Seguro que desea eliminar la reservación? La acción no se puede deshacer", preferredStyle: .alert)
-            alertView.addAction(UIAlertAction(title:"Cancelar", style: .cancel, handler: nil))
-            alertView.addAction(UIAlertAction(title:"Aceptar", style: .default, handler: {_ in
-                // Delete the row from the data source
-                self.favorites.remove(at: indexPath.row)
-                tableView.deleteRows(at: [indexPath], with: .fade)
-            }))
-            self.present(alertView, animated: true, completion: nil)
-
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }
-    }
-
+    */
 
     /*
     // Override to support conditional editing of the table view.
@@ -91,7 +60,7 @@ class FavoritesTableViewController: UITableViewController {
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }
+        }    
     }
     */
 

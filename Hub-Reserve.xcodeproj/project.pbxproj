@@ -11,6 +11,8 @@
 		E80D88B928E2C9A40029B15A /* Stats.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80D88B828E2C9A40029B15A /* Stats.swift */; };
 		E80D88BD28E2CBFF0029B15A /* StatsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80D88BC28E2CBFF0029B15A /* StatsTableViewController.swift */; };
 		E80D88BF28E2CC8B0029B15A /* StatsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80D88BE28E2CC8B0029B15A /* StatsTableViewCell.swift */; };
+		E8357A0228E965AD0088A4DF /* AddFavTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8357A0128E965AD0088A4DF /* AddFavTableViewController.swift */; };
+		E8357A0628E96A240088A4DF /* EditReservationsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8357A0528E96A240088A4DF /* EditReservationsTableViewController.swift */; };
 		E84154D528E91C9000AB023D /* Historial.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84154D428E91C9000AB023D /* Historial.swift */; };
 		E84154D928E91E3800AB023D /* HistorialTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84154D828E91E3800AB023D /* HistorialTableViewController.swift */; };
 		E84154DB28E91E8D00AB023D /* HistorialTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84154DA28E91E8D00AB023D /* HistorialTableViewCell.swift */; };
@@ -47,6 +49,8 @@
 		E80D88B828E2C9A40029B15A /* Stats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stats.swift; sourceTree = "<group>"; };
 		E80D88BC28E2CBFF0029B15A /* StatsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsTableViewController.swift; sourceTree = "<group>"; };
 		E80D88BE28E2CC8B0029B15A /* StatsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsTableViewCell.swift; sourceTree = "<group>"; };
+		E8357A0128E965AD0088A4DF /* AddFavTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFavTableViewController.swift; sourceTree = "<group>"; };
+		E8357A0528E96A240088A4DF /* EditReservationsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditReservationsTableViewController.swift; sourceTree = "<group>"; };
 		E84154D428E91C9000AB023D /* Historial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Historial.swift; sourceTree = "<group>"; };
 		E84154D828E91E3800AB023D /* HistorialTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistorialTableViewController.swift; sourceTree = "<group>"; };
 		E84154DA28E91E8D00AB023D /* HistorialTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistorialTableViewCell.swift; sourceTree = "<group>"; };
@@ -140,6 +144,7 @@
 			children = (
 				E8DE550528E9421F006F6DAA /* FavoritesTableViewController.swift */,
 				E8DE550B28E942FE006F6DAA /* FavTableViewCell.swift */,
+				E8357A0128E965AD0088A4DF /* AddFavTableViewController.swift */,
 			);
 			path = Favorites;
 			sourceTree = "<group>";
@@ -149,6 +154,7 @@
 			children = (
 				E8F6100528DD724200F14A44 /* ReservationsTableViewController.swift */,
 				E80C5BF828E122D70031515D /* ReservadoTableViewCell.swift */,
+				E8357A0528E96A240088A4DF /* EditReservationsTableViewController.swift */,
 			);
 			path = Reservations;
 			sourceTree = "<group>";
@@ -285,6 +291,7 @@
 				E80D88BD28E2CBFF0029B15A /* StatsTableViewController.swift in Sources */,
 				E80D88BF28E2CC8B0029B15A /* StatsTableViewCell.swift in Sources */,
 				E8E722DE28E54BF400D0BB63 /* EditProfileTableViewController.swift in Sources */,
+				E8357A0628E96A240088A4DF /* EditReservationsTableViewController.swift in Sources */,
 				E8F6100828DD725500F14A44 /* Reservation.swift in Sources */,
 				E84154D928E91E3800AB023D /* HistorialTableViewController.swift in Sources */,
 				E861C39528E64C2700240044 /* RoomsViewController.swift in Sources */,
@@ -296,6 +303,7 @@
 				E8BDCC8328D76CDF00480589 /* RegisterViewController.swift in Sources */,
 				E84154DB28E91E8D00AB023D /* HistorialTableViewCell.swift in Sources */,
 				E8964D9928D6ADD0001EEAA0 /* AppDelegate.swift in Sources */,
+				E8357A0228E965AD0088A4DF /* AddFavTableViewController.swift in Sources */,
 				E8F6100628DD724200F14A44 /* ReservationsTableViewController.swift in Sources */,
 				E861C39328E64BE700240044 /* ReserveView.swift in Sources */,
 				E8B73C6728E4C0DE00E3E6C8 /* AboutHubPagesViewController.swift in Sources */,
