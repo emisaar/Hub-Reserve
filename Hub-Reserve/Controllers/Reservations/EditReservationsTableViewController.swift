@@ -23,6 +23,9 @@ class EditReservationsTableViewController: UITableViewController {
     @IBOutlet weak var resourceIDTextField: UITextField!
     @IBOutlet weak var statusTextField: UITextField!
     
+    let startDatePicker = UIDatePicker()
+    let endDatePicker = UIDatePicker()
+    
     init?(coder: NSCoder, r: Reservation?) {
         self.reserva = r
         super.init(coder: coder)
@@ -45,6 +48,64 @@ class EditReservationsTableViewController: UITableViewController {
         saveButton.isEnabled = !nombre.isEmpty && !startDate.isEmpty && !endDate.isEmpty && !resourceID.isEmpty && !status.isEmpty
     }
     
+    
+    func createToolbarInitialDate() -> UIToolbar {
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
+        
+        let doneBtn = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(donePressedInitialDate))
+        toolbar.setItems([doneBtn], animated: true)
+        
+        return toolbar
+    }
+    
+    func createToolbarEndDate() -> UIToolbar {
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
+        
+        let doneBtn = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(donePressedEndDate))
+        toolbar.setItems([doneBtn], animated: true)
+        
+        return toolbar
+    }
+    
+    func createInitialDatePicker() {
+        startDatePicker.preferredDatePickerStyle = .wheels
+//        InitialDatePicker.datePickerMode = .date
+        
+        startDate.textAlignment = .center
+        startDate.inputView = startDatePicker
+        startDate.inputAccessoryView = createToolbarInitialDate()
+    }
+    
+    func createEndDatePicker() {
+        endDatePicker.preferredDatePickerStyle = .wheels
+//        endDatePicker.datePickerMode = .date
+        
+        endDate.textAlignment = .center
+        endDate.inputView = endDatePicker
+        endDate.inputAccessoryView = createToolbarEndDate()
+    }
+    
+    @objc func donePressedInitialDate() {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        dateFormatter.timeStyle = .short
+        
+        self.startDate.text = dateFormatter.string(from: startDatePicker.date)
+        self.view.endEditing(true)
+
+    }
+    
+    @objc func donePressedEndDate() {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        dateFormatter.timeStyle = .short
+        
+        self.endDate.text = dateFormatter.string(from: endDatePicker.date)
+        self.view.endEditing(true)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -60,6 +121,9 @@ class EditReservationsTableViewController: UITableViewController {
             startDate.text = reserva.startDate
             
             endDate.text = reserva.endDate
+            
+            createInitialDatePicker()
+            createEndDatePicker()
            
             resourceIDTextField.text = String(reserva.resourceID)
 
