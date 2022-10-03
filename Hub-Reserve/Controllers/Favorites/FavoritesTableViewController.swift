@@ -11,6 +11,8 @@ class FavoritesTableViewController: UITableViewController {
 
     var favorites = Favorites.favoritesList()
     
+    var cellLabel = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -45,6 +47,17 @@ class FavoritesTableViewController: UITableViewController {
         cell.update(r: resource)
         
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        cellLabel = favorites[indexPath.row].name
+
+//        performSegue(withIdentifier: "Reservar", sender: nil)
+        
+        let vc = storyboard?.instantiateViewController(withIdentifier: "Reservar") as? ReserveViewController
+        vc?.resourceText = cellLabel
+        vc?.idResourceText = String(1)
+        navigationController?.pushViewController(vc!, animated: true)
     }
     
     @IBAction func editButtonTapped(_ sender: UIBarButtonItem) {
