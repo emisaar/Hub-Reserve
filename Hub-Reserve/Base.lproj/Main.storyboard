@@ -265,6 +265,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="2vM-bx-U5a"/>
                     <connections>
+                        <outlet property="emailTextField" destination="mfI-Pg-ws0" id="Ktf-E2-EvR"/>
+                        <outlet property="passwordTextField" destination="mfI-Pg-ws0" id="EB4-6E-BJv"/>
                         <outlet property="scrollView" destination="ho7-Uo-cIk" id="7MC-Mz-DiO"/>
                     </connections>
                 </viewController>

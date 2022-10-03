@@ -47,11 +47,14 @@
 		E8DE550328E940D8006F6DAA /* Favorites.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DE550228E940D8006F6DAA /* Favorites.swift */; };
 		E8DE550628E9421F006F6DAA /* FavoritesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DE550528E9421F006F6DAA /* FavoritesTableViewController.swift */; };
 		E8DE550C28E942FE006F6DAA /* FavTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DE550B28E942FE006F6DAA /* FavTableViewCell.swift */; };
-		E8E722D828E549E200D0BB63 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E722D728E549E200D0BB63 /* User.swift */; };
+		E8E722D828E549E200D0BB63 /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E722D728E549E200D0BB63 /* UserController.swift */; };
 		E8E722DA28E54BB300D0BB63 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E722D928E54BB300D0BB63 /* ProfileViewController.swift */; };
 		E8E722DE28E54BF400D0BB63 /* EditProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E722DD28E54BF400D0BB63 /* EditProfileTableViewController.swift */; };
 		E8F6100628DD724200F14A44 /* ReservationsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F6100528DD724200F14A44 /* ReservationsTableViewController.swift */; };
 		E8F6100828DD725500F14A44 /* Reservation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F6100728DD725500F14A44 /* Reservation.swift */; };
+		E8F9A17C28EB8CE4000F4748 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F9A17B28EB8CE4000F4748 /* User.swift */; };
+		E8F9A17F28EB91AB000F4748 /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F9A17E28EB91AB000F4748 /* WebService.swift */; };
+		E8F9A18128EB9477000F4748 /* loginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F9A18028EB9477000F4748 /* loginViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -97,11 +100,14 @@
 		E8DE550228E940D8006F6DAA /* Favorites.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favorites.swift; sourceTree = "<group>"; };
 		E8DE550528E9421F006F6DAA /* FavoritesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesTableViewController.swift; sourceTree = "<group>"; };
 		E8DE550B28E942FE006F6DAA /* FavTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavTableViewCell.swift; sourceTree = "<group>"; };
-		E8E722D728E549E200D0BB63 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		E8E722D728E549E200D0BB63 /* UserController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserController.swift; sourceTree = "<group>"; };
 		E8E722D928E54BB300D0BB63 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		E8E722DD28E54BF400D0BB63 /* EditProfileTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileTableViewController.swift; sourceTree = "<group>"; };
 		E8F6100528DD724200F14A44 /* ReservationsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationsTableViewController.swift; sourceTree = "<group>"; };
 		E8F6100728DD725500F14A44 /* Reservation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reservation.swift; sourceTree = "<group>"; };
+		E8F9A17B28EB8CE4000F4748 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		E8F9A17E28EB91AB000F4748 /* WebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebService.swift; sourceTree = "<group>"; };
+		E8F9A18028EB9477000F4748 /* loginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loginViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +140,7 @@
 		E8964D9728D6ADD0001EEAA0 /* Hub-Reserve */ = {
 			isa = PBXGroup;
 			children = (
+				E8F9A17D28EB919B000F4748 /* Services */,
 				E8F6100428DD71E100F14A44 /* Models */,
 				E8F6100328DD71D800F14A44 /* Controllers */,
 				E8964D9828D6ADD0001EEAA0 /* AppDelegate.swift */,
@@ -254,14 +261,24 @@
 			children = (
 				E8F6100728DD725500F14A44 /* Reservation.swift */,
 				E80D88B828E2C9A40029B15A /* Stats.swift */,
-				E8E722D728E549E200D0BB63 /* User.swift */,
+				E8F9A17B28EB8CE4000F4748 /* User.swift */,
+				E8E722D728E549E200D0BB63 /* UserController.swift */,
 				E84154D428E91C9000AB023D /* Historial.swift */,
 				E8DE550228E940D8006F6DAA /* Favorites.swift */,
 				E89861F428EA125F003342DE /* Room.swift */,
 				E89861F628EA1597003342DE /* Software.swift */,
 				E89861F828EA159F003342DE /* Hardware.swift */,
+				E8F9A18028EB9477000F4748 /* loginViewModel.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		E8F9A17D28EB919B000F4748 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				E8F9A17E28EB91AB000F4748 /* WebService.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -355,10 +372,12 @@
 				E89861F728EA1597003342DE /* Software.swift in Sources */,
 				E861C39528E64C2700240044 /* RoomsViewController.swift in Sources */,
 				E8E722DA28E54BB300D0BB63 /* ProfileViewController.swift in Sources */,
+				E8F9A17C28EB8CE4000F4748 /* User.swift in Sources */,
 				E80C5BF928E122D70031515D /* ReservadoTableViewCell.swift in Sources */,
 				E84154D528E91C9000AB023D /* Historial.swift in Sources */,
+				E8F9A18128EB9477000F4748 /* loginViewModel.swift in Sources */,
 				E861C39928E64C5300240044 /* HardwareViewController.swift in Sources */,
-				E8E722D828E549E200D0BB63 /* User.swift in Sources */,
+				E8E722D828E549E200D0BB63 /* UserController.swift in Sources */,
 				E89861FB28EA16B8003342DE /* SoftwareTableViewCell.swift in Sources */,
 				E89861F328EA11A2003342DE /* RoomTableViewCell.swift in Sources */,
 				E8BDCC8328D76CDF00480589 /* RegisterViewController.swift in Sources */,
@@ -366,6 +385,7 @@
 				E84154DB28E91E8D00AB023D /* HistorialTableViewCell.swift in Sources */,
 				E8964D9928D6ADD0001EEAA0 /* AppDelegate.swift in Sources */,
 				E8357A0228E965AD0088A4DF /* AddFavTableViewController.swift in Sources */,
+				E8F9A17F28EB91AB000F4748 /* WebService.swift in Sources */,
 				E8F6100628DD724200F14A44 /* ReservationsTableViewController.swift in Sources */,
 				E861C39328E64BE700240044 /* ReserveView.swift in Sources */,
 				E8B73C6728E4C0DE00E3E6C8 /* AboutHubPagesViewController.swift in Sources */,
