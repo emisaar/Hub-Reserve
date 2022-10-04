@@ -119,6 +119,6 @@ class EditProfileTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
         guard segue.identifier == "saveUnwind" else { return }
         let name = newName.text ?? ""
-        user = User(name: name)
+//        user = User(name: name)
     }
 }

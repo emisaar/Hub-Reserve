@@ -22,6 +22,8 @@
 		E861C39728E64C3900240044 /* SoftwareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E861C39628E64C3900240044 /* SoftwareViewController.swift */; };
 		E861C39928E64C5300240044 /* HardwareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E861C39828E64C5300240044 /* HardwareViewController.swift */; };
 		E86B0EE328D6B9C700C02D29 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86B0EE228D6B9C700C02D29 /* RootViewController.swift */; };
+		E890AF9F28ECDC2A00B89A39 /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E890AF9E28ECDC2A00B89A39 /* WebService.swift */; };
+		E890AFA128ECDD2100B89A39 /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E890AFA028ECDD2100B89A39 /* UserController.swift */; };
 		E8964D9928D6ADD0001EEAA0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8964D9828D6ADD0001EEAA0 /* AppDelegate.swift */; };
 		E8964D9B28D6ADD0001EEAA0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8964D9A28D6ADD0001EEAA0 /* SceneDelegate.swift */; };
 		E8964DA028D6ADD0001EEAA0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8964D9E28D6ADD0001EEAA0 /* Main.storyboard */; };
@@ -70,6 +72,8 @@
 		E861C39628E64C3900240044 /* SoftwareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoftwareViewController.swift; sourceTree = "<group>"; };
 		E861C39828E64C5300240044 /* HardwareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HardwareViewController.swift; sourceTree = "<group>"; };
 		E86B0EE228D6B9C700C02D29 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
+		E890AF9E28ECDC2A00B89A39 /* WebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebService.swift; sourceTree = "<group>"; };
+		E890AFA028ECDD2100B89A39 /* UserController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserController.swift; sourceTree = "<group>"; };
 		E8964D9528D6ADD0001EEAA0 /* Hub-Reserve.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hub-Reserve.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8964D9828D6ADD0001EEAA0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E8964D9A28D6ADD0001EEAA0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -115,6 +119,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E890AF9D28ECDC1C00B89A39 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				E890AF9E28ECDC2A00B89A39 /* WebService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		E8964D8C28D6ADD0001EEAA0 = {
 			isa = PBXGroup;
 			children = (
@@ -134,6 +146,7 @@
 		E8964D9728D6ADD0001EEAA0 /* Hub-Reserve */ = {
 			isa = PBXGroup;
 			children = (
+				E890AF9D28ECDC1C00B89A39 /* Services */,
 				E8F6100428DD71E100F14A44 /* Models */,
 				E8F6100328DD71D800F14A44 /* Controllers */,
 				E8964D9828D6ADD0001EEAA0 /* AppDelegate.swift */,
@@ -255,6 +268,7 @@
 				E8F6100728DD725500F14A44 /* Reservation.swift */,
 				E80D88B828E2C9A40029B15A /* Stats.swift */,
 				E8E722D728E549E200D0BB63 /* User.swift */,
+				E890AFA028ECDD2100B89A39 /* UserController.swift */,
 				E84154D428E91C9000AB023D /* Historial.swift */,
 				E8DE550228E940D8006F6DAA /* Favorites.swift */,
 				E89861F428EA125F003342DE /* Room.swift */,
@@ -350,10 +364,12 @@
 				E8357A0628E96A240088A4DF /* EditReservationsTableViewController.swift in Sources */,
 				E89861F128EA118A003342DE /* RoomsTableViewController.swift in Sources */,
 				E898620128EA16DD003342DE /* HardwareTableViewCell.swift in Sources */,
+				E890AF9F28ECDC2A00B89A39 /* WebService.swift in Sources */,
 				E8F6100828DD725500F14A44 /* Reservation.swift in Sources */,
 				E84154D928E91E3800AB023D /* HistorialTableViewController.swift in Sources */,
 				E89861F728EA1597003342DE /* Software.swift in Sources */,
 				E861C39528E64C2700240044 /* RoomsViewController.swift in Sources */,
+				E890AFA128ECDD2100B89A39 /* UserController.swift in Sources */,
 				E8E722DA28E54BB300D0BB63 /* ProfileViewController.swift in Sources */,
 				E80C5BF928E122D70031515D /* ReservadoTableViewCell.swift in Sources */,
 				E84154D528E91C9000AB023D /* Historial.swift in Sources */,
