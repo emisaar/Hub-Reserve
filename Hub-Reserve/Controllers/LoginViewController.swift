@@ -10,25 +10,42 @@ import UIKit
 class LoginViewController: UIViewController {
     var userControlador = UserController()
     
+    //@StateObject private var loginVM = loginViewModel()
+    
     @IBOutlet weak var scrollView: UIScrollView!
     
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
     @IBAction func login(_ sender: UIButton) {
-        // Get || Bajar archivos
-        Task{
-            do{
-                let users = try await userControlador.fetchUsers()
-//                updateUI(with: reservas)
-                    print(users)
+        WebService().login(email: emailTextField.text ?? "", password: passwordTextField.text ?? ""){ result in
+            switch result{
+            case.success(let token):
+                print(token)
                 
-                let nextScreen = storyboard! .instantiateViewController(withIdentifier: "main") as! UITabBarController
-                nextScreen.modalPresentationStyle = .fullScreen
-                self.present(nextScreen, animated: false, completion: nil)
-            }catch{
-                displayError(UserError.itemNotFound, title: "No existe usuario")
+                let nextScreen = self.storyboard!.instantiateViewController(withIdentifier: "main") as! UITabBarController
+                 nextScreen.modalPresentationStyle = .fullScreen
+                 self.present(nextScreen, animated: false, completion: nil)
+                
+            case.failure(let error):
+                print(error.localizedDescription)
+                self.displayError(UserError.itemNotFound, title: "No existe usuario")
             }
+            
+            // Get || Bajar archivos
+            //        Task{
+            //            do{
+            //                let users = try await userControlador.fetchUsers()
+            ////                updateUI(with: reservas)
+            //                    print(users)
+            //
+            //                let nextScreen = storyboard! .instantiateViewController(withIdentifier: "main") as! UITabBarController
+            //                nextScreen.modalPresentationStyle = .fullScreen
+            //                self.present(nextScreen, animated: false, completion: nil)
+            //            }catch{
+            //                displayError(UserError.itemNotFound, title: "No existe usuario")
+            //            }
+            //        }
         }
     }
     
