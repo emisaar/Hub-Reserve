@@ -20,10 +20,11 @@ class LoginViewController: UIViewController {
     @Published var isAuthenticated: Bool = false
     
     @IBAction func login(_ sender: UIButton) {
+//        changeScreen()
         DispatchQueue.main.async {
             self.doLogin()
         }
-        
+
         if isAuthenticated {
             changeScreen()
         }

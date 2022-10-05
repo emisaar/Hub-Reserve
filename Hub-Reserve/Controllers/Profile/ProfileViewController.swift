@@ -30,8 +30,34 @@ class ProfileViewController: UIViewController {
         // Create Alert View
         let alertView = UIAlertController(title: "Advertencia", message: "¿Seguro que desea eliminar la cuenta? La acción no se puede deshacer", preferredStyle: .alert)
         alertView.addAction(UIAlertAction(title:"Cancelar", style: .cancel, handler: nil))
-        alertView.addAction(UIAlertAction(title:"Aceptar", style: .default, handler: {(_) in self.changeScreen()}))
+        alertView.addAction(UIAlertAction(title:"Aceptar", style: .default, handler: {(_) in self.confirmDelete()}))
         self.present(alertView, animated: true, completion: nil)
+    }
+    
+    func confirmDelete(){
+        let ac = UIAlertController(title: "Confirmación", message: "Por favor ingresa tu correo electrónico.", preferredStyle: .alert)
+            ac.addTextField()
+
+            let submitAction = UIAlertAction(title: "Eliminar cuenta", style: .default) { [unowned ac] _ in
+                let answer = ac.textFields![0]
+                // do something interesting with "answer" here
+                self.changeScreen()
+            }
+
+            ac.addAction(submitAction)
+
+            present(ac, animated: true)
+//        let alertView = UIAlertController(title: "Confirmación", message: "Por favor ingresa tu correo electrónico.", preferredStyle: .alert)
+//        alertView.addTextField { (textField) in
+////            textField.inputView = textField.text
+//            textField.placeholder = "Selecciona una categoría"
+//            textField.textAlignment = .center
+//        }
+//
+//        alertView.addAction(UIAlertAction(title: "Aceptar", style: .default, handler: { [weak alertView] (action) -> Void in
+//            let textField = (alertView?.textFields![0])! as UITextField
+//            self.changeScreen()
+//        }))
     }
     
     func changeScreen(){
