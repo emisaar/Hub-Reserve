@@ -49,6 +49,7 @@ class WebService {
                 return
             }
             
+            print("WEBSERVICE")
             print(loginResponse)
             
             guard let token = loginResponse.jwt else {

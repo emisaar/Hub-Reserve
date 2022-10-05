@@ -1341,38 +1341,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <sections>
-                            <tableViewSection headerTitle="Recurso" id="Iz4-6Q-WtG">
-                                <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="MFB-mx-aOH">
-                                        <rect key="frame" x="0.0" y="50" width="414" height="56.5"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="MFB-mx-aOH" id="oOf-at-EgE">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="56.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wbK-vR-wM5">
-                                                    <rect key="frame" x="20" y="11" width="374" height="34.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
-                                                    <connections>
-                                                        <action selector="textEditingChanged:" destination="7Q9-rn-upV" eventType="editingDidEnd" id="qFb-41-22h"/>
-                                                    </connections>
-                                                </textField>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="bottomMargin" secondItem="wbK-vR-wM5" secondAttribute="bottom" id="Dji-mU-P8f"/>
-                                                <constraint firstItem="wbK-vR-wM5" firstAttribute="top" secondItem="oOf-at-EgE" secondAttribute="topMargin" id="Tbq-fn-Ir5"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="wbK-vR-wM5" secondAttribute="trailing" id="gw2-E1-Tkq"/>
-                                                <constraint firstItem="wbK-vR-wM5" firstAttribute="leading" secondItem="oOf-at-EgE" secondAttribute="leadingMargin" id="kU8-Iu-JT7"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
                             <tableViewSection headerTitle="Categoría" id="lOu-nk-H7i">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Cy2-th-YIG">
-                                        <rect key="frame" x="0.0" y="184.5" width="414" height="56.5"/>
+                                        <rect key="frame" x="0.0" y="50" width="414" height="56.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Cy2-th-YIG" id="Ogx-0d-0LM">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="56.5"/>
@@ -1392,6 +1364,34 @@
                                                 <constraint firstItem="ghM-S5-2ly" firstAttribute="leading" secondItem="Ogx-0d-0LM" secondAttribute="leadingMargin" id="gLh-NL-fam"/>
                                                 <constraint firstItem="ghM-S5-2ly" firstAttribute="top" secondItem="Ogx-0d-0LM" secondAttribute="topMargin" id="sUK-DS-2YI"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="ghM-S5-2ly" secondAttribute="trailing" id="w9Y-kd-pKq"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Recurso" id="Iz4-6Q-WtG">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="MFB-mx-aOH">
+                                        <rect key="frame" x="0.0" y="184.5" width="414" height="56.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="MFB-mx-aOH" id="oOf-at-EgE">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="56.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wbK-vR-wM5">
+                                                    <rect key="frame" x="20" y="11" width="374" height="34.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="textEditingChanged:" destination="7Q9-rn-upV" eventType="editingDidEnd" id="qFb-41-22h"/>
+                                                    </connections>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottomMargin" secondItem="wbK-vR-wM5" secondAttribute="bottom" id="Dji-mU-P8f"/>
+                                                <constraint firstItem="wbK-vR-wM5" firstAttribute="top" secondItem="oOf-at-EgE" secondAttribute="topMargin" id="Tbq-fn-Ir5"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="wbK-vR-wM5" secondAttribute="trailing" id="gw2-E1-Tkq"/>
+                                                <constraint firstItem="wbK-vR-wM5" firstAttribute="leading" secondItem="oOf-at-EgE" secondAttribute="leadingMargin" id="kU8-Iu-JT7"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>

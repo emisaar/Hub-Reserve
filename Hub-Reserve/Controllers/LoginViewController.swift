@@ -17,39 +17,16 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
-    
+    @Published var isAuthenticated: Bool = false
     
     @IBAction func login(_ sender: UIButton) {
+        doLogin()
+        // SE REQUIERE ESPERAR A QUE doLogin() SE EJECUTE PARA QUE ACTUALICE isAuthenticated() y haga el changeScreen()
+        print("FUERA")
+        print(isAuthenticated)
         
-        let nextScreen = self.storyboard!.instantiateViewController(withIdentifier: "main") as! UITabBarController
-        nextScreen.modalPresentationStyle = .fullScreen
-        self.present(nextScreen, animated: false, completion: nil)
-        
-        
-        WebService().login(email: emailTextField.text ?? "", password: passwordTextField.text ?? ""){ result in
-            switch result{
-            case.success(let token):
-                print(token)
-                
-            case.failure(let error):
-                //print(error.localizedDescription)
-                print(error)
-            }
-            
-            // Get || Bajar archivos
-            //        Task{
-            //            do{
-            //                let users = try await userControlador.fetchUsers()
-            ////                updateUI(with: reservas)
-            //                    print(users)
-            //
-            //                let nextScreen = storyboard! .instantiateViewController(withIdentifier: "main") as! UITabBarController
-            //                nextScreen.modalPresentationStyle = .fullScreen
-            //                self.present(nextScreen, animated: false, completion: nil)
-            //            }catch{
-            //                displayError(UserError.itemNotFound, title: "No existe usuario")
-            //            }
-            //        }
+        if isAuthenticated {
+            changeScreen()
         }
     }
     
@@ -63,6 +40,33 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
 //        registerForKeyboardNotifications()
+    }
+    
+    func doLogin() {
+        let defaults = UserDefaults.standard
+        
+        WebService().login(email: emailTextField.text ?? "", password: passwordTextField.text ?? ""){ result in
+            switch result{
+            case .success(let token):
+                defaults.setValue(token, forKey: "jwt")
+                DispatchQueue.main.async {
+                    self.isAuthenticated = true
+//                    print(self.isAuthenticated)
+                }
+                print("SUCESS")
+                print(token)
+//                self.userToken = token
+                
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    func changeScreen() {
+        let nextScreen = self.storyboard!.instantiateViewController(withIdentifier: "main") as! UITabBarController
+        nextScreen.modalPresentationStyle = .fullScreen
+        self.present(nextScreen, animated: false, completion: nil)
     }
     
     func displayError(_ error: Error, title: String) {

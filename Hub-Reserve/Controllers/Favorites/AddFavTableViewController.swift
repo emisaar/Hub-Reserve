@@ -7,14 +7,39 @@
 
 import UIKit
 
-class AddFavTableViewController: UITableViewController {
+class AddFavTableViewController: UITableViewController, UIPickerViewDelegate,  UIPickerViewDataSource {
+//    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+//        <#code#>
+//    }
+//
+//    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+//        <#code#>
+//    }
+//
+//    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+//        <#code#>
+//    }
+//
+//    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+//        <#code#>
+//    }
 
+    
     var favorito: Favorites?
     
     @IBOutlet weak var saveButton: UIBarButtonItem!
-    @IBOutlet weak var recursoTextField: UITextField!
     
+    @IBOutlet weak var recursoTextField: UITextField!
     @IBOutlet weak var categoriaTextField: UITextField!
+    
+    let categorias = ["Salas", "Licencias", "Equipos"]
+    let salas = ["Sala 1", "Sala 2", "Sala 3", "Sala 4", "Sala 5", "Sala 6"]
+    let licencias = ["Adobe Photoshop", "Norton Antivirus", "Cisco Packet Tracer v2", "WebAssign", "Adobe Illustrator", "Microsoft Office 365"]
+    let equipos = ["Macbook Pro M2", "Asus TUF Gaming 15", "Lenovo", "Huawei Notebook 15", "iPad Pro 11", "Cisco Router"]
+    var cat = 0
+    
+    var categPickerView = UIPickerView()
+    var recPickerView = UIPickerView()
     
     init?(coder: NSCoder, f: Favorites?) {
         self.favorito = f
@@ -36,12 +61,26 @@ class AddFavTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
-
+        
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        categoriaTextField.inputView = categPickerView
+        categoriaTextField.placeholder = "Selecciona una categoría"
+        categoriaTextField.textAlignment = .center
+        categPickerView.delegate = self
+        categPickerView.dataSource = self
+        categPickerView.tag = 1
+        
+        recursoTextField.inputView = recPickerView
+        recursoTextField.placeholder = "Selecciona un recurso"
+        recursoTextField.textAlignment = .center
+        recPickerView.delegate = self
+        recPickerView.dataSource = self
+        recPickerView.tag = 2
         
         if let favorito = favorito {
             recursoTextField.text = favorito.name
@@ -56,6 +95,7 @@ class AddFavTableViewController: UITableViewController {
         }
         updateSaveButtonState()
     }
+    
     
     @IBAction func textEditingChanged(_ sender: UITextField) {
         updateSaveButtonState()
@@ -141,8 +181,101 @@ class AddFavTableViewController: UITableViewController {
         
         let categoria = categoriaTextField.text ?? ""
         
+        if (categoria == "Salas") {
+            cat = 1
+        }
         
-        favorito = Favorites(name: recurso, resourceID: Int(categoria)!)
+        if (categoria == "Licencias") {
+            cat = 2
+        }
+        
+        if (categoria == "Equipos") {
+            cat = 3
+        }
+        
+        
+        favorito = Favorites(name: recurso, resourceID: cat)
     }
 
 }
+
+extension AddFavTableViewController{
+        
+        func numberOfComponents(in pickerView: UIPickerView) -> Int{
+            return 1
+        }
+        
+        func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int{
+            switch pickerView.tag{
+            case 1:
+                return categorias.count
+                
+            case 2:
+                if (categoriaTextField.text == "Salas"){
+                    return salas.count
+                }
+                
+                if (categoriaTextField.text == "Licencias"){
+                    return licencias.count
+                }
+                
+                else{
+                    return equipos.count
+                }
+                
+            default:
+                return 1
+            }
+        }
+        
+        func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String?{
+            switch pickerView.tag{
+            case 1:
+                return categorias[row]
+                
+            case 2:
+                if (categoriaTextField.text == "Salas"){
+                    return salas[row]
+                }
+                
+                if (categoriaTextField.text == "Licencias"){
+                    return licencias[row]
+                }
+                
+                else{
+                    return equipos[row]
+                }
+            default:
+                return "Data not found."
+            }
+        }
+        
+        func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int){
+            switch pickerView.tag {
+            case 1:
+                categoriaTextField.text = categorias[row]
+                categoriaTextField.resignFirstResponder()
+                recursoTextField.text = ""
+                recursoTextField.resignFirstResponder()
+            
+            case 2:
+                if (categoriaTextField.text == "Salas"){
+                    recursoTextField.text = salas[row]
+                    recursoTextField.resignFirstResponder()
+                }
+                
+                if (categoriaTextField.text == "Licencias"){
+                    recursoTextField.text = licencias[row]
+                    recursoTextField.resignFirstResponder()
+                }
+                
+                if (categoriaTextField.text == "Equipos"){
+                    recursoTextField.text = equipos[row]
+                    recursoTextField.resignFirstResponder()
+                }
+            default:
+                return
+            }
+        }
+        
+    }
