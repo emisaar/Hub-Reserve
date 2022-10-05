@@ -18,12 +18,18 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     
     @Published var isAuthenticated: Bool = false
+
     
     @IBAction func login(_ sender: UIButton) {
-        doLogin()
+        DispatchQueue.main.sync{
+            self.doLogin()
+            self.isAuthenticated
+        }
+        
+        //doLogin()
         // SE REQUIERE ESPERAR A QUE doLogin() SE EJECUTE PARA QUE ACTUALICE isAuthenticated() y haga el changeScreen()
         print("FUERA")
-        print(isAuthenticated)
+        //print(isAuthenticated)
         
         if isAuthenticated {
             changeScreen()
