@@ -3,38 +3,24 @@
 //  Hub-Reserve
 //
 //  Created by Emi Saucedo on 18/09/22.
-//
+//  https://www.youtube.com/watch?v=JmPbnuJxzHg
 
 import UIKit
 
 class LoginViewController: UIViewController {
     var userControlador = UserController()
-    
     //@StateObject private var loginVM = loginViewModel()
-    
     @IBOutlet weak var scrollView: UIScrollView!
-    
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
     @Published var isAuthenticated: Bool = false
-
     
     @IBAction func login(_ sender: UIButton) {
-        Task{
-            do{
-                let flag = try await doLogin()
-                print(flag)
-                //updateUI(with: reservas)
-                
-                if flag {
-                    changeScreen()
-                }
-                
-            }catch{
-                //displayError(ReservaError.itemNotFound, title: "No se pudo accer a las reservas")
+        doLogin {
+            if self.isAuthenticated {
+                self.changeScreen()
             }
-
         }
     }
     
@@ -46,11 +32,9 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-//        registerForKeyboardNotifications()
     }
     
-    func doLogin() -> Bool{
+    func doLogin(completion: @escaping () -> Void) {
         let defaults = UserDefaults.standard
         
         WebService().login(email: emailTextField.text ?? "", password: passwordTextField.text ?? ""){ result in
@@ -59,20 +43,27 @@ class LoginViewController: UIViewController {
                 defaults.setValue(token, forKey: "jwt")
                 DispatchQueue.main.async {
                     self.isAuthenticated = true
-//                    print(self.isAuthenticated)
+                    completion()
                 }
-                print("SUCESS")
-                print(token)
-//                self.userToken = token
+                
+                //self.userToken = token
                 
             case .failure(let error):
-                print(error)
+                DispatchQueue.main.async {
+                    self.isAuthenticated = false
+                    self.showBadLogin()
+                    completion()
+                    print(error)
+                }
             }
         }
-
-        return self.isAuthenticated
-        //return true
-
+        
+    }
+    
+    func showBadLogin(){
+        let alertView = UIAlertController(title: "Error", message: "Su correo o contraseña son incorrectos", preferredStyle: .alert)
+        alertView.addAction(UIAlertAction(title:"Reintentar", style: .cancel))
+        self.present(alertView, animated: true, completion: nil)
     }
     
     func changeScreen() {
@@ -109,16 +100,4 @@ class LoginViewController: UIViewController {
         let contentInsets = UIEdgeInsets.zero
         scrollView.contentInset = contentInsets
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

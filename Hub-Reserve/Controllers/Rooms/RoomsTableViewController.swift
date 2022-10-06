@@ -40,14 +40,14 @@ class RoomsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        Task{
-            do{
-                let resources = try await roomsControlador.fetchResources()
-                updateUI(with: resources)
-            }catch{
-                displayError(ResourceError.itemNotFound, title: "No se pudo accer a los recursos")
-            }
-        }
+//        Task{
+//            do{
+//                let resources = try await roomsControlador.fetchResources()
+//                updateUI(with: resources)
+//            }catch{
+//                displayError(ResourceError.itemNotFound, title: "No se pudo accer a los recursos")
+//            }
+//        }
     }
 
     
