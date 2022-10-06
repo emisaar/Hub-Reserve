@@ -15,45 +15,42 @@ class RoomsTableViewController: UITableViewController {
      */
     //var rooms = Room.roomList()
     let defaults = UserDefaults.standard
-    var roomsControlador: () = WebService().resources(jwt: "ERGERGJANEFW"){ result in }
-    /*
-    { result in
-        switch result{
-        case .success(let token):
-            //defaults.setValue(token, forKey: "jwt")
-            DispatchQueue.main.async {
-                self.isAuthenticated = true
-                //                    print(self.isAuthenticated)
-            }
-            print("SUCESS")
-            print(token)
-            //                self.userToken = token
-            
-        case .failure(let error):
-            print(error)
-        }
-    }
-    */
-    var resources = Resources()
+//    var roomsControlador = WebService().resources(jwt: "ERGERGJANEFW")
+//    { result in
+//        switch result{
+//        case .success(let resourceName):
+//           print(resourceName)
+//        case .failure(let error):
+//            print(error)
+//        }
+//    }
+    
+    var recursos = Resources()
     var cellLabel = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let defaults = UserDefaults.standard
+        guard let token = defaults.string(forKey: "jwt") else {
+            return
+        }
         
-//        Task{
-//            do{
-//                let resources = try await roomsControlador.fetchResources()
-//                updateUI(with: resources)
-//            }catch{
-//                displayError(ResourceError.itemNotFound, title: "No se pudo accer a los recursos")
-//            }
-//        }
+        print("TOKEN")
+        print(token)
+        
+        Task{
+            do{
+                let recursos = try await WebService().getResources(token: token)
+                updateUI(with: recursos)
+            }catch{
+                displayError(NetworkError.noData, title: "No se pudo acceder a las reservas")
+            }
+        }
     }
-
     
-    func updateUI(with resources:Resources){
+    func updateUI(with recursos: Resources){
         DispatchQueue.main.async {
-            self.resources = resources
+            self.recursos = recursos
             self.tableView.reloadData()
         }
     }
@@ -122,7 +119,7 @@ class RoomsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         //return rooms.count
-        return resources.count
+        return recursos.count
     }
 
     
@@ -132,7 +129,7 @@ class RoomsTableViewController: UITableViewController {
         // Configure the cell...
         let index = indexPath.row
         //let resource = rooms[index]
-        let resource = resources[index]
+        let resource = recursos[index]
         cell.update(r: resource)
         
         return cell
@@ -140,7 +137,7 @@ class RoomsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //cellLabel = rooms[indexPath.row].name
-        cellLabel = resources[indexPath.row].name
+        cellLabel = recursos[indexPath.row].name
 
 //        performSegue(withIdentifier: "Reservar", sender: nil)
         
