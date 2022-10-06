@@ -101,7 +101,7 @@ class WebService {
         print("\n\n\nTODO BIEN")
         
         do {
-            let reservas = try? JSONDecoder().decode(Resources.self, from: data)
+           let reservas = try JSONDecoder().decode(Resources.self, from: data)
             print("BIEN")
             print(reservas)
             return reservas

@@ -41,7 +41,16 @@ class RoomsTableViewController: UITableViewController {
         Task{
             do{
                 let recursos = try await WebService().getResources(token: token)
-                updateUI(with: recursos)
+                
+                var rooms = [Resource]()
+                
+                for r in recursos {
+                    if r.category == "Espacio físico" {
+                        rooms.append(r)
+                    }
+                }
+                
+                updateUI(with: rooms)
             }catch{
                 displayError(NetworkError.noData, title: "No se pudo acceder a las reservas")
             }
@@ -50,6 +59,7 @@ class RoomsTableViewController: UITableViewController {
     
     func updateUI(with recursos: Resources){
         DispatchQueue.main.async {
+            
             self.recursos = recursos
             self.tableView.reloadData()
         }

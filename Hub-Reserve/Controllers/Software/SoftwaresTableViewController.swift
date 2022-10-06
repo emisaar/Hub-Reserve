@@ -1,5 +1,5 @@
 //
-//  SoftwaresTableViewController.swift
+//  RoomsTableViewController.swift
 //  Hub-Reserve
 //
 //  Created by Emi Saucedo on 22/09/22.
@@ -7,24 +7,71 @@
 
 import UIKit
 
-class SoftwaresTableViewController: UITableViewController {
+class SoftwareTableViewController: UITableViewController {
+    /*
+     Resource type id : int
+     
+     var rooms =
+     */
+    //var rooms = Room.roomList()
+    let defaults = UserDefaults.standard
+//    var roomsControlador = WebService().resources(jwt: "ERGERGJANEFW")
+//    { result in
+//        switch result{
+//        case .success(let resourceName):
+//           print(resourceName)
+//        case .failure(let error):
+//            print(error)
+//        }
+//    }
     
-    var softwares = Software.softwareList()
-    
+    var recursos = Resources()
     var cellLabel = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let defaults = UserDefaults.standard
+        guard let token = defaults.string(forKey: "jwt") else {
+            return
+        }
         
+        print("TOKEN")
+        print(token)
         
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        Task{
+            do{
+                let recursos = try await WebService().getResources(token: token)
+                
+                var software = [Resource]()
+                
+                for r in recursos {
+                    if r.category == "Software" {
+                        software.append(r)
+                    }
+                }
+                
+                updateUI(with: software)
+            }catch{
+                displayError(NetworkError.noData, title: "No se pudo acceder a las reservas")
+            }
+        }
     }
-
+    
+    func updateUI(with recursos: Resources){
+        DispatchQueue.main.async {
+            
+            self.recursos = recursos
+            self.tableView.reloadData()
+        }
+    }
+    
+    func displayError(_ error: Error, title: String) {
+            DispatchQueue.main.async {
+                let alert = UIAlertController(title: title, message: error.localizedDescription, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            }
+        }
     // MARK: - Table view data source
 
     /*PASO 0 crear método unwindToEmojiTableView para cerrar la vista de la tabla estática
@@ -81,35 +128,39 @@ class SoftwaresTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return softwares.count
+        //return rooms.count
+        return recursos.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! SoftwareTableViewCell
-        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! RoomTableViewCell
+
         // Configure the cell...
         let index = indexPath.row
-        let resource = softwares[index]
+        //let resource = rooms[index]
+        let resource = recursos[index]
         cell.update(r: resource)
         
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        cellLabel = softwares[indexPath.row].name
+        //cellLabel = rooms[indexPath.row].name
+        cellLabel = recursos[indexPath.row].name
 
 //        performSegue(withIdentifier: "Reservar", sender: nil)
         
         let vc = storyboard?.instantiateViewController(withIdentifier: "Reservar") as? ReserveViewController
         vc?.resourceText = cellLabel
-        vc?.idResourceText = String(2)
+        vc?.idResourceText = String(1)
         navigationController?.pushViewController(vc!, animated: true)
     }
     
     override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         return .delete
     }
+
     
     /* UNCOMMENT FOR EDITABLE TABLES
     // Override to support editing the table view.
@@ -182,9 +233,12 @@ class SoftwaresTableViewController: UITableViewController {
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "Reservar"{
+            // Pass the selected object to the new view controller.
+            let nextScreen = segue.destination as! ReserveViewController
+
+            nextScreen.resourceText = cellLabel
+        }
     }
     */
-
-
 }
