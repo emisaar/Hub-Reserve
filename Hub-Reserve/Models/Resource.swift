@@ -8,11 +8,12 @@
 import Foundation
 
 struct Resource: Codable{
-    var resource_type:String
-    var name:String
-    var description:String
-    var location:Int
-    var active:Bool
+    var resource_type: String
+    var category: String
+    var name: String
+    var description: String
+    var location: String
+    var active: Bool
 }
 
 typealias Resources = [Resource]

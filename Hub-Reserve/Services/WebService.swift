@@ -29,10 +29,6 @@ struct LoginResponse: Codable {
     let user_type: Int?
 }
 
-struct ResourceRequestBody: Codable {
-    let jwt: String
-}
-
 struct ResourceResponse: Codable{
     var resource_type:String?
     var name:String?
@@ -43,7 +39,8 @@ struct ResourceResponse: Codable{
 
 class WebService {
     func login(email: String, password: String, completion: @escaping (Result<String, AuthenticationError>) -> Void) {
-        guard let url = URL(string: "https://hubreserve.systems/api/login/") else {
+//        "https://hubreserve.systems/api/login/"
+        guard let url = URL(string: "http://0.0.0.0:8000/api/login/") else {
             completion(.failure(.custom(errorMessage: "URL is not correct")))
             return
         }
@@ -80,22 +77,36 @@ class WebService {
     }
     
     func getResources(token: String) async throws -> Resources {
-        let baseURL = URL(string: "https://hubreserve.systems/api/resources/")!
+//        "https://hubreserve.systems/api/resources/"
+        let baseURL = URL(string: "http://0.0.0.0:8000/api/resources/")!
     
         var request = URLRequest(url: baseURL)
-        request.addValue(token, forHTTPHeaderField: "Authorization")
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        //request.addValue(token, forHTTPHeaderField: "Authorization")
+        print("\n\n\n\nREQUEST")
+        for s in request.allHTTPHeaderFields!{
+            print(s.0, s.1)
+        }
         
+        //--------------------
         let (data, response) = try await URLSession.shared.data(from: baseURL)
+            print(String(data: data, encoding: .utf8))
+            print(response)
+        
         guard let httpResponse = response as? HTTPURLResponse,
               httpResponse.statusCode == 200 else {
             throw NetworkError.noData
         }
         
-        let jsonDecoder = JSONDecoder()
+        print("\n\n\nTODO BIEN")
+        
         do {
-            let reservas = try jsonDecoder.decode(Resources.self, from: data)
+            let reservas = try? JSONDecoder().decode(Resources.self, from: data)
+            print("BIEN")
+            print(reservas)
             return reservas
         }catch{
+            print("NOOO")
             throw NetworkError.decodingError
         }
     }
