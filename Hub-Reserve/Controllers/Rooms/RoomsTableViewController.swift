@@ -8,20 +8,63 @@
 import UIKit
 
 class RoomsTableViewController: UITableViewController {
-    
-    var rooms = Room.roomList()
-    
+    /*
+     Resource type id : int
+     
+     var rooms =
+     */
+    //var rooms = Room.roomList()
+    let defaults = UserDefaults.standard
+    var roomsControlador: () = WebService().resources(jwt: "ERGERGJANEFW"){ result in }
+    /*
+    { result in
+        switch result{
+        case .success(let token):
+            //defaults.setValue(token, forKey: "jwt")
+            DispatchQueue.main.async {
+                self.isAuthenticated = true
+                //                    print(self.isAuthenticated)
+            }
+            print("SUCESS")
+            print(token)
+            //                self.userToken = token
+            
+        case .failure(let error):
+            print(error)
+        }
+    }
+    */
+    var resources = Resources()
     var cellLabel = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        Task{
+            do{
+                let resources = try await roomsControlador.fetchResources()
+                updateUI(with: resources)
+            }catch{
+                displayError(ResourceError.itemNotFound, title: "No se pudo accer a los recursos")
+            }
+        }
     }
 
+    
+    func updateUI(with resources:Resources){
+        DispatchQueue.main.async {
+            self.resources = resources
+            self.tableView.reloadData()
+        }
+    }
+    
+    func displayError(_ error: Error, title: String) {
+            DispatchQueue.main.async {
+                let alert = UIAlertController(title: title, message: error.localizedDescription, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            }
+        }
     // MARK: - Table view data source
 
     /*PASO 0 crear método unwindToEmojiTableView para cerrar la vista de la tabla estática
@@ -78,7 +121,8 @@ class RoomsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return rooms.count
+        //return rooms.count
+        return resources.count
     }
 
     
@@ -87,14 +131,16 @@ class RoomsTableViewController: UITableViewController {
 
         // Configure the cell...
         let index = indexPath.row
-        let resource = rooms[index]
+        //let resource = rooms[index]
+        let resource = resources[index]
         cell.update(r: resource)
         
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        cellLabel = rooms[indexPath.row].name
+        //cellLabel = rooms[indexPath.row].name
+        cellLabel = resources[indexPath.row].name
 
 //        performSegue(withIdentifier: "Reservar", sender: nil)
         

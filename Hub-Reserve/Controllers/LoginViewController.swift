@@ -21,18 +21,19 @@ class LoginViewController: UIViewController {
 
     
     @IBAction func login(_ sender: UIButton) {
-        DispatchQueue.main.sync{
-            self.doLogin()
-            self.isAuthenticated
-        }
-        
-        //doLogin()
-        // SE REQUIERE ESPERAR A QUE doLogin() SE EJECUTE PARA QUE ACTUALICE isAuthenticated() y haga el changeScreen()
-        print("FUERA")
-        //print(isAuthenticated)
-        
-        if isAuthenticated {
-            changeScreen()
+        Task{
+            do{
+                let flag = try await doLogin()
+                print(flag)
+                //updateUI(with: reservas)
+                
+                if flag {
+                    changeScreen()
+                }
+                
+            }catch{
+                //displayError(ReservaError.itemNotFound, title: "No se pudo accer a las reservas")
+            }
         }
     }
     
@@ -48,7 +49,7 @@ class LoginViewController: UIViewController {
 //        registerForKeyboardNotifications()
     }
     
-    func doLogin() {
+    func doLogin() -> Bool{
         let defaults = UserDefaults.standard
         
         WebService().login(email: emailTextField.text ?? "", password: passwordTextField.text ?? ""){ result in
@@ -67,6 +68,8 @@ class LoginViewController: UIViewController {
                 print(error)
             }
         }
+        return self.isAuthenticated
+        //return true
     }
     
     func changeScreen() {
