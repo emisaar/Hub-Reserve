@@ -34,6 +34,7 @@ class LoginViewController: UIViewController {
             }catch{
                 //displayError(ReservaError.itemNotFound, title: "No se pudo accer a las reservas")
             }
+
         }
     }
     
@@ -68,8 +69,10 @@ class LoginViewController: UIViewController {
                 print(error)
             }
         }
+
         return self.isAuthenticated
         //return true
+
     }
     
     func changeScreen() {
