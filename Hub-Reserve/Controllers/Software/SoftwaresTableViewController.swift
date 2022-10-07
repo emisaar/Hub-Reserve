@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SoftwareTableViewController: UITableViewController {
+class SoftwaresTableViewController: UITableViewController {
     /*
      Resource type id : int
      
@@ -49,7 +49,8 @@ class SoftwareTableViewController: UITableViewController {
                         software.append(r)
                     }
                 }
-                
+                print("SOFT")
+                print(recursos)
                 updateUI(with: software)
             }catch{
                 displayError(NetworkError.noData, title: "No se pudo acceder a las reservas")
@@ -134,7 +135,7 @@ class SoftwareTableViewController: UITableViewController {
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! RoomTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! SoftwareTableViewCell
 
         // Configure the cell...
         let index = indexPath.row
@@ -153,7 +154,7 @@ class SoftwareTableViewController: UITableViewController {
         
         let vc = storyboard?.instantiateViewController(withIdentifier: "Reservar") as? ReserveViewController
         vc?.resourceText = cellLabel
-        vc?.idResourceText = String(1)
+        vc?.idResourceText = String("Software")
         navigationController?.pushViewController(vc!, animated: true)
     }
     

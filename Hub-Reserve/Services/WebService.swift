@@ -29,6 +29,10 @@ struct LoginResponse: Codable {
     let user_type: Int?
 }
 
+struct getResourcesRequestBody: Codable {
+    let Authorization: String
+}
+
 struct ResourceResponse: Codable{
     var resource_type:String?
     var name:String?
@@ -80,10 +84,26 @@ class WebService {
 //        "https://hubreserve.systems/api/resources/"
         let baseURL = URL(string: "http://0.0.0.0:8000/api/resources/")!
     
+//        var request = URLRequest(url: baseURL)
+//        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+//        request.addValue(token, forHTTPHeaderField: "Authorization")
+//        print("\n\n\n\nREQUEST")
+//        for s in request.allHTTPHeaderFields!{
+//            print(s.0, s.1)
+//        }
+        
+        let body = getResourcesRequestBody(Authorization: token)
+        
         var request = URLRequest(url: baseURL)
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        //request.addValue(token, forHTTPHeaderField: "Authorization")
-        print("\n\n\n\nREQUEST")
+        request.httpMethod = "GET"
+        
+        print("\n\n\nBODY BEFORE")
+        print(body)
+        request.httpBody = try? JSONEncoder().encode(body)
+            
+        print("\n\n\nBODY")
+        print(request.httpBody)
+        
         for s in request.allHTTPHeaderFields!{
             print(s.0, s.1)
         }

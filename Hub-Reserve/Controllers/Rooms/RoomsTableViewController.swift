@@ -153,7 +153,7 @@ class RoomsTableViewController: UITableViewController {
         
         let vc = storyboard?.instantiateViewController(withIdentifier: "Reservar") as? ReserveViewController
         vc?.resourceText = cellLabel
-        vc?.idResourceText = String(1)
+        vc?.idResourceText = String("Sala")
         navigationController?.pushViewController(vc!, animated: true)
     }
     

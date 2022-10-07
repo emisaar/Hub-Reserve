@@ -14,14 +14,14 @@ class HardwareTableViewCell: UITableViewCell {
     @IBOutlet weak var resourceLabel: UILabel!
     @IBOutlet weak var statusLabel: UILabel!
     
-    func update(r: Hardware) {
+    func update(r: Resource) {
         icon.image = UIImage(systemName: "laptopcomputer.and.iphone")
         resourceLabel.text = r.name
-        statusLabel.text = statusCheck(status: r.status)
+        statusLabel.text = statusCheck(status: r.active)
     }
     
-    func statusCheck(status: Int) -> String {
-        if (status == 1){
+    func statusCheck(status: Bool) -> String {
+        if (status == true){
             return "Disponible"
         } else {
             return "No Disponible"

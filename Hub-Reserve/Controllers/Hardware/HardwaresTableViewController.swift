@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HardwareTableViewController: UITableViewController {
+class HardwaresTableViewController: UITableViewController {
     /*
      Resource type id : int
      
@@ -134,7 +134,7 @@ class HardwareTableViewController: UITableViewController {
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! RoomTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! HardwareTableViewCell
 
         // Configure the cell...
         let index = indexPath.row
@@ -153,7 +153,7 @@ class HardwareTableViewController: UITableViewController {
         
         let vc = storyboard?.instantiateViewController(withIdentifier: "Reservar") as? ReserveViewController
         vc?.resourceText = cellLabel
-        vc?.idResourceText = String(1)
+        vc?.idResourceText = String("Hardware")
         navigationController?.pushViewController(vc!, animated: true)
     }
     
