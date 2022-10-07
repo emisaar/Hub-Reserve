@@ -10,12 +10,19 @@ import UIKit
 class RegisterViewController: UIViewController {
 
     @IBOutlet weak var mySwitch: UISwitch!
+    @IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var lastNameTextField: UITextField!
+    @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var passwordTextField1: UITextField!
+    @IBOutlet weak var passwordTextField2: UITextField!
     
     @IBAction func register(_ sender: Any) {
-        if mySwitch.isOn {
-            showAlertRegister()
-        } else {
-            showAlertSwitch()
+        doRegister {
+            if self.mySwitch.isOn {
+                self.showAlertRegister()
+            } else {
+                self.showAlertSwitch()
+            }
         }
     }
     
@@ -25,19 +32,51 @@ class RegisterViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
     
-//    @IBAction func switchDidChange(_ sender: UISwitch) {
-//        if mySwitch.isOn {
-//            func registerBtn(_ sender: UIButton) {
-//                showAlertRegister()
-//            }
-//        } else {
-//            showAlertSwitch()
-//        }
-//    }
+    func getOrganization(email: String) -> String{
+        var email = email
+        var organization = ""
+        
+        var flag = false
+        
+        for e in email{
+            if e == "@"{
+                flag = true
+            }
+            else if flag{
+                organization += String(e)
+            }
+        }
+        return organization
+    }
+    
+    func doRegister(completion: @escaping () -> Void){
+        let organization = getOrganization(email: emailTextField.text ?? "")
+        WebService().registerUser(name: nameTextField.text ?? "", lastname: lastNameTextField.text ?? "", email: emailTextField.text ?? "", password: passwordTextField1.text ?? "", organization: organization) { result in
+            switch result{
+            case .success(_):
+                DispatchQueue.main.async {
+                    print("LOGIN SUCCESSFUL")
+                    completion()
+                }
+                
+                //Pasa automaticamente a este caso, hay que debuggear
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    self.showBadRegister()
+                    completion()
+                    print(error)
+                }
+            }
+        }
+    }
+    
+    func showBadRegister(){
+        let alertView = UIAlertController(title: "Error", message: "Hubo un problema en su registro", preferredStyle: .alert)
+        alertView.addAction(UIAlertAction(title:"Reintentar", style: .cancel))
+        self.present(alertView, animated: true, completion: nil)
+    }
     
     func showAlertRegister(){
         // Create Alert View
@@ -56,15 +95,5 @@ class RegisterViewController: UIViewController {
     func changeScreen(){
         view.window?.rootViewController?.dismiss(animated: true, completion: nil)
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

@@ -2245,7 +2245,12 @@ Servicio y Políticas de Seguridad</string>
                     </view>
                     <navigationItem key="navigationItem" id="Xnx-8e-7pg"/>
                     <connections>
+                        <outlet property="emailTextField" destination="gGF-La-geh" id="0PW-nn-aMw"/>
+                        <outlet property="lastNameTextField" destination="tcS-g9-gMv" id="ID6-YE-vEp"/>
                         <outlet property="mySwitch" destination="NPg-qU-Uav" id="JpE-ow-7XR"/>
+                        <outlet property="nameTextField" destination="9it-sb-3SP" id="KoU-ze-HtY"/>
+                        <outlet property="passwordTextField1" destination="2lT-dB-Nnt" id="BaF-r6-vlg"/>
+                        <outlet property="passwordTextField2" destination="19b-dk-l7e" id="8i0-w7-IMx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lj8-Sp-41D" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
