@@ -9,7 +9,7 @@ import UIKit
 
 class EditReservationsTableViewController: UITableViewController {
 
-    var reserva:Reservation?
+    var reserva:Reserva?
     
     @IBOutlet weak var saveButton: UIBarButtonItem!
     
@@ -26,7 +26,7 @@ class EditReservationsTableViewController: UITableViewController {
     let startDatePicker = UIDatePicker()
     let endDatePicker = UIDatePicker()
     
-    init?(coder: NSCoder, r: Reservation?) {
+    init?(coder: NSCoder, r: Reserva?) {
         self.reserva = r
         super.init(coder: coder)
     }
@@ -116,18 +116,18 @@ class EditReservationsTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         
         if let reserva = reserva {
-            nombreTextField.text = reserva.name
+//            nombreTextField.text = reserva.description
             
-            startDate.text = reserva.startDate
+            startDatePicker.date = reserva.start
             
-            endDate.text = reserva.endDate
+            endDatePicker.date = reserva.finish
             
             createInitialDatePicker()
             createEndDatePicker()
            
-            resourceIDTextField.text = String(reserva.resourceID)
+//            resourceIDTextField.text = String(reserva.resource_id)
 
-            statusTextField.text = String(reserva.status)
+//            statusTextField.text = String(reserva.satus_id)
             
             title = "Editar reserva"
         }
@@ -221,16 +221,15 @@ class EditReservationsTableViewController: UITableViewController {
         
         let nombre = nombreTextField.text ?? ""
 
-        let startDate = startDate.text ?? ""
+        let startDate = startDatePicker.date
         
-        let endDate = endDate.text ?? ""
-        
+        let endDate = endDatePicker.date
         
         let resourceID = resourceIDTextField.text ?? ""
 
         let status = statusTextField.text ?? ""
         
         
-        reserva = Reservation(name: nombre, startDate: startDate, endDate: endDate, resourceID: Int(resourceID)!, status: Int(status)!)
+        reserva = Reserva(start: startDate, finish: endDate)
     }
 }

@@ -130,4 +130,55 @@ class WebService {
             throw NetworkError.decodingError
         }
     }
+    
+    func getReservas(token: String) async throws -> Reservas {
+//        "https://hubreserve.systems/api/resources/"
+        let baseURL = URL(string: "http://0.0.0.0:8000/api/reservations/")!
+    
+//        var request = URLRequest(url: baseURL)
+//        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+//        request.addValue(token, forHTTPHeaderField: "Authorization")
+//        print("\n\n\n\nREQUEST")
+//        for s in request.allHTTPHeaderFields!{
+//            print(s.0, s.1)
+//        }
+        
+        let body = getResourcesRequestBody(Authorization: token)
+        
+        var request = URLRequest(url: baseURL)
+        request.httpMethod = "GET"
+        
+        print("\n\n\nBODY BEFORE")
+        print(body)
+        request.httpBody = try? JSONEncoder().encode(body)
+            
+        print("\n\n\nBODY")
+        print(request.httpBody)
+        
+        for s in request.allHTTPHeaderFields!{
+            print(s.0, s.1)
+        }
+        
+        //--------------------
+        let (data, response) = try await URLSession.shared.data(from: baseURL)
+            print(String(data: data, encoding: .utf8))
+            print(response)
+        
+        guard let httpResponse = response as? HTTPURLResponse,
+              httpResponse.statusCode == 200 else {
+            throw NetworkError.noData
+        }
+        
+        print("\n\n\nTODO BIEN")
+        
+        do {
+           let reservas = try JSONDecoder().decode(Reservas.self, from: data)
+            print("BIEN")
+            print(reservas)
+            return reservas
+        }catch{
+            print("NOOO")
+            throw NetworkError.decodingError
+        }
+    }
 }

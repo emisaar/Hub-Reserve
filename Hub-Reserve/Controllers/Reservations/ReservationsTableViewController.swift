@@ -9,10 +9,47 @@ import UIKit
 
 class ReservationsTableViewController: UITableViewController {
     
-    var reservations = Reservation.reservationList()
+//    var reservations = Reservation.reservationList()
+    var reservas = Reservas()
+    var cellLabel = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let defaults = UserDefaults.standard
+        guard let token = defaults.string(forKey: "jwt") else {
+            return
+        }
+        
+        print("TOKEN")
+        print(token)
+        
+        Task{
+            do{
+                let reservas = try await WebService().getReservas(token: token)
+    
+                
+                updateUI(with: reservas)
+            }catch{
+                displayError(NetworkError.noData, title: "No se pudo acceder a las reservas")
+            }
+        }
+    }
+    
+    func updateUI(with reservas: Reservas){
+        DispatchQueue.main.async {
+            
+            self.reservas = reservas
+            self.tableView.reloadData()
+        }
+    }
+    
+    func displayError(_ error: Error, title: String) {
+            DispatchQueue.main.async {
+                let alert = UIAlertController(title: title, message: error.localizedDescription, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            }
+        }
         
         
 
@@ -21,7 +58,6 @@ class ReservationsTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
-    }
 
     // MARK: - Table view data source
 
@@ -33,11 +69,11 @@ class ReservationsTableViewController: UITableViewController {
               let reserva = sourceViewController.reserva else { return }
 
         if let selectedIndexPath = tableView.indexPathForSelectedRow {
-            reservations[selectedIndexPath.row] = reserva
+            reservas[selectedIndexPath.row] = reserva
             tableView.reloadRows(at: [selectedIndexPath], with: .none)
         } else {
-            let newIndexPath = IndexPath(row: reservations.count, section: 0)
-            reservations.append(reserva)
+            let newIndexPath = IndexPath(row: reservas.count, section: 0)
+            reservas.append(reserva)
             tableView.insertRows(at: [newIndexPath], with: .automatic)
         }
     }
@@ -50,7 +86,7 @@ class ReservationsTableViewController: UITableViewController {
     @IBSegueAction func editReserva(_ coder: NSCoder, sender: Any?, segueIdentifier: String?) -> EditReservationsTableViewController? {
         if let cell = sender as? UITableViewCell, let indexPath = tableView.indexPath(for: cell) {
             // Editing Emoji
-            let reservaToEdit = reservations[indexPath.row]
+            let reservaToEdit = reservas[indexPath.row]
             return EditReservationsTableViewController(coder: coder, r: reservaToEdit)
         } else {
             // Adding Emoji
@@ -63,8 +99,8 @@ class ReservationsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-        let movedReservation = reservations.remove(at: fromIndexPath.row)
-        reservations.insert(movedReservation, at: to.row)
+        let movedReservation = reservas.remove(at: fromIndexPath.row)
+        reservas.insert(movedReservation, at: to.row)
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -74,7 +110,7 @@ class ReservationsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return reservations.count
+        return reservas.count
     }
 
     
@@ -83,7 +119,7 @@ class ReservationsTableViewController: UITableViewController {
 
         // Configure the cell...
         let index = indexPath.row
-        let resource = reservations[index]
+        let resource = reservas[index]
         cell.update(r: resource)
         
         return cell
@@ -100,7 +136,7 @@ class ReservationsTableViewController: UITableViewController {
             alertView.addAction(UIAlertAction(title:"Cancelar", style: .cancel, handler: nil))
             alertView.addAction(UIAlertAction(title:"Aceptar", style: .default, handler: {_ in
                 // Delete the row from the data source
-                self.reservations.remove(at: indexPath.row)
+                self.reservas.remove(at: indexPath.row)
                 tableView.deleteRows(at: [indexPath], with: .fade)
             }))
             self.present(alertView, animated: true, completion: nil)

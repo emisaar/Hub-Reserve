@@ -8,7 +8,6 @@
 import UIKit
 
 class LoginViewController: UIViewController {
-    var userControlador = UserController()
     //@StateObject private var loginVM = loginViewModel()
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var emailTextField: UITextField!

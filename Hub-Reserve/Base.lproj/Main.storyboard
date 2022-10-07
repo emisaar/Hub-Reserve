@@ -1482,6 +1482,10 @@
                                                         <action selector="textEditingChanged:" destination="Gxm-XZ-geC" eventType="editingDidEnd" id="kM7-Me-JjR"/>
                                                     </connections>
                                                 </textField>
+                                                <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="GPF-dL-BUY">
+                                                    <rect key="frame" x="0.0" y="28" width="414" height="0.0"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                                </datePicker>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="nms-FU-3Qj" firstAttribute="top" secondItem="FQT-Gv-hzp" secondAttribute="topMargin" id="AS7-iR-ImA"/>
