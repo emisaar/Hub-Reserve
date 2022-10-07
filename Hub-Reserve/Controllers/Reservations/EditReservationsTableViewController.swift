@@ -9,7 +9,7 @@ import UIKit
 
 class EditReservationsTableViewController: UITableViewController {
 
-    var reserva:Reserva?
+    var reserva:Reservation?
     
     @IBOutlet weak var saveButton: UIBarButtonItem!
     
@@ -26,7 +26,7 @@ class EditReservationsTableViewController: UITableViewController {
     let startDatePicker = UIDatePicker()
     let endDatePicker = UIDatePicker()
     
-    init?(coder: NSCoder, r: Reserva?) {
+    init?(coder: NSCoder, r: Reservation?) {
         self.reserva = r
         super.init(coder: coder)
     }
@@ -116,18 +116,18 @@ class EditReservationsTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         
         if let reserva = reserva {
-//            nombreTextField.text = reserva.description
+            nombreTextField.text = reserva.name
             
-            startDatePicker.date = reserva.start
+            startDate.text = reserva.startDate
             
-            endDatePicker.date = reserva.finish
+            endDate.text = reserva.endDate
             
             createInitialDatePicker()
             createEndDatePicker()
            
-//            resourceIDTextField.text = String(reserva.resource_id)
+            resourceIDTextField.text = String(reserva.resourceID)
 
-//            statusTextField.text = String(reserva.satus_id)
+            statusTextField.text = String(reserva.status)
             
             title = "Editar reserva"
         }
@@ -182,7 +182,7 @@ class EditReservationsTableViewController: UITableViewController {
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+        }
     }
     */
 
@@ -221,15 +221,16 @@ class EditReservationsTableViewController: UITableViewController {
         
         let nombre = nombreTextField.text ?? ""
 
-        let startDate = startDatePicker.date
+        let startDate = startDate.text ?? ""
         
-        let endDate = endDatePicker.date
+        let endDate = endDate.text ?? ""
+        
         
         let resourceID = resourceIDTextField.text ?? ""
 
         let status = statusTextField.text ?? ""
         
         
-        reserva = Reserva(start: startDate, finish: endDate)
+        reserva = Reservation(name: nombre, startDate: startDate, endDate: endDate, resourceID: Int(resourceID)!, status: Int(status)!)
     }
 }
