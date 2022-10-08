@@ -56,6 +56,14 @@ struct ResourceResponse: Codable{
     var active:Bool?
 }
 
+struct UserRequestBody: Codable{
+    var name: String
+    var lastname: String
+    var email: String
+    var password: String
+    var organization: String
+}
+
 class WebService {
     func login(email: String, password: String, completion: @escaping (Result<String, AuthenticationError>) -> Void) {
         //        "https://hubreserve.systems/api/login/"
@@ -220,5 +228,41 @@ class WebService {
             print("NOOO")
             throw NetworkError.decodingError
         }
+    }
+    
+    func registerUser(name: String, lastname: String, email: String, password: String, organization: String, completion: @escaping (Result<String, AuthenticationError>) -> Void) {
+        
+        let baseURL = URL(string: "http://0.0.0.0:8000/api/users/")!
+        
+        let body = UserRequestBody(name: name, lastname: lastname, email: email, password: password, organization: organization)
+        
+        var request = URLRequest(url: baseURL)
+        request.httpMethod = "POST"
+        
+        print("\n\n\nBODY BEFORE")
+        print(body)
+        request.httpBody = try? JSONEncoder().encode(body)
+        print("\n\n\nBODY")
+        
+        print(request.httpBody)
+        
+//        for s in request.allHTTPHeaderFields!{
+//            print(s.0, s.1)
+//        }
+        
+        //--------------------
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            guard let data = data, error == nil else{
+                completion(.failure(.custom(errorMessage: "No data")))
+                return
+            }
+            
+            guard let httpResponse = response as? HTTPURLResponse,
+                  httpResponse.statusCode == 201 else {
+                completion(.failure(.custom(errorMessage: "Bad request")))
+                return
+            }
+            completion(.success("Todo bien"))
+        }.resume()
     }
 }
