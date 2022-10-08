@@ -202,7 +202,7 @@ class WebService {
             }
             
             guard let httpResponse = response as? HTTPURLResponse,
-                  httpResponse.statusCode == 200 else {
+                  httpResponse.statusCode == 201 else {
                 completion(.failure(.custom(errorMessage: "Bad request")))
                 return
             }
