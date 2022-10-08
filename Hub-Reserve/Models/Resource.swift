@@ -7,7 +7,9 @@
 
 import Foundation
 
+// Recursos disponibles
 struct Resource: Codable{
+    var id: Int
     var resource_type: String
     var category: String
     var name: String

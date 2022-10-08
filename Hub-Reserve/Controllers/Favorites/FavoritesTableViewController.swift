@@ -94,7 +94,7 @@ class FavoritesTableViewController: UITableViewController {
         
         let vc = storyboard?.instantiateViewController(withIdentifier: "Reservar") as? ReserveViewController
         vc?.resourceText = cellLabel
-        vc?.idResourceText = String(favorites[indexPath.row].resourceID)
+//        vc?.idResourceText = String(favorites[indexPath.row].resourceID)
         navigationController?.pushViewController(vc!, animated: true)
     }
     

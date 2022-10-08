@@ -15,12 +15,13 @@ class ReservadoTableViewCell: UITableViewCell {
     @IBOutlet weak var endLabel: UILabel!
     @IBOutlet weak var statusLabel: UILabel!
     
-    func update(r: Reservation) {
-        icon.image = UIImage(systemName: iconCheck(resourceID: r.resourceID))
-        resourceLabel.text = r.name
-        startLabel.text = r.startDate
-        endLabel.text = r.endDate
-        statusLabel.text = statusCheck(status: r.status)
+    func update(r: Reserva) {
+        icon.image = UIImage(systemName: "checkmark.seal.fill")
+        resourceLabel.text = String(r.resource)
+        startLabel.text = r.start
+        endLabel.text = r.finish
+        statusLabel.text = r.description
+//        statusLabel.text = statusCheck(status: r.status)
     }
     
     func statusCheck(status: Int) -> String {

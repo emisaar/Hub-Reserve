@@ -9,24 +9,25 @@ import UIKit
 
 class EditReservationsTableViewController: UITableViewController {
 
-    var reserva:Reservation?
+//    var reserva:Reservation?
+    var reserva: Reserva?
     
     @IBOutlet weak var saveButton: UIBarButtonItem!
     
-    @IBOutlet weak var nombreTextField: UITextField!
-//    @IBOutlet weak var startDatePicker: UIDatePicker!
-//    @IBOutlet weak var endDatePicker: UIDatePicker!
+//    @IBOutlet weak var nombreTextField: UITextField!
     
     @IBOutlet weak var startDate: UITextField!
     @IBOutlet weak var endDate: UITextField!
+    @IBOutlet weak var comentariosTextField: UITextField!
+    @IBOutlet weak var descripcionTextField: UITextField!
     
-    @IBOutlet weak var resourceIDTextField: UITextField!
-    @IBOutlet weak var statusTextField: UITextField!
+//    @IBOutlet weak var resourceIDTextField: UITextField!
+//    @IBOutlet weak var statusTextField: UITextField!
     
     let startDatePicker = UIDatePicker()
     let endDatePicker = UIDatePicker()
     
-    init?(coder: NSCoder, r: Reservation?) {
+    init?(coder: NSCoder, r: Reserva?) {
         self.reserva = r
         super.init(coder: coder)
     }
@@ -36,16 +37,14 @@ class EditReservationsTableViewController: UITableViewController {
     }
     
     func updateSaveButtonState() {
-        let nombre = nombreTextField.text ?? ""
-
+//        let nombre = nombreTextField.text ?? ""
         let startDate = startDate.text ?? ""
-        
         let endDate = endDate.text ?? ""
-        
-        let resourceID = resourceIDTextField.text ?? ""
-
-        let status = statusTextField.text ?? ""
-        saveButton.isEnabled = !nombre.isEmpty && !startDate.isEmpty && !endDate.isEmpty && !resourceID.isEmpty && !status.isEmpty
+        let comments = comentariosTextField.text ?? ""
+        let description = descripcionTextField.text ?? ""
+//        let resourceID = resourceIDTextField.text ?? ""
+//        let status = statusTextField.text ?? ""
+        saveButton.isEnabled = !startDate.isEmpty && !endDate.isEmpty && !comments.isEmpty && !description.isEmpty
     }
     
     
@@ -89,8 +88,8 @@ class EditReservationsTableViewController: UITableViewController {
     
     @objc func donePressedInitialDate() {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .medium
-        dateFormatter.timeStyle = .short
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSS"
+//        dateFormatter.timeStyle = .short
         
         self.startDate.text = dateFormatter.string(from: startDatePicker.date)
         self.view.endEditing(true)
@@ -99,8 +98,8 @@ class EditReservationsTableViewController: UITableViewController {
     
     @objc func donePressedEndDate() {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .medium
-        dateFormatter.timeStyle = .short
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSS"
+//        dateFormatter.timeStyle = .short
         
         self.endDate.text = dateFormatter.string(from: endDatePicker.date)
         self.view.endEditing(true)
@@ -116,18 +115,21 @@ class EditReservationsTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         
         if let reserva = reserva {
-            nombreTextField.text = reserva.name
+//            nombreTextField.text = reserva.name
             
-            startDate.text = reserva.startDate
-            
-            endDate.text = reserva.endDate
-            
+            startDate.text = reserva.start
             createInitialDatePicker()
+            
+            endDate.text = reserva.finish
             createEndDatePicker()
+            
+            comentariosTextField.text = reserva.comments
+            
+            descripcionTextField.text = reserva.description
            
-            resourceIDTextField.text = String(reserva.resourceID)
+//            resourceIDTextField.text = String(reserva.resourceID)
 
-            statusTextField.text = String(reserva.status)
+//            statusTextField.text = String(reserva.status)
             
             title = "Editar reserva"
         }
@@ -219,18 +221,20 @@ class EditReservationsTableViewController: UITableViewController {
 //        dateFormatter.dateStyle = .medium
 //        dateFormatter.timeStyle = .short
         
-        let nombre = nombreTextField.text ?? ""
+//        let nombre = nombreTextField.text ?? ""
 
         let startDate = startDate.text ?? ""
-        
         let endDate = endDate.text ?? ""
+        let comments = comentariosTextField.text ?? ""
+        let description = descripcionTextField.text ?? ""
         
         
-        let resourceID = resourceIDTextField.text ?? ""
+        
+//        let resourceID = resourceIDTextField.text ?? ""
 
-        let status = statusTextField.text ?? ""
+//        let status = statusTextField.text ?? ""
         
-        
-        reserva = Reservation(name: nombre, startDate: startDate, endDate: endDate, resourceID: Int(resourceID)!, status: Int(status)!)
+        reserva = Reserva(start: startDate, finish: endDate, comments: comments, description: description, changed_by_user: true)
+//        reserva = Reservation(name: nombre, startDate: startDate, endDate: endDate, resourceID: Int(resourceID)!, status: Int(status)!)
     }
 }
