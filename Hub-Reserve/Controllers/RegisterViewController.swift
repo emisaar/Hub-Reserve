@@ -21,7 +21,6 @@ class RegisterViewController: UIViewController {
             return
         }
         doRegister {
-            //self.changeScreen()
         }
     }
     
@@ -125,7 +124,6 @@ class RegisterViewController: UIViewController {
                     completion()
                 }
                 
-                //Pasa automaticamente a este caso, hay que debuggear
             case .failure(let error):
                 DispatchQueue.main.async {
                     self.showBadRegister()

@@ -49,6 +49,10 @@ struct UserRequestBody: Codable{
     var organization: String
 }
 
+struct UserDeleteRequestBody: Codable{
+    var delete: Bool
+}
+
 class WebService {
     func login(email: String, password: String, completion: @escaping (Result<String, AuthenticationError>) -> Void) {
 //        "https://hubreserve.systems/api/login/"
@@ -208,5 +212,38 @@ class WebService {
             }
             completion(.success("Todo bien"))
         }.resume()
+    }
+    
+    
+    func deleteUser(token: String) async throws -> Void {
+        
+        let baseURL = URL(string: "http://0.0.0.0:8000/api/users/")!
+        
+        let body = UserDeleteRequestBody(delete: true)
+        
+        var request = URLRequest(url: baseURL)
+        request.httpMethod = "POST"
+        request.addValue(token, forHTTPHeaderField: "Authorization")
+        request.httpBody = try? JSONEncoder().encode(body)
+        
+        print("BODY")
+        print(body)
+        
+        print("Headers")
+        for s in request.allHTTPHeaderFields!{
+            print(s.0, s.1)
+        }
+        
+        //--------------------
+        let (data, response) = try await URLSession.shared.data(for: request)
+        print(String(data: data, encoding: .utf8))
+        print(response)
+        
+        guard let httpResponse = response as? HTTPURLResponse,
+              httpResponse.statusCode == 200 else {
+            throw NetworkError.noData
+        }
+        
+        print("\n\n\nTODO BIEN")
     }
 }
