@@ -1,20 +1,20 @@
 //
-//  Reserva.swift
+//  Reserva2.swift
 //  Hub-Reserve
 //
-//  Created by Emi Saucedo on 06/10/22.
+//  Created by Emi Saucedo on 07/10/22.
 //
 
 import Foundation
 
 // Realizar una reserva POST
-struct Reserva: Codable{
+struct Reserva2: Codable{
     var id: Int
     var start: String
     var finish: String
     var description: String
     var comments: String
-    var id_before_update: Int?
+    var id_before_update: Int
     var changed_by_admin: Bool
     var changed_by_user: Bool
     
@@ -32,4 +32,4 @@ struct Reserva: Codable{
     }
 }
 
-typealias Reservas = [Reserva]
+typealias Reservass = [Reserva]

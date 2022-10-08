@@ -17,7 +17,7 @@ class ReservadoTableViewCell: UITableViewCell {
     
     func update(r: Reserva) {
         icon.image = UIImage(systemName: "checkmark.seal.fill")
-        resourceLabel.text = String(r.resource)
+        resourceLabel.text = String(r.id)
         startLabel.text = r.start
         endLabel.text = r.finish
         statusLabel.text = r.description
