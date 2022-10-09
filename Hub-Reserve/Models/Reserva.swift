@@ -17,6 +17,7 @@ struct Reserva: Codable{
     var id_before_update: Int?
     var changed_by_admin: Bool
     var changed_by_user: Bool
+    var resource_name: String
     
     // Modificar
     init(start: String, finish: String, comments: String, description: String, changed_by_user: Bool) {
@@ -28,6 +29,7 @@ struct Reserva: Codable{
         self.id_before_update = 0
         self.changed_by_admin = false
         self.changed_by_user = false
+        self.resource_name = ""
         
     }
 }
