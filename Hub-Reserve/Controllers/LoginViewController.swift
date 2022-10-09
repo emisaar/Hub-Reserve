@@ -16,11 +16,12 @@ class LoginViewController: UIViewController {
     @Published var isAuthenticated: Bool = false
     
     @IBAction func login(_ sender: UIButton) {
-        doLogin {
+        let email = emailTextField.text!
+        doLogin (email: email, completion: {
             if self.isAuthenticated {
                 self.changeScreen()
             }
-        }
+        })
     }
     
     
@@ -33,13 +34,16 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
     }
     
-    func doLogin(completion: @escaping () -> Void) {
+    func doLogin(email: String, completion: @escaping () -> Void) {
         let defaults = UserDefaults.standard
         
         WebService().login(email: emailTextField.text ?? "", password: passwordTextField.text ?? ""){ result in
             switch result{
-            case .success(let token):
+            case .success((let token, let id)):
                 defaults.setValue(token, forKey: "jwt")
+                defaults.setValue(id, forKey: "userId")
+                defaults.setValue(email, forKey: "mail")
+                
                 DispatchQueue.main.async {
                     self.isAuthenticated = true
                     completion()
