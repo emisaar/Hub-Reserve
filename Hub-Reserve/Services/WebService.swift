@@ -27,6 +27,7 @@ struct LoginResponse: Codable {
     let message: String?
     let jwt: String?
     let user_type: Int?
+    let id: Int?
 }
 
 struct getResourcesRequestBody: Codable {
@@ -64,9 +65,13 @@ struct UserRequestBody: Codable{
     var organization: String
 }
 
+struct UserDeleteRequestBody: Codable{
+    var Authorization: String
+}
+
 class WebService {
-    func login(email: String, password: String, completion: @escaping (Result<String, AuthenticationError>) -> Void) {
-        //        "https://hubreserve.systems/api/login/"
+    func login(email: String, password: String, completion: @escaping (Result<(String, Int), AuthenticationError>) -> Void) {
+//        "https://hubreserve.systems/api/login/"
         guard let url = URL(string: "http://0.0.0.0:8000/api/login/") else {
             completion(.failure(.custom(errorMessage: "URL is not correct")))
             return
@@ -99,7 +104,13 @@ class WebService {
                 return
             }
             
-            completion(.success(token))
+            guard let userID = loginResponse.id else {
+                completion(.failure(.custom(errorMessage: "User ID")))
+                return
+            }
+            //let tuple = Result.success(token, userID)
+            //completion(.success(tuple))
+            completion(.success((token, userID)))
         }.resume()
     }
     
@@ -264,5 +275,42 @@ class WebService {
             }
             completion(.success("Todo bien"))
         }.resume()
+    }
+    
+    
+    func deleteUser(token: String) async throws -> Void {
+        let defaults = UserDefaults.standard
+        guard let userId = defaults.string(forKey: "userId") else {
+            print("WRONG ID")
+            return
+        }
+        var ep = "http://0.0.0.0:8000/api/user/" + userId
+        let baseURL = URL(string: ep)!
+        
+        //--------------------------------
+        print("PRUEBA")
+        var request = URLRequest(url: baseURL)
+        request.httpMethod = "DELETE"
+        request.addValue(token, forHTTPHeaderField: "Authorization")
+        //request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let body = UserDeleteRequestBody(Authorization: token)
+        
+        request.httpBody = try? JSONEncoder().encode(body)
+        
+        print("BODY")
+        print(body)
+        
+        //--------------------
+        let (data, response) = try await URLSession.shared.data(for: request)
+        print(String(data: data, encoding: .utf8))
+        print(response)
+        
+        guard let httpResponse = response as? HTTPURLResponse,
+              httpResponse.statusCode == 200 else {
+            throw NetworkError.noData
+        }
+        
+        print("\n\n\nTODO BIEN")
     }
 }
