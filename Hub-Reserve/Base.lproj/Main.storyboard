@@ -3330,6 +3330,7 @@ Servicio y Políticas de Seguridad</string>
                                                         </buttonConfiguration>
                                                         <connections>
                                                             <action selector="reserveBtn:" destination="uQb-QZ-gBb" eventType="touchUpInside" id="rMj-7V-IJO"/>
+                                                            <action selector="updatePassword:" destination="I5b-TE-XiN" eventType="touchUpInside" id="ipD-BB-vpB"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>

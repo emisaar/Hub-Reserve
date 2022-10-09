@@ -15,10 +15,6 @@ class EditPasswordViewController: UIViewController {
     @IBOutlet var tapScreen: UITapGestureRecognizer!
     @IBOutlet weak var newPasswordConfirmTextField: UITextField!
     
-    var password = ""
-    var newPassword = ""
-    var newPasswordConfirm = ""
-    
     @IBAction func textFieldDoneEditing(sender:UITextField){
         sender.resignFirstResponder()
     }
@@ -26,11 +22,7 @@ class EditPasswordViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        passwordTextField.text = password
-        newPasswordTextField.text = newPassword
-        newPasswordConfirmTextField.text = newPasswordConfirm
-
-        updateSaveButtonState()
+        
         // Do any additional setup after loading the view.
     }
     
@@ -40,20 +32,31 @@ class EditPasswordViewController: UIViewController {
         newPasswordConfirmTextField.resignFirstResponder()
     }
     
+    @IBAction func updatePassword(_ sender: Any) {
+        print("update password")
+        let defaults = UserDefaults.standard
+        guard let userEmail = defaults.string(forKey: "mail") else {
+            print("WRONG MAIL")
+            return
+        }
+        Task{
+            do{
+                let response = try await WebService().changePassword(email: userEmail, password: passwordTextField.text!)
+                if response{
+                    showAlertChangePasswordDone()
+                }
+                else{
+                    
+                }
+                print("Correcto")
+            } catch{
+                displayError(NetworkError.noData, title: "Error: no se pudo actualizar la contraseña")
+            }
+        }
+    }
     @IBAction func textEditingChanged(_ sender: UITextField) {
         updateSaveButtonState()
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
     
   
     
@@ -71,6 +74,21 @@ class EditPasswordViewController: UIViewController {
         let alertView = UIAlertController(title: "Contraseña Actualizada", message: "Su contraseña ha sido actualizada correctamente.", preferredStyle: .alert)
         alertView.addAction(UIAlertAction(title:"Aceptar", style: .default, handler: {(_) in self.changeScreen()}))
         self.present(alertView, animated: true, completion: nil)
+    }
+    
+    func showAlertErrorChangePwd(){
+        // Create Alert View
+        let alertView = UIAlertController(title: "Hubo un error", message: "La contraseña actual no es la correcta.", preferredStyle: .alert)
+        alertView.addAction(UIAlertAction(title:"Aceptar", style: .default, handler: {(_) in self.changeScreen()}))
+        self.present(alertView, animated: true, completion: nil)
+    }
+    
+    func displayError(_ error: Error, title: String) {
+        DispatchQueue.main.async {
+            let alert = UIAlertController(title: title, message: error.localizedDescription, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
     }
     
     func changeScreen(){

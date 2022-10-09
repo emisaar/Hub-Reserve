@@ -69,6 +69,15 @@ struct UserDeleteRequestBody: Codable{
     var Authorization: String
 }
 
+struct UserChangePwdRequestBody: Codable{
+    var email: String
+    var password: String
+}
+
+struct UserChangePwdResponse: Codable{
+    var is_valid: Bool?
+}
+
 class WebService {
     func login(email: String, password: String, completion: @escaping (Result<(String, Int), AuthenticationError>) -> Void) {
 //        "https://hubreserve.systems/api/login/"
@@ -284,7 +293,7 @@ class WebService {
             print("WRONG ID")
             return
         }
-        var ep = "http://0.0.0.0:8000/api/user/" + userId
+        var ep = "http://0.0.0.0:8000/api/user/" + userId + "/"
         let baseURL = URL(string: ep)!
         
         //--------------------------------
@@ -317,5 +326,40 @@ class WebService {
         }
         
         print("\n\n\nTODO BIEN")
+    }
+    
+    func changePassword(email: String, password: String) async throws -> Bool{
+        let baseURL = URL(string: "http://0.0.0.0:8000/api/user/validatePWD/")!
+        
+        let body = UserChangePwdRequestBody(email: email, password: password)
+        
+        var request = URLRequest(url: baseURL)
+        request.httpMethod = "POST"
+        
+        print("\n\n\nBODY BEFORE")
+        print(body)
+        request.httpBody = try? JSONEncoder().encode(body)
+        print("\n\n\nBODY")
+        
+        let (data, response) = try await URLSession.shared.data(for: request)
+        print(String(data: data, encoding: .utf8))
+        print(response)
+        
+        guard let httpResponse = response as? HTTPURLResponse,
+              httpResponse.statusCode == 200 else {
+            throw NetworkError.noData
+        }
+        
+        print("\n\n\nTODO BIEN")
+        
+        do {
+            let is_valid = try JSONDecoder().decode(UserChangePwdResponse.self, from: data)
+            print("BIEN")
+            print(is_valid)
+            return is_valid.is_valid ?? false
+        }catch{
+            print("NOOO")
+            throw NetworkError.decodingError
+        }
     }
 }
