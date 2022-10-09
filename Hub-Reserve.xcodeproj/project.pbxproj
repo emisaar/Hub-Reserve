@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4520FD7628F2B60900B29634 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4520FD7528F2B60900B29634 /* EditProfileViewController.swift */; };
+		4520FD7828F2B99200B29634 /* EditPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4520FD7728F2B99200B29634 /* EditPasswordViewController.swift */; };
 		9205F54E28EE4F5A0006C050 /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9205F54D28EE4F5A0006C050 /* Resource.swift */; };
 		E80C5BF928E122D70031515D /* ReservadoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80C5BF828E122D70031515D /* ReservadoTableViewCell.swift */; };
 		E80D88B928E2C9A40029B15A /* Stats.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80D88B828E2C9A40029B15A /* Stats.swift */; };
@@ -49,6 +51,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4520FD7528F2B60900B29634 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
+		4520FD7728F2B99200B29634 /* EditPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPasswordViewController.swift; sourceTree = "<group>"; };
 		9205F54D28EE4F5A0006C050 /* Resource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
 		E80C5BF828E122D70031515D /* ReservadoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservadoTableViewCell.swift; sourceTree = "<group>"; };
 		E80D88B828E2C9A40029B15A /* Stats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stats.swift; sourceTree = "<group>"; };
@@ -214,6 +218,8 @@
 			isa = PBXGroup;
 			children = (
 				E8E722D928E54BB300D0BB63 /* ProfileViewController.swift */,
+				4520FD7528F2B60900B29634 /* EditProfileViewController.swift */,
+				4520FD7728F2B99200B29634 /* EditPasswordViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -286,6 +292,7 @@
 				TargetAttributes = {
 					E8964D9428D6ADD0001EEAA0 = {
 						CreatedOnToolsVersion = 13.4.1;
+						LastSwiftMigration = 1400;
 					};
 				};
 			};
@@ -330,10 +337,12 @@
 				E8DE550C28E942FE006F6DAA /* FavTableViewCell.swift in Sources */,
 				E8BDCC8128D76CC300480589 /* LoginViewController.swift in Sources */,
 				E80D88B928E2C9A40029B15A /* Stats.swift in Sources */,
+				4520FD7828F2B99200B29634 /* EditPasswordViewController.swift in Sources */,
 				E8DE550628E9421F006F6DAA /* FavoritesTableViewController.swift in Sources */,
 				E80D88BD28E2CBFF0029B15A /* StatsTableViewController.swift in Sources */,
 				E89861FF28EA16D2003342DE /* HardwaresTableViewController.swift in Sources */,
 				E80D88BF28E2CC8B0029B15A /* StatsTableViewCell.swift in Sources */,
+				4520FD7628F2B60900B29634 /* EditProfileViewController.swift in Sources */,
 				E8BED41C28F12DDC00C69D6F /* Reserva2.swift in Sources */,
 				E8357A0628E96A240088A4DF /* EditReservationsTableViewController.swift in Sources */,
 				E89861F128EA118A003342DE /* RoomsTableViewController.swift in Sources */,
@@ -505,6 +514,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = BNVQ64P4GD;
@@ -524,6 +534,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.emisaar.Hub-Reserve";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -534,6 +545,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = BNVQ64P4GD;
