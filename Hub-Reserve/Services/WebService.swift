@@ -188,7 +188,7 @@ class WebService {
         print(response)
         
         guard let httpResponse = response as? HTTPURLResponse,
-              httpResponse.statusCode == 200 else {
+              httpResponse.statusCode == 201 else {
             throw NetworkError.noData
         }
         
