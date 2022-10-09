@@ -27,10 +27,26 @@ struct LoginResponse: Codable {
     let message: String?
     let jwt: String?
     let user_type: Int?
+    let id: Int?
 }
 
 struct getResourcesRequestBody: Codable {
     let Authorization: String
+}
+
+struct getReservasRequestBody: Codable {
+    let Authorization: String
+}
+
+struct addReservaRequestBody: Codable {
+    var resource: Int
+    var start: String
+    var finish: String
+    var description: String
+    var comments: String
+    var id_before_update: Int?
+    var changed_by_admin: Bool
+    var changed_by_user: Bool
 }
 
 struct ResourceResponse: Codable{
@@ -50,11 +66,11 @@ struct UserRequestBody: Codable{
 }
 
 struct UserDeleteRequestBody: Codable{
-    var delete: Bool
+    var Authorization: String
 }
 
 class WebService {
-    func login(email: String, password: String, completion: @escaping (Result<String, AuthenticationError>) -> Void) {
+    func login(email: String, password: String, completion: @escaping (Result<(String, Int), AuthenticationError>) -> Void) {
 //        "https://hubreserve.systems/api/login/"
         guard let url = URL(string: "http://0.0.0.0:8000/api/login/") else {
             completion(.failure(.custom(errorMessage: "URL is not correct")))
@@ -88,34 +104,43 @@ class WebService {
                 return
             }
             
-            completion(.success(token))
+            guard let userID = loginResponse.id else {
+                completion(.failure(.custom(errorMessage: "User ID")))
+                return
+            }
+            //let tuple = Result.success(token, userID)
+            //completion(.success(tuple))
+            completion(.success((token, userID)))
         }.resume()
     }
     
     func getResources(token: String) async throws -> Resources {
-//        "https://hubreserve.systems/api/resources/"
+        //        "https://hubreserve.systems/api/resources/"
         let baseURL = URL(string: "http://0.0.0.0:8000/api/resources/")!
+        
+        //        var request = URLRequest(url: baseURL)
+        //        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        //        request.addValue(token, forHTTPHeaderField: "Authorization")
+        //        print("\n\n\n\nREQUEST")
+        //        for s in request.allHTTPHeaderFields!{
+        //            print(s.0, s.1)
+        //        }
         
         let body = getResourcesRequestBody(Authorization: token)
         
         var request = URLRequest(url: baseURL)
         request.httpMethod = "GET"
+        request.addValue(token, forHTTPHeaderField: "Authorization")
         
-        print("\n\n\nBODY BEFORE")
-        print(body)
-        request.httpBody = try? JSONEncoder().encode(body)
-            
-        print("\n\n\nBODY")
-        print(request.httpBody)
-        
+        print("Headers")
         for s in request.allHTTPHeaderFields!{
             print(s.0, s.1)
         }
         
         //--------------------
-        let (data, response) = try await URLSession.shared.data(from: baseURL)
-            print(String(data: data, encoding: .utf8))
-            print(response)
+        let (data, response) = try await URLSession.shared.data(for: request)
+        print(String(data: data, encoding: .utf8))
+        print(response)
         
         guard let httpResponse = response as? HTTPURLResponse,
               httpResponse.statusCode == 200 else {
@@ -125,7 +150,7 @@ class WebService {
         print("\n\n\nTODO BIEN")
         
         do {
-           let reservas = try JSONDecoder().decode(Resources.self, from: data)
+            let reservas = try JSONDecoder().decode(Resources.self, from: data)
             print("BIEN")
             print(reservas)
             return reservas
@@ -135,30 +160,68 @@ class WebService {
         }
     }
     
-    func getReservas(token: String) async throws -> Reservas {
-//        "https://hubreserve.systems/api/resources/"
+    func addReserva(token: String, resource: Int, start: String, finish: String, description: String, comments: String, id_before_update: Int, changed_by_admin: Bool, changed_by_user: Bool) async throws -> Void {
+        //        let baseString = "http://0.0.0.0:8000/api/reservations/"
         let baseURL = URL(string: "http://0.0.0.0:8000/api/reservations/")!
-        
-        let body = getResourcesRequestBody(Authorization: token)
+        //        var request = URLRequest(url: baseURL)
+        //        request.httpMethod = "POST"
+        //        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        //
+        let body = addReservaRequestBody(resource: resource, start: start, finish: finish, description: description, comments: comments, id_before_update: id_before_update, changed_by_admin: changed_by_admin, changed_by_user: changed_by_user)
         
         var request = URLRequest(url: baseURL)
-        request.httpMethod = "GET"
-        
-        print("\n\n\nBODY BEFORE")
-        print(body)
+        request.httpMethod = "POST"
+        request.addValue(token, forHTTPHeaderField: "Authorization")
         request.httpBody = try? JSONEncoder().encode(body)
-            
-        print("\n\n\nBODY")
-        print(request.httpBody)
         
+        print("BODY")
+        print(body)
+        
+        print("Headers")
         for s in request.allHTTPHeaderFields!{
             print(s.0, s.1)
         }
         
         //--------------------
-        let (data, response) = try await URLSession.shared.data(from: baseURL)
-            print(String(data: data, encoding: .utf8))
-            print(response)
+        let (data, response) = try await URLSession.shared.data(for: request)
+        print(String(data: data, encoding: .utf8))
+        print(response)
+        
+        guard let httpResponse = response as? HTTPURLResponse,
+              httpResponse.statusCode == 200 else {
+            throw NetworkError.noData
+        }
+        
+        print("\n\n\nTODO BIEN")
+    }
+    
+    func getReservas(token: String) async throws -> Reservas {
+        //        "https://hubreserve.systems/api/reservations/"
+        let baseURL = URL(string: "http://0.0.0.0:8000/api/reservations/")!
+        
+        //        var request = URLRequest(url: baseURL)
+        //        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        //        request.addValue(token, forHTTPHeaderField: "Authorization")
+        //        print("\n\n\n\nREQUEST")
+        //        for s in request.allHTTPHeaderFields!{
+        //            print(s.0, s.1)
+        //        }
+        
+        let body = getResourcesRequestBody(Authorization: token)
+        
+        var request = URLRequest(url: baseURL)
+        request.httpMethod = "GET"
+        request.addValue(token, forHTTPHeaderField: "Authorization")
+        
+        print("Headers")
+        for s in request.allHTTPHeaderFields!{
+            print(s.0, s.1)
+        }
+        
+        //--------------------
+        let (data, response) = try await URLSession.shared.data(for: request)
+        print(String(data: data, encoding: .utf8))
+        print(response)
         
         guard let httpResponse = response as? HTTPURLResponse,
               httpResponse.statusCode == 200 else {
@@ -168,7 +231,7 @@ class WebService {
         print("\n\n\nTODO BIEN")
         
         do {
-           let reservas = try JSONDecoder().decode(Reservas.self, from: data)
+            let reservas = try JSONDecoder().decode(Reservas.self, from: data)
             print("BIEN")
             print(reservas)
             return reservas
@@ -216,14 +279,23 @@ class WebService {
     
     
     func deleteUser(token: String) async throws -> Void {
+        let defaults = UserDefaults.standard
+        guard let userId = defaults.string(forKey: "userId") else {
+            print("WRONG ID")
+            return
+        }
+        var ep = "http://0.0.0.0:8000/api/user/" + userId
+        let baseURL = URL(string: ep)!
         
-        let baseURL = URL(string: "http://0.0.0.0:8000/api/users/")!
-        
-        let body = UserDeleteRequestBody(delete: true)
-        
+        //--------------------------------
+        print("PRUEBA")
         var request = URLRequest(url: baseURL)
-        request.httpMethod = "POST"
+        request.httpMethod = "DELETE"
         request.addValue(token, forHTTPHeaderField: "Authorization")
+        //request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let body = UserDeleteRequestBody(Authorization: token)
+        
         request.httpBody = try? JSONEncoder().encode(body)
         
         print("BODY")

@@ -12,13 +12,41 @@ class ReserveViewController: UIViewController {
     var reservations = Reservation.reservationList()
 
     @IBOutlet weak var resourceTextField: UITextField!
-    @IBOutlet weak var idResourceTextField: UITextField!
+//    @IBOutlet weak var idResourceTextField: UITextField!
     @IBOutlet weak var InitialDateTextField: UITextField!
     @IBOutlet weak var EndDateTextField: UITextField!
-
+    @IBOutlet weak var comentariosTextField: UITextField!
+    @IBOutlet weak var descripcionTextField: UITextField!
+    
     @IBAction func reserveBtn(_ sender: Any) {
 //        addReserve()
-        showAlertReservationDone()
+        let defaults = UserDefaults.standard
+        
+        guard let token = defaults.string(forKey: "jwt") else {
+            return
+        }
+        
+        print("TOKEN")
+        print(token)
+        
+        // Insertar la nueva reserva en el servidor
+        Task{
+            do{
+                try await WebService().addReserva(token: token, resource: idResourceText, start: InitialDateTextField.text ?? "", finish: EndDateTextField.text ?? "", description: descripcionTextField.text ?? "", comments: comentariosTextField.text ?? "", id_before_update: 0, changed_by_admin: false, changed_by_user: false)
+                    // self.updateUI()
+                    showAlertReservationDone()
+                } catch {
+                displayError(NetworkError.noData, title: "No se puede insertar la reserva")
+            }
+        }
+    }
+    
+    func displayError(_ error: Error, title: String) {
+        DispatchQueue.main.async {
+            let alert = UIAlertController(title: title, message: error.localizedDescription, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
     }
     
     @IBOutlet weak var reservar: UIButton!
@@ -26,12 +54,15 @@ class ReserveViewController: UIViewController {
 //    let salas = ["Sala 1", "Sala 2", "Sala 3", "Sala 4", "Sala 5"]
     
     var resourceText = ""
-    var idResourceText = ""
+    var idResourceText = 0
     
-    var roomsPickerView = UIPickerView()
+//    var roomsPickerView = UIPickerView()
     
     let InitialDatePicker = UIDatePicker()
     let EndDatePicker = UIDatePicker()
+    
+    var commentsText = ""
+    var descriptionText = ""
 
     
     @IBAction func textFieldDoneEditing(sender:UITextField){
@@ -45,10 +76,10 @@ class ReserveViewController: UIViewController {
         resourceTextField.text = resourceText
         resourceTextField.placeholder = "Seleccionar..."
         resourceTextField.textAlignment = .center
-        
-        idResourceTextField.text = idResourceText
-        idResourceTextField.placeholder = "Seleccionar..."
-        idResourceTextField.textAlignment = .center
+//
+//        idResourceTextField.text = idResourceText
+//        idResourceTextField.placeholder = "Seleccionar..."
+//        idResourceTextField.textAlignment = .center
         
         InitialDateTextField.placeholder = "Seleccionar..."
         InitialDateTextField.textAlignment = .center
@@ -62,31 +93,46 @@ class ReserveViewController: UIViewController {
         createInitialDatePicker()
         createEndDatePicker()
         
+        comentariosTextField.text = commentsText
+        comentariosTextField.placeholder = "Comentarios..."
+        comentariosTextField.textAlignment = .center
+        
+        descripcionTextField.text = descriptionText
+        descripcionTextField.placeholder = "Sobre la reserva..."
+        descripcionTextField.textAlignment = .center
+        
+        
         // Actualizar botón
         updateSaveButtonState()
     }
 
     func updateSaveButtonState() {
-        let nombre = resourceTextField.text ?? ""
+//        let nombre = resourceTextField.text ?? ""
 
         let startDate = InitialDateTextField.text ?? ""
         
         let endDate = EndDateTextField.text ?? ""
         
-        reservar.isEnabled = !nombre.isEmpty && !startDate.isEmpty && !endDate.isEmpty
+        let description = descripcionTextField.text ?? ""
+        
+        let comment = comentariosTextField.text ?? ""
+        
+        reservar.isEnabled = !startDate.isEmpty && !endDate.isEmpty && !description.isEmpty && !comment.isEmpty
     }
     
 //    func addReserve() {
-//        let nombre = resourceTextField.text ?? ""
-//
+////        let nombre = resourceTextField.text ?? ""
+////
 //        let startDate = InitialDateTextField.text ?? ""
 //
 //        let endDate = EndDateTextField.text ?? ""
 //
-//        let resourceID = idResourceTextField.text ?? ""
+//        let description = descripcionTextField.text ?? ""
 //
-//        let reserva = Reservation(name: nombre, startDate: startDate, endDate: endDate, resourceID: Int(resourceID)!, status: 1)
-//
+//        let comment = comentariosTextField.text ?? ""
+////
+//        let reserva = Reserva(resource: idResourceText, start: startDate, finish: endDate, description: description, comments: comment, id_before_update: 1, changed_by_admin: false, changed_by_user: false)
+////
 //        reservations.append(reserva)
 //    }
     
@@ -134,18 +180,18 @@ class ReserveViewController: UIViewController {
     
     @objc func donePressedInitialDate() {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .medium
-        dateFormatter.timeStyle = .short
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSS"
+//        dateFormatter.timeStyle = .short
         
         self.InitialDateTextField.text = dateFormatter.string(from: InitialDatePicker.date)
         self.view.endEditing(true)
-
+        print(dateFormatter)
     }
     
     @objc func donePressedEndDate() {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .medium
-        dateFormatter.timeStyle = .short
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSS"
+//        dateFormatter.timeStyle = .short
         
         self.EndDateTextField.text = dateFormatter.string(from: EndDatePicker.date)
         self.view.endEditing(true)

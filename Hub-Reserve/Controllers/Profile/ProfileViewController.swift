@@ -8,27 +8,11 @@
 import UIKit
 
 class ProfileViewController: UIViewController {
+
+//    var user = User
+    
     
     @IBAction func deleteAccount(_ sender: Any) {
-        /*
-        let defaults = UserDefaults.standard
-        guard let token = defaults.string(forKey: "jwt") else {
-            return
-        }
-        print("TOKEN")
-        print(token)
-        
-        Task{
-            do{
-                try await WebService().deleteUser(token: token)
-                showDeletionCompleted()
-                
-            } catch {
-                displayError(NetworkError.noData, title: "Error: no se pudo eliminar la cuenta")
-            }
-        }
-         */
-        //Tenemos que mandar el token a las funciones?
         showAlertDelete()
     }
     
@@ -38,6 +22,8 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        // Do any additional setup after loading the view.
     }
     
     func showAlertDelete(){
@@ -49,6 +35,8 @@ class ProfileViewController: UIViewController {
     
     func confirmDelete(){
         let alertView = UIAlertController(title: "Eliminar Cuenta", message: "Para continuar, ingrese su correo electrónico", preferredStyle: .alert)
+        
+        alertView.addAction(UIAlertAction(title:"Cancelar", style: .cancel, handler: nil))
         
         alertView.addTextField { field in
             field.placeholder = "Correo"
@@ -63,13 +51,53 @@ class ProfileViewController: UIViewController {
             let emailField = fields[0]
             guard let email = emailField.text, !email.isEmpty else {
                 print("Invalid entry")
+                self.showAlertIncorrectEmail()
                 return
             }
-            print("\n\nEMAIL")
-            print(email)
+            
+            let defaults = UserDefaults.standard
+            guard let token = defaults.string(forKey: "jwt") else {
+                print("WRONG TOKEN")
+                return
+            }
+            print("TOKEN")
+            print(token)
+            
+            guard let userEmail = defaults.string(forKey: "mail") else {
+                print("WRONG MAIL")
+                return
+            }
+            print("MAIL")
+            print(userEmail)
+            
+            guard let userId = defaults.string(forKey: "userId") else {
+                print("WRONG ID")
+                return
+            }
+            print("ID")
+            print(userId)
             
             //Falta corroborar que la BD y el input coincidan
-            self.showDeletionCompleted()
+            //If error - self.showAlertIncorrectEmail()
+            
+            if (email != userEmail){
+                self.showAlertIncorrectEmail()
+                return
+            }
+            
+            
+            
+            Task{
+                do{
+                    try await WebService().deleteUser(token: token)
+                    self.showDeletionCompleted()
+                } catch {
+                    //self.showAlertIncorrectEmail()
+                    self.displayError(NetworkError.noData, title: "Error: no se pudo eliminar la cuenta")
+                }
+            }
+             
+            //self.showDeletionCompleted()
         }))
         
         self.present(alertView, animated: true, completion: nil)
@@ -78,6 +106,12 @@ class ProfileViewController: UIViewController {
     func showDeletionCompleted(){
         let alertView = UIAlertController(title: "Cuenta eliminada", message: "Su cuenta ha sido eliminada satisfactoriamente", preferredStyle: .alert)
         alertView.addAction(UIAlertAction(title:"Aceptar", style: .default, handler: {(_) in self.changeScreen()}))
+        self.present(alertView, animated: true, completion: nil)
+    }
+    
+    func showAlertIncorrectEmail(){
+        let alertView = UIAlertController(title: "Hubo un error", message: "Su correo electrónico no fue introducido correctamente", preferredStyle: .alert)
+        alertView.addAction(UIAlertAction(title:"Ok", style: .cancel, handler: nil))
         self.present(alertView, animated: true, completion: nil)
     }
     

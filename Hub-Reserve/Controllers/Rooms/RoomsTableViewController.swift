@@ -27,6 +27,7 @@ class RoomsTableViewController: UITableViewController {
     
     var recursos = Resources()
     var cellLabel = ""
+    var cellID = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,7 +53,7 @@ class RoomsTableViewController: UITableViewController {
                 
                 updateUI(with: rooms)
             }catch{
-                displayError(NetworkError.noData, title: "No se pudo acceder a las reservas")
+                displayError(NetworkError.noData, title: "No se pudo acceder a los recursos")
             }
         }
     }
@@ -148,12 +149,13 @@ class RoomsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //cellLabel = rooms[indexPath.row].name
         cellLabel = recursos[indexPath.row].name
+        cellID = recursos[indexPath.row].id
 
 //        performSegue(withIdentifier: "Reservar", sender: nil)
         
         let vc = storyboard?.instantiateViewController(withIdentifier: "Reservar") as? ReserveViewController
         vc?.resourceText = cellLabel
-        vc?.idResourceText = String("Sala")
+        vc?.idResourceText = cellID
         navigationController?.pushViewController(vc!, animated: true)
     }
     

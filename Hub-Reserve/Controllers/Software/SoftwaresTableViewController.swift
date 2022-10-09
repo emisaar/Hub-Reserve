@@ -27,6 +27,7 @@ class SoftwaresTableViewController: UITableViewController {
     
     var recursos = Resources()
     var cellLabel = ""
+    var cellID = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -149,12 +150,13 @@ class SoftwaresTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //cellLabel = rooms[indexPath.row].name
         cellLabel = recursos[indexPath.row].name
+        cellID = recursos[indexPath.row].id
 
 //        performSegue(withIdentifier: "Reservar", sender: nil)
         
         let vc = storyboard?.instantiateViewController(withIdentifier: "Reservar") as? ReserveViewController
         vc?.resourceText = cellLabel
-        vc?.idResourceText = String("Software")
+        vc?.idResourceText = cellID
         navigationController?.pushViewController(vc!, animated: true)
     }
     
