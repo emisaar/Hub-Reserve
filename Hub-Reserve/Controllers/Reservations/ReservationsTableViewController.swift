@@ -151,7 +151,9 @@ class ReservationsTableViewController: UITableViewController {
                 // Delete the row from the data source
                 Task{
                     do{
-                        let idReserva = self.reservations[indexPath.row].id
+                        print("INDEX PATH")
+                        print(indexPath.row)
+                        let idReserva = self.reservations[indexPath.row - 1].id
                         
                         try await WebService().deleteReserva(id: idReserva, token: token)
                         
@@ -161,7 +163,7 @@ class ReservationsTableViewController: UITableViewController {
                     }
                 }
                 
-                self.reservations.remove(at: indexPath.row)
+                self.reservations.remove(at: indexPath.row - 1)
                 tableView.deleteRows(at: [indexPath], with: .fade)
             }))
             self.present(alertView, animated: true, completion: nil)

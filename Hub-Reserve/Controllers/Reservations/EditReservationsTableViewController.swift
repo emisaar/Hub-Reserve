@@ -14,7 +14,7 @@ class EditReservationsTableViewController: UITableViewController {
     
     @IBOutlet weak var saveButton: UIBarButtonItem!
     
-//    @IBOutlet weak var nombreTextField: UITextField!
+    @IBOutlet weak var nombreTextField: UITextField!
     
     @IBOutlet weak var startDate: UITextField!
     @IBOutlet weak var endDate: UITextField!
@@ -37,7 +37,7 @@ class EditReservationsTableViewController: UITableViewController {
     }
     
     func updateSaveButtonState() {
-//        let nombre = nombreTextField.text ?? ""
+        let nombre = nombreTextField.text ?? ""
         let startDate = startDate.text ?? ""
         let endDate = endDate.text ?? ""
         let comments = comentariosTextField.text ?? ""
@@ -115,7 +115,7 @@ class EditReservationsTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         
         if let reserva = reserva {
-//            nombreTextField.text = reserva.name
+            nombreTextField.text = reserva.resource_name
             
             startDate.text = reserva.start
             createInitialDatePicker()
@@ -212,6 +212,14 @@ class EditReservationsTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    func displayError(_ error: Error, title: String) {
+            DispatchQueue.main.async {
+                let alert = UIAlertController(title: title, message: error.localizedDescription, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            }
+        }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
@@ -234,7 +242,30 @@ class EditReservationsTableViewController: UITableViewController {
 
 //        let status = statusTextField.text ?? ""
         
-        reserva = Reserva(start: startDate, finish: endDate, comments: comments, description: description, changed_by_user: true)
+        let defaults = UserDefaults.standard
+        guard let token = defaults.string(forKey: "jwt") else {
+            return
+        }
+        
+        guard let userId = defaults.string(forKey: "userId") else {
+            print("WRONG ID")
+            return
+        }
+        print("ID")
+        print(userId)
+        
+        print("TOKEN")
+        print(token)
+        
+        Task{
+            do{
+                let recursos = try await WebService().editReserva(id: userId, token: token, start: startDate, finish: endDate, description: description, comments: comments)
+            }catch{
+                displayError(NetworkError.noData, title: "No se pudo editar el recurso")
+            }
+        }
+        
+        reserva = Reserva(start: startDate, finish: endDate, comments: comments, description: description)
 //        reserva = Reservation(name: nombre, startDate: startDate, endDate: endDate, resourceID: Int(resourceID)!, status: Int(status)!)
     }
 }

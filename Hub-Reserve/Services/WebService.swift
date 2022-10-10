@@ -49,7 +49,14 @@ struct addReservaRequestBody: Codable {
     var changed_by_user: Bool
 }
 
-struct ResourceResponse: Codable{
+struct editReservaRequestBody: Codable {
+    var start: String
+    var finish: String
+    var description: String
+    var comments: String
+}
+
+struct ResourceResponse: Codable {
     var resource_type:String?
     var name:String?
     var description:String?
@@ -57,7 +64,7 @@ struct ResourceResponse: Codable{
     var active:Bool?
 }
 
-struct UserRequestBody: Codable{
+struct UserRequestBody: Codable {
     var name: String
     var lastname: String
     var email: String
@@ -65,16 +72,16 @@ struct UserRequestBody: Codable{
     var organization: String
 }
 
-struct UserDeleteRequestBody: Codable{
+struct UserDeleteRequestBody: Codable {
     var Authorization: String
 }
 
-struct UserChangePwdRequestBody: Codable{
+struct UserChangePwdRequestBody: Codable {
     var email: String
     var password: String
 }
 
-struct UserChangePwdResponse: Codable{
+struct UserChangePwdResponse: Codable {
     var is_correct: Bool?
 }
 
@@ -250,6 +257,42 @@ class WebService {
         }
     }
     
+    func editReserva(id: String, token: String, start: String, finish: String, description: String, comments: String) async throws -> Void {
+        //        let baseString = "http://0.0.0.0:8000/api/reservations/"
+        let baseURL = URL(string: "http://0.0.0.0:8000/api/reservation/\(id)/")!
+        //        var request = URLRequest(url: baseURL)
+        //        request.httpMethod = "POST"
+        //        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        //
+        let body = editReservaRequestBody(start: start, finish: finish, description: description, comments: comments)
+        
+        var request = URLRequest(url: baseURL)
+        request.httpMethod = "PUT"
+        request.addValue(token, forHTTPHeaderField: "Authorization")
+        request.httpBody = try? JSONEncoder().encode(body)
+        
+        print("BODY")
+        print(body)
+        
+        print("Headers")
+        for s in request.allHTTPHeaderFields!{
+            print(s.0, s.1)
+        }
+        
+        //--------------------
+        let (data, response) = try await URLSession.shared.data(for: request)
+        print(String(data: data, encoding: .utf8))
+        print(response)
+        
+        guard let httpResponse = response as? HTTPURLResponse,
+              httpResponse.statusCode == 201 else {
+            throw NetworkError.noData
+        }
+        
+        print("\n\n\nTODO BIEN")
+    }
+
+    
     func deleteReserva(id: Int, token: String) async throws -> Void {
         let defaults = UserDefaults.standard
         guard let token = defaults.string(forKey: "jwt") else {
@@ -369,7 +412,42 @@ class WebService {
         print("\n\n\nTODO BIEN")
     }
     
-    func boolCheckPassword(email: String, password: String) async throws -> Bool{
+//    func changePassword(email: String, password: String) async throws -> Bool{
+//        let baseURL = URL(string: "http://0.0.0.0:8000/api/user/validatePWD/")!
+//
+//        let body = UserChangePwdRequestBody(email: email, password: password)
+//
+//        var request = URLRequest(url: baseURL)
+//        request.httpMethod = "POST"
+//
+//        print("\n\n\nBODY BEFORE")
+//        print(body)
+//        request.httpBody = try? JSONEncoder().encode(body)
+//        print("\n\n\nBODY")
+//
+//        let (data, response) = try await URLSession.shared.data(for: request)
+//        print(String(data: data, encoding: .utf8))
+//        print(response)
+//
+//        guard let httpResponse = response as? HTTPURLResponse,
+//              httpResponse.statusCode == 200 else {
+//            throw NetworkError.noData
+//        }
+//
+//        print("\n\n\nTODO BIEN")
+//
+//        do {
+//            let is_valid = try JSONDecoder().decode(UserChangePwdResponse.self, from: data)
+//            print("BIEN")
+//            print(is_valid)
+//            return is_valid.is_valid ?? false
+//        }catch{
+//            print("NOOO")
+//            throw NetworkError.decodingError
+//        }
+//    }
+
+func boolCheckPassword(email: String, password: String) async throws -> Bool{
         let defaults = UserDefaults.standard
         guard let token = defaults.string(forKey: "jwt") else {
             print("WRONG TOKEN CHANGE")
