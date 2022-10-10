@@ -31,7 +31,7 @@ class ReservationsTableViewController: UITableViewController {
                 var newReservas = [Reserva]()
                 
                 for r in reservas {
-                    if r.status != "Cancelada" && r.status != "Terminada" {
+                    if r.status != "Cancelada" && r.status != "Terminada" && r.status != "Cambiada" {
                         newReservas.append(r)
                     }
                 }
@@ -157,11 +157,14 @@ class ReservationsTableViewController: UITableViewController {
                             if (indexPath.row == 0){
                                 let idReserva = self.reservations[0].id
                                 
+                                print("ID RESERVA")
+                                print(idReserva)
                                 try await WebService().deleteReserva(id: idReserva, token: token)
                             }
                             else {
                                 let idReserva = self.reservations[indexPath.row - 1].id
-                                
+                                print("ID RESERVA")
+                                print(idReserva)
                                 try await WebService().deleteReserva(id: idReserva, token: token)
                             }
                             // self.updateUI()

@@ -12,6 +12,9 @@ class EditReservationsTableViewController: UITableViewController {
 //    var reserva:Reservation?
     var reserva: Reserva?
     
+    var idReserva = 0
+    var resourceName = ""
+    
     @IBOutlet weak var saveButton: UIBarButtonItem!
     
     @IBOutlet weak var nombreTextField: UITextField!
@@ -127,6 +130,9 @@ class EditReservationsTableViewController: UITableViewController {
             
             descripcionTextField.text = reserva.description
            
+            idReserva = reserva.id
+            resourceName = reserva.resource_name
+            
 //            resourceIDTextField.text = String(reserva.resourceID)
 
 //            statusTextField.text = String(reserva.status)
@@ -259,13 +265,13 @@ class EditReservationsTableViewController: UITableViewController {
         
         Task{
             do{
-                let recursos = try await WebService().editReserva(id: userId, token: token, start: startDate, finish: endDate, description: description, comments: comments)
+                let recursos = try await WebService().editReserva(id: String(idReserva), token: token, start: startDate, finish: endDate, description: description, comments: comments)
             }catch{
                 displayError(NetworkError.noData, title: "No se pudo editar el recurso")
             }
         }
         
-        reserva = Reserva(start: startDate, finish: endDate, comments: comments, description: description)
+        reserva = Reserva(resource_name: resourceName, start: startDate, finish: endDate, comments: comments, description: description)
 //        reserva = Reservation(name: nombre, startDate: startDate, endDate: endDate, resourceID: Int(resourceID)!, status: Int(status)!)
     }
 }

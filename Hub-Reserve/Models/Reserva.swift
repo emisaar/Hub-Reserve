@@ -21,7 +21,7 @@ struct Reserva: Codable{
     var status: String
     
     // Modificar
-    init(start: String, finish: String, comments: String, description: String) {
+    init(resource_name: String, start: String, finish: String, comments: String, description: String) {
         self.id = 0
         self.start = start
         self.finish = finish
@@ -30,7 +30,7 @@ struct Reserva: Codable{
         self.id_before_update = 0
         self.changed_by_admin = false
         self.changed_by_user = false
-        self.resource_name = ""
+        self.resource_name = resource_name
         self.status = ""
         
     }

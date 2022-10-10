@@ -259,6 +259,8 @@ class WebService {
     
     func editReserva(id: String, token: String, start: String, finish: String, description: String, comments: String) async throws -> Void {
         //        let baseString = "http://0.0.0.0:8000/api/reservations/"
+        print("ID RUTA")
+        print(id)
         let baseURL = URL(string: "http://0.0.0.0:8000/api/reservation/\(id)/")!
         //        var request = URLRequest(url: baseURL)
         //        request.httpMethod = "POST"
