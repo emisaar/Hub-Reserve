@@ -56,12 +56,12 @@ class EditPasswordViewController: UIViewController {
         
         Task{
             do{
-                let response = try await WebService().changePassword(email: userEmail, password: passwordTextField.text!)
+                let response = try await WebService().boolCheckPassword(email: userEmail, password: passwordTextField.text!)
                 if response{
                     showAlertChangePasswordDone()
                 }
                 else{
-                    
+                    showAlertErrorChangePwd()
                 }
                 print("Correcto")
             } catch{

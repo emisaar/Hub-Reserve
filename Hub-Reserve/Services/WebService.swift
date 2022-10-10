@@ -75,7 +75,7 @@ struct UserChangePwdRequestBody: Codable{
 }
 
 struct UserChangePwdResponse: Codable{
-    var is_valid: Bool?
+    var is_correct: Bool?
 }
 
 class WebService {
@@ -328,18 +328,28 @@ class WebService {
         print("\n\n\nTODO BIEN")
     }
     
-    func changePassword(email: String, password: String) async throws -> Bool{
+    func boolCheckPassword(email: String, password: String) async throws -> Bool{
+        let defaults = UserDefaults.standard
+        guard let token = defaults.string(forKey: "jwt") else {
+            print("WRONG TOKEN CHANGE")
+            return false
+        }
+        
         let baseURL = URL(string: "http://0.0.0.0:8000/api/user/validatePWD/")!
         
         let body = UserChangePwdRequestBody(email: email, password: password)
         
         var request = URLRequest(url: baseURL)
         request.httpMethod = "POST"
+        request.addValue(token, forHTTPHeaderField: "Authorization")
         
         print("\n\n\nBODY BEFORE")
         print(body)
         request.httpBody = try? JSONEncoder().encode(body)
         print("\n\n\nBODY")
+        
+        print(token)
+        print("PRUEBA\n")
         
         let (data, response) = try await URLSession.shared.data(for: request)
         print(String(data: data, encoding: .utf8))
@@ -351,12 +361,14 @@ class WebService {
         }
         
         print("\n\n\nTODO BIEN")
-        
+        /*
+        guard let boolPwd = JSONDecoder().decode(UserChangePwdResponse.self, from: data)
+        */
         do {
-            let is_valid = try JSONDecoder().decode(UserChangePwdResponse.self, from: data)
-            print("BIEN")
-            print(is_valid)
-            return is_valid.is_valid ?? false
+            let changePwd = try JSONDecoder().decode(UserChangePwdResponse.self, from: data)
+            print("is_valid!!!")
+            print(changePwd.is_correct)
+            return changePwd.is_correct ?? false
         }catch{
             print("NOOO")
             throw NetworkError.decodingError
