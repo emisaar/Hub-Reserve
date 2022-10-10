@@ -139,39 +139,51 @@ class ReservationsTableViewController: UITableViewController {
     
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        let defaults = UserDefaults.standard
-        guard let token = defaults.string(forKey: "jwt") else {
-            return
-        }
-        
-        if editingStyle == .delete {
-            let alertView = UIAlertController(title: "Advertencia", message: "¿Seguro que desea eliminar la reservación? La acción no se puede deshacer", preferredStyle: .alert)
-            alertView.addAction(UIAlertAction(title:"Cancelar", style: .cancel, handler: nil))
-            alertView.addAction(UIAlertAction(title:"Aceptar", style: .default, handler: {_ in
-                // Delete the row from the data source
-                Task{
-                    do{
-                        print("INDEX PATH")
-                        print(indexPath.row)
-                        let idReserva = self.reservations[indexPath.row - 1].id
-                        
-                        try await WebService().deleteReserva(id: idReserva, token: token)
-                        
-                        // self.updateUI()
-                    }catch{
-                        self.displayError(NetworkError.noData, title: "No se puede eliminar")
-                    }
-                }
-                
-                self.reservations.remove(at: indexPath.row - 1)
-                tableView.deleteRows(at: [indexPath], with: .fade)
-            }))
-            self.present(alertView, animated: true, completion: nil)
+            let defaults = UserDefaults.standard
+            guard let token = defaults.string(forKey: "jwt") else {
+                return
+            }
             
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+            if editingStyle == .delete {
+                let alertView = UIAlertController(title: "Advertencia", message: "¿Seguro que desea eliminar la reservación? La acción no se puede deshacer", preferredStyle: .alert)
+                alertView.addAction(UIAlertAction(title:"Cancelar", style: .cancel, handler: nil))
+                alertView.addAction(UIAlertAction(title:"Aceptar", style: .default, handler: {_ in
+                    // Delete the row from the data source
+                    Task{
+                        do{
+                            print("INDEX PATH")
+                            print(indexPath.row)
+                            
+                            if (indexPath.row == 0){
+                                let idReserva = self.reservations[0].id
+                                
+                                try await WebService().deleteReserva(id: idReserva, token: token)
+                            }
+                            else {
+                                let idReserva = self.reservations[indexPath.row - 1].id
+                                
+                                try await WebService().deleteReserva(id: idReserva, token: token)
+                            }
+                            // self.updateUI()
+                        }catch{
+                            self.displayError(NetworkError.noData, title: "No se puede eliminar")
+                        }
+                    }
+                    if (indexPath.row == 0){
+                        self.reservations.remove(at: indexPath.row)
+                        tableView.deleteRows(at: [indexPath], with: .fade)
+                    }
+                    else{
+                        self.reservations.remove(at: indexPath.row - 1)
+                        tableView.deleteRows(at: [indexPath], with: .fade)
+                    }
+                }))
+                self.present(alertView, animated: true, completion: nil)
+                
+            } else if editingStyle == .insert {
+                // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+            }
         }
-    }
     
 //    // Override to support editing the table view.
 //    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {

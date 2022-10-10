@@ -9,11 +9,36 @@ import UIKit
 
 class HistorialTableViewController: UITableViewController {
 
-    var historial = Historial.historialList()
+//    var historial = Historial.historialList()
+    var historial = Reservas()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let defaults = UserDefaults.standard
+        guard let token = defaults.string(forKey: "jwt") else {
+            return
+        }
         
+        print("TOKEN")
+        print(token)
+        
+        Task{
+            do{
+                let reservas = try await WebService().getReservas(token: token)
+                
+                var newReservas = [Reserva]()
+                
+                for r in reservas {
+                    if r.status == "Terminada" {
+                        newReservas.append(r)
+                    }
+                }
+                
+                updateUI(with: newReservas)
+            }catch{
+                displayError(NetworkError.noData, title: "No se pudo acceder a las reservas")
+            }
+        }
         
 
         // Uncomment the following line to preserve selection between presentations
@@ -22,6 +47,23 @@ class HistorialTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
+    
+    func updateUI(with reservas: Reservas){
+        DispatchQueue.main.async {
+            
+            self.historial = reservas
+            self.tableView.reloadData()
+        }
+    }
+    
+    func displayError(_ error: Error, title: String) {
+        DispatchQueue.main.async {
+            let alert = UIAlertController(title: title, message: error.localizedDescription, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+
 
     // MARK: - Table view data source
 

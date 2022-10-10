@@ -2,27 +2,23 @@
 //  Historial.swift
 //  Hub-Reserve
 //
-//  Created by Emi Saucedo on 01/10/22.
+//  Created by Emi Saucedo on 06/10/22.
 //
 
 import Foundation
 
-struct Historial {
-    var name: String
-    var startDate: String
-    var endDate: String
+// Realizar una reserva POST
+struct Historial: Codable{
+    var id: Int
+    var start: String
+    var finish: String
     var description: String
     var comments: String
-    var resourceID: Int
-    var status: Int
+    var id_before_update: Int?
+    var changed_by_admin: Bool
+    var changed_by_user: Bool
+    var resource_name: String
+    var status: String
 }
 
-extension Historial {
-    static func historialList()->[Historial] {
-        return [
-            Historial(name: "MacBook Pro", startDate: "2022/09/22", endDate: "2022/09/23", description: "Equipo de cómputo", comments: "Idk", resourceID: 3, status: 1),
-            Historial(name: "Microsoft Office 365", startDate: "2022/09/22", endDate: "2022/09/23", description: "Licencia", comments: "Uso personal", resourceID: 2, status: 1),
-            Historial(name: "Sala de Redes 1", startDate: "2022/09/22", endDate: "2022/09/23", description: "Salas", comments: "Laboratorio", resourceID: 1, status: 1)
-        ]
-    }
-}
+typealias Historiales = [Historial]
