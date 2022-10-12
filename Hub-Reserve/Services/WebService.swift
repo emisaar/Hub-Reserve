@@ -85,6 +85,11 @@ struct UserChangePwdResponse: Codable {
     var is_correct: Bool?
 }
 
+struct UserChangeName: Codable {
+    var name: String
+    var lastname: String
+}
+
 class WebService {
     func login(email: String, password: String, completion: @escaping (Result<(String, Int), AuthenticationError>) -> Void) {
 //        "https://hubreserve.systems/api/login/"
@@ -414,42 +419,42 @@ class WebService {
         print("\n\n\nTODO BIEN")
     }
     
-//    func changePassword(email: String, password: String) async throws -> Bool{
-//        let baseURL = URL(string: "http://0.0.0.0:8000/api/user/validatePWD/")!
-//
-//        let body = UserChangePwdRequestBody(email: email, password: password)
-//
-//        var request = URLRequest(url: baseURL)
-//        request.httpMethod = "POST"
-//
-//        print("\n\n\nBODY BEFORE")
-//        print(body)
-//        request.httpBody = try? JSONEncoder().encode(body)
-//        print("\n\n\nBODY")
-//
-//        let (data, response) = try await URLSession.shared.data(for: request)
-//        print(String(data: data, encoding: .utf8))
-//        print(response)
-//
-//        guard let httpResponse = response as? HTTPURLResponse,
-//              httpResponse.statusCode == 200 else {
-//            throw NetworkError.noData
-//        }
-//
-//        print("\n\n\nTODO BIEN")
-//
-//        do {
-//            let is_valid = try JSONDecoder().decode(UserChangePwdResponse.self, from: data)
-//            print("BIEN")
-//            print(is_valid)
-//            return is_valid.is_valid ?? false
-//        }catch{
-//            print("NOOO")
-//            throw NetworkError.decodingError
-//        }
-//    }
+    func changePassword(email: String, password: String) async throws -> Bool{
+        let defaults = UserDefaults.standard
+        guard let token = defaults.string(forKey: "jwt") else {
+            print("WRONG TOKEN CHANGE")
+            return false
+        }
+        //Change URL
+        let baseURL = URL(string: "http://0.0.0.0:8000/api/userChangePWD/")!
 
-func boolCheckPassword(email: String, password: String) async throws -> Bool{
+        let body = UserChangePwdRequestBody(email:email, password: password)
+
+        var request = URLRequest(url: baseURL)
+        request.httpMethod = "POST"
+
+        print("\n\n\nBODY BEFORE")
+        print(body)
+        request.httpBody = try? JSONEncoder().encode(body)
+        request.addValue(token, forHTTPHeaderField: "Authorization")
+        request.httpBody = try? JSONEncoder().encode(body)
+        print("\n\n\nBODY")
+
+        let (data, response) = try await URLSession.shared.data(for: request)
+        print(String(data: data, encoding: .utf8))
+        print(response)
+
+        guard let httpResponse = response as? HTTPURLResponse,
+              httpResponse.statusCode == 200 else {
+            throw NetworkError.noData
+        }
+
+        print("\n\n\nTODO BIEN")
+        return true
+    }
+
+
+    func boolCheckPassword(email: String, password: String) async throws -> Bool{
         let defaults = UserDefaults.standard
         guard let token = defaults.string(forKey: "jwt") else {
             print("WRONG TOKEN CHANGE")
@@ -494,5 +499,36 @@ func boolCheckPassword(email: String, password: String) async throws -> Bool{
             print("NOOO")
             throw NetworkError.decodingError
         }
+    }
+    
+    func changeUserName(name: String, lastname: String) async throws -> Void{
+        let defaults = UserDefaults.standard
+        guard let token = defaults.string(forKey: "jwt") else {
+            print("WRONG TOKEN CHANGE")
+            return
+        }
+        //Change URL
+        let baseURL = URL(string: "http://0.0.0.0:8000/api/user/name/")!
+
+        let body = UserChangeName(name: name, lastname: lastname)
+
+        var request = URLRequest(url: baseURL)
+        request.httpMethod = "PUT"
+
+        print("\n\n\nBODY BEFORE")
+        print(body)
+        request.httpBody = try? JSONEncoder().encode(body)
+        print("\n\n\nBODY")
+
+        let (data, response) = try await URLSession.shared.data(for: request)
+        print(String(data: data, encoding: .utf8))
+        print(response)
+
+        guard let httpResponse = response as? HTTPURLResponse,
+              httpResponse.statusCode == 200 else {
+            throw NetworkError.noData
+        }
+
+        print("\n\n\nTODO BIEN")
     }
 }
