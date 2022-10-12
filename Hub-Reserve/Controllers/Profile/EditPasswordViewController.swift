@@ -40,12 +40,6 @@ class EditPasswordViewController: UIViewController {
             return
         }
         
-        /* 
-        if passwordTextField.text != "ala"{
-            showAlertErrorChangePwd()
-        }
-         */
-        
         if newPasswordTextField.text != newPasswordConfirmTextField.text {
             showIncorrectNewPassword()
         }
@@ -58,7 +52,19 @@ class EditPasswordViewController: UIViewController {
             do{
                 let response = try await WebService().boolCheckPassword(email: userEmail, password: passwordTextField.text!)
                 if response{
-                    showAlertChangePasswordDone()
+                    Task{
+                        do{
+                            let response2 = try await WebService().changePassword(email: userEmail, password: newPasswordTextField.text!)
+                            if response2{
+                                showAlertChangePasswordDone()
+                            }
+                            else{
+                                showAlertError()
+                            }
+                        } catch{
+                            displayError(NetworkError.noData, title: "Error: no se pudo actualizar la contraseña")
+                        }
+                    }
                 }
                 else{
                     showAlertErrorChangePwd()
@@ -131,6 +137,13 @@ class EditPasswordViewController: UIViewController {
     func showAlertErrorChangePwd(){
         // Create Alert View
         let alertView = UIAlertController(title: "Hubo un error", message: "La contraseña actual no es la correcta.", preferredStyle: .alert)
+        alertView.addAction(UIAlertAction(title:"Aceptar", style: .cancel, handler: nil))
+        self.present(alertView, animated: true, completion: nil)
+    }
+    
+    func showAlertError(){
+        // Create Alert View
+        let alertView = UIAlertController(title: "Hubo un error", message: "La contraseña no se pudo actualizar.", preferredStyle: .alert)
         alertView.addAction(UIAlertAction(title:"Aceptar", style: .cancel, handler: nil))
         self.present(alertView, animated: true, completion: nil)
     }
