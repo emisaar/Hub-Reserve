@@ -135,6 +135,44 @@ class WebService {
         }.resume()
     }
     
+    func getFavorites(token: String) async throws -> Favorites {
+        //        "https://hubreserve.systems/api/favourites/"
+        let baseURL = URL(string: "http://0.0.0.0:8000/api/favourites/")!
+        
+        let body = getResourcesRequestBody(Authorization: token)
+        
+        var request = URLRequest(url: baseURL)
+        request.httpMethod = "GET"
+        request.addValue(token, forHTTPHeaderField: "Authorization")
+        
+        print("Headers")
+        for s in request.allHTTPHeaderFields!{
+            print(s.0, s.1)
+        }
+        
+        //--------------------
+        let (data, response) = try await URLSession.shared.data(for: request)
+        print(String(data: data, encoding: .utf8))
+        print(response)
+        
+        guard let httpResponse = response as? HTTPURLResponse,
+              httpResponse.statusCode == 200 else {
+            throw NetworkError.noData
+        }
+        
+        print("\n\n\nTODO BIEN")
+        
+        do {
+            let favoritos = try JSONDecoder().decode(Favorites.self, from: data)
+            print("BIEN")
+            print(favoritos)
+            return favoritos
+        }catch{
+            print("NOOO")
+            throw NetworkError.decodingError
+        }
+    }
+    
     func getResources(token: String) async throws -> Resources {
         //        "https://hubreserve.systems/api/resources/"
         let baseURL = URL(string: "http://0.0.0.0:8000/api/resources/")!
@@ -219,14 +257,6 @@ class WebService {
     func getReservas(token: String) async throws -> Reservas {
         //        "https://hubreserve.systems/api/reservations/"
         let baseURL = URL(string: "http://0.0.0.0:8000/api/reservations/")!
-        
-        //        var request = URLRequest(url: baseURL)
-        //        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        //        request.addValue(token, forHTTPHeaderField: "Authorization")
-        //        print("\n\n\n\nREQUEST")
-        //        for s in request.allHTTPHeaderFields!{
-        //            print(s.0, s.1)
-        //        }
         
         let body = getResourcesRequestBody(Authorization: token)
         

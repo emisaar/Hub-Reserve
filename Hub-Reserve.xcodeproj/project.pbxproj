@@ -42,7 +42,7 @@
 		E8BDCC8328D76CDF00480589 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BDCC8228D76CDF00480589 /* RegisterViewController.swift */; };
 		E8BDCC8528D7CA4100480589 /* RecoverPwdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BDCC8428D7CA4100480589 /* RecoverPwdViewController.swift */; };
 		E8C81E4528DCDDD200C826C4 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C81E4428DCDDD200C826C4 /* CalendarViewController.swift */; };
-		E8DE550328E940D8006F6DAA /* Favorites.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DE550228E940D8006F6DAA /* Favorites.swift */; };
+		E8D8513228F87EAC0079DD8D /* Favorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D8513128F87EAC0079DD8D /* Favorite.swift */; };
 		E8DE550628E9421F006F6DAA /* FavoritesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DE550528E9421F006F6DAA /* FavoritesTableViewController.swift */; };
 		E8DE550C28E942FE006F6DAA /* FavTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DE550B28E942FE006F6DAA /* FavTableViewCell.swift */; };
 		E8E722DA28E54BB300D0BB63 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E722D928E54BB300D0BB63 /* ProfileViewController.swift */; };
@@ -88,7 +88,7 @@
 		E8BDCC8228D76CDF00480589 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		E8BDCC8428D7CA4100480589 /* RecoverPwdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoverPwdViewController.swift; sourceTree = "<group>"; };
 		E8C81E4428DCDDD200C826C4 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
-		E8DE550228E940D8006F6DAA /* Favorites.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favorites.swift; sourceTree = "<group>"; };
+		E8D8513128F87EAC0079DD8D /* Favorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favorite.swift; sourceTree = "<group>"; };
 		E8DE550528E9421F006F6DAA /* FavoritesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesTableViewController.swift; sourceTree = "<group>"; };
 		E8DE550B28E942FE006F6DAA /* FavTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavTableViewCell.swift; sourceTree = "<group>"; };
 		E8E722D928E54BB300D0BB63 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -253,7 +253,7 @@
 				E8F6100728DD725500F14A44 /* Reservation.swift */,
 				E80D88B828E2C9A40029B15A /* Stats.swift */,
 				E84154D428E91C9000AB023D /* Historial.swift */,
-				E8DE550228E940D8006F6DAA /* Favorites.swift */,
+				E8D8513128F87EAC0079DD8D /* Favorite.swift */,
 				9205F54D28EE4F5A0006C050 /* Resource.swift */,
 				E8224AF728EFE0B800516E92 /* Reserva.swift */,
 			);
@@ -344,6 +344,7 @@
 				E89861FF28EA16D2003342DE /* HardwaresTableViewController.swift in Sources */,
 				E80D88BF28E2CC8B0029B15A /* StatsTableViewCell.swift in Sources */,
 				E8357A0628E96A240088A4DF /* EditReservationsTableViewController.swift in Sources */,
+				E8D8513228F87EAC0079DD8D /* Favorite.swift in Sources */,
 				E89861F128EA118A003342DE /* RoomsTableViewController.swift in Sources */,
 				E898620128EA16DD003342DE /* HardwareTableViewCell.swift in Sources */,
 				E890AF9F28ECDC2A00B89A39 /* WebService.swift in Sources */,
@@ -369,7 +370,6 @@
 				E8964D9B28D6ADD0001EEAA0 /* SceneDelegate.swift in Sources */,
 				E8BDCC8528D7CA4100480589 /* RecoverPwdViewController.swift in Sources */,
 				9205F54E28EE4F5A0006C050 /* Resource.swift in Sources */,
-				E8DE550328E940D8006F6DAA /* Favorites.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -131,7 +131,7 @@ class SoftwaresTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         //return rooms.count
-        return recursos.count
+        return 1
     }
 
     
@@ -139,7 +139,7 @@ class SoftwaresTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! SoftwareTableViewCell
 
         // Configure the cell...
-        let index = indexPath.row
+        let index = indexPath.section
         //let resource = rooms[index]
         let resource = recursos[index]
         cell.update(r: resource)

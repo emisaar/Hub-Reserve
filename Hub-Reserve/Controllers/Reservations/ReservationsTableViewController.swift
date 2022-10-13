@@ -118,7 +118,7 @@ class ReservationsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return reservations.count
+        return 1
     }
 
     
@@ -126,7 +126,7 @@ class ReservationsTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ReservadoTableViewCell
 
         // Configure the cell...
-        let index = indexPath.row
+        let index = indexPath.section
         let resource = reservations[index]
         cell.update(r: resource)
         

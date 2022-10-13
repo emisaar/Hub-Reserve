@@ -12,26 +12,9 @@ class FavTableViewCell: UITableViewCell {
     @IBOutlet weak var icon: UIImageView!
     @IBOutlet weak var resourceLabel: UILabel!
     
-    func update(r: Favorites) {
-        icon.image = UIImage(systemName: iconCheck(resourceID: r.resourceID))
-        resourceLabel.text = r.name
-    }
-    
-    func iconCheck(resourceID: Int) -> String {
-        var icon = ""
-        
-        if (resourceID == 1){
-            icon = "signpost.right"
-        }
-        
-        if (resourceID == 2){
-            icon = "doc"
-        }
-        
-        if (resourceID == 3){
-            icon = "laptopcomputer.and.iphone"
-        }
-        return icon
+    func update(r: Favorite) {
+        icon.image = UIImage(systemName: "star")
+        resourceLabel.text = r.resource_name
     }
     
     override func awakeFromNib() {

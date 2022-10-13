@@ -83,8 +83,8 @@ class AddFavTableViewController: UITableViewController, UIPickerViewDelegate,  U
         recPickerView.tag = 2
         
         if let favorito = favorito {
-            recursoTextField.text = favorito.name
-            categoriaTextField.text = String(favorito.resourceID)
+//            recursoTextField.text = favorito.name
+//            categoriaTextField.text = String(favorito.resourceID)
             
             
              
@@ -194,7 +194,7 @@ class AddFavTableViewController: UITableViewController, UIPickerViewDelegate,  U
         }
         
         
-        favorito = Favorites(name: recurso, resourceID: cat)
+//        favorito = Favorites(name: recurso, resourceID: cat)
     }
 
 }
