@@ -1,68 +1,58 @@
 //
-//  EditProfileViewController.swift
+//  EditUserNameTableViewController.swift
 //  Hub-Reserve
 //
-//  Created by Alfonso Pineda on 09/10/22.
+//  Created by Emi Saucedo on 12/10/22.
 //
 
 import UIKit
 
 class EditUserNameTableViewController: UITableViewController {
-    
+
+    @IBOutlet weak var update: UIButton!
     @IBOutlet weak var nameTextField: UITextField!
-    @IBOutlet weak var lastNameTextField: UITextField!
-    @IBOutlet weak var saveUserName: UIButton!
-    
-    var name = ""
-    
-    @IBAction func textFieldDoneEditing(sender:UITextField) {
-        sender.resignFirstResponder()
-    }
+    @IBOutlet weak var lastnameTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         updateSaveButtonState()
-        
-        if saveUserName.isEnabled {
-            print("Pressed")
-            
-            Task{
-                do{
-                    try await WebService().changeUserName(name: nameTextField.text!, lastname: lastNameTextField.text!)
-                    showAlertChangeNameDone()
-                } catch{
-                    print("error")
-                }
-            }
-        }
-        
-        // Do any additional setup after loading the view.
     }
     
-    @IBAction func screenTap(_ sender: UITapGestureRecognizer) {
-        nameTextField.resignFirstResponder()
-        lastNameTextField.resignFirstResponder()
+    func updateSaveButtonState() {
+
+        let name = nameTextField.text ?? ""
+        let lastname = lastnameTextField.text ?? ""
+
+        update.isEnabled = !name.isEmpty && !lastname.isEmpty
+    }
+    
+    @IBAction func updateName(_ sender: Any) {
+        Task{
+            do{
+                try await WebService().changeUserName(name: nameTextField.text!, lastname: lastnameTextField.text!)
+                showAlertChangeNameDone()
+            } catch{
+                print("error")
+            }
+        }
+    }
+    
+    @IBAction func textFieldDoneEditing(sender:UITextField){
+        sender.resignFirstResponder()
     }
     
     @IBAction func textEditingChanged(_ sender: UITextField) {
         updateSaveButtonState()
     }
     
-
-    func updateSaveButtonState() {
-        let name = nameTextField.text ?? ""
-        let lastName = lastNameTextField.text ?? ""
-        saveUserName.isEnabled = !name.isEmpty && !lastName.isEmpty
-    }
-
     func showAlertChangeNameDone(){
-        // Create Alert View
-        let alertView = UIAlertController(title: "Contraseña Actualizada", message: "Su contraseña ha sido actualizada correctamente.", preferredStyle: .alert)
-        alertView.addAction(UIAlertAction(title:"Aceptar", style: .default, handler: {(_) in self.changeScreen()}))
-        self.present(alertView, animated: true, completion: nil)
-    }
-    
+            // Create Alert View
+            let alertView = UIAlertController(title: "Datos Actualizados", message: "Sus datos han sido actualizados correctamente.", preferredStyle: .alert)
+            alertView.addAction(UIAlertAction(title:"Aceptar", style: .default, handler: {(_) in self.changeScreen()}))
+            self.present(alertView, animated: true, completion: nil)
+        }
+        
     func showError(){
         let alertView = UIAlertController(title: "Error", message: "No se pudieron actualizar sus datos", preferredStyle: .alert)
         alertView.addAction(UIAlertAction(title:"Ok", style: .cancel))

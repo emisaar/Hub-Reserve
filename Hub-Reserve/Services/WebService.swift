@@ -518,6 +518,7 @@ class WebService {
 
         var request = URLRequest(url: baseURL)
         request.httpMethod = "PUT"
+        request.addValue(token, forHTTPHeaderField: "Authorization")
 
         print("\n\n\nBODY BEFORE")
         print(body)

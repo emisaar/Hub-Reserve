@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		4520FD7828F2B99200B29634 /* EditPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4520FD7728F2B99200B29634 /* EditPasswordViewController.swift */; };
 		9205F54E28EE4F5A0006C050 /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9205F54D28EE4F5A0006C050 /* Resource.swift */; };
-		92B8B5F128F7803E009AB1F1 /* EditUserNameTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B8B5F028F7803E009AB1F1 /* EditUserNameTableViewController.swift */; };
 		E80C5BF928E122D70031515D /* ReservadoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80C5BF828E122D70031515D /* ReservadoTableViewCell.swift */; };
 		E80D88B928E2C9A40029B15A /* Stats.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80D88B828E2C9A40029B15A /* Stats.swift */; };
 		E80D88BD28E2CBFF0029B15A /* StatsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80D88BC28E2CBFF0029B15A /* StatsTableViewController.swift */; };
@@ -34,6 +33,8 @@
 		E89861FF28EA16D2003342DE /* HardwaresTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89861FE28EA16D2003342DE /* HardwaresTableViewController.swift */; };
 		E898620128EA16DD003342DE /* HardwareTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E898620028EA16DD003342DE /* HardwareTableViewCell.swift */; };
 		E898620528EA28DD003342DE /* ReserveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E898620428EA28DD003342DE /* ReserveViewController.swift */; };
+		E89C720B28F7BFF9007B3036 /* EditPwdTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89C720A28F7BFF9007B3036 /* EditPwdTableViewController.swift */; };
+		E89C720D28F7CE67007B3036 /* EditUserNameTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89C720C28F7CE67007B3036 /* EditUserNameTableViewController.swift */; };
 		E8B73C6728E4C0DE00E3E6C8 /* AboutHubPagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B73C6628E4C0DE00E3E6C8 /* AboutHubPagesViewController.swift */; };
 		E8B73C6928E4EA4900E3E6C8 /* View.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8B73C6828E4EA4900E3E6C8 /* View.xib */; };
 		E8B73C6D28E4EBB100E3E6C8 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B73C6C28E4EBB100E3E6C8 /* View.swift */; };
@@ -52,7 +53,6 @@
 /* Begin PBXFileReference section */
 		4520FD7728F2B99200B29634 /* EditPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPasswordViewController.swift; sourceTree = "<group>"; };
 		9205F54D28EE4F5A0006C050 /* Resource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
-		92B8B5F028F7803E009AB1F1 /* EditUserNameTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditUserNameTableViewController.swift; sourceTree = "<group>"; };
 		E80C5BF828E122D70031515D /* ReservadoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservadoTableViewCell.swift; sourceTree = "<group>"; };
 		E80D88B828E2C9A40029B15A /* Stats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stats.swift; sourceTree = "<group>"; };
 		E80D88BC28E2CBFF0029B15A /* StatsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsTableViewController.swift; sourceTree = "<group>"; };
@@ -79,6 +79,8 @@
 		E89861FE28EA16D2003342DE /* HardwaresTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HardwaresTableViewController.swift; sourceTree = "<group>"; };
 		E898620028EA16DD003342DE /* HardwareTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HardwareTableViewCell.swift; sourceTree = "<group>"; };
 		E898620428EA28DD003342DE /* ReserveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReserveViewController.swift; sourceTree = "<group>"; };
+		E89C720A28F7BFF9007B3036 /* EditPwdTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPwdTableViewController.swift; sourceTree = "<group>"; };
+		E89C720C28F7CE67007B3036 /* EditUserNameTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditUserNameTableViewController.swift; sourceTree = "<group>"; };
 		E8B73C6628E4C0DE00E3E6C8 /* AboutHubPagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutHubPagesViewController.swift; sourceTree = "<group>"; };
 		E8B73C6828E4EA4900E3E6C8 /* View.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = View.xib; sourceTree = "<group>"; };
 		E8B73C6C28E4EBB100E3E6C8 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
@@ -217,7 +219,8 @@
 			children = (
 				E8E722D928E54BB300D0BB63 /* ProfileViewController.swift */,
 				4520FD7728F2B99200B29634 /* EditPasswordViewController.swift */,
-				92B8B5F028F7803E009AB1F1 /* EditUserNameTableViewController.swift */,
+				E89C720C28F7CE67007B3036 /* EditUserNameTableViewController.swift */,
+				E89C720A28F7BFF9007B3036 /* EditPwdTableViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -332,6 +335,7 @@
 			files = (
 				E8C81E4528DCDDD200C826C4 /* CalendarViewController.swift in Sources */,
 				E8DE550C28E942FE006F6DAA /* FavTableViewCell.swift in Sources */,
+				E89C720B28F7BFF9007B3036 /* EditPwdTableViewController.swift in Sources */,
 				E8BDCC8128D76CC300480589 /* LoginViewController.swift in Sources */,
 				E80D88B928E2C9A40029B15A /* Stats.swift in Sources */,
 				4520FD7828F2B99200B29634 /* EditPasswordViewController.swift in Sources */,
@@ -353,8 +357,8 @@
 				E8BDCC8328D76CDF00480589 /* RegisterViewController.swift in Sources */,
 				E898620528EA28DD003342DE /* ReserveViewController.swift in Sources */,
 				E84154DB28E91E8D00AB023D /* HistorialTableViewCell.swift in Sources */,
+				E89C720D28F7CE67007B3036 /* EditUserNameTableViewController.swift in Sources */,
 				E8964D9928D6ADD0001EEAA0 /* AppDelegate.swift in Sources */,
-				92B8B5F128F7803E009AB1F1 /* EditUserNameTableViewController.swift in Sources */,
 				E8357A0228E965AD0088A4DF /* AddFavTableViewController.swift in Sources */,
 				E8224AF828EFE0B800516E92 /* Reserva.swift in Sources */,
 				E8F6100628DD724200F14A44 /* ReservationsTableViewController.swift in Sources */,
