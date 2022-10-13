@@ -8,9 +8,6 @@
 import UIKit
 
 class ProfileViewController: UIViewController {
-
-//    var user = User
-    
     
     @IBAction func deleteAccount(_ sender: Any) {
         showAlertDelete()
@@ -22,8 +19,6 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
     
     func showAlertDelete(){
@@ -85,8 +80,6 @@ class ProfileViewController: UIViewController {
                 return
             }
             
-            
-            
             Task{
                 do{
                     try await WebService().deleteUser(token: token)
@@ -96,8 +89,6 @@ class ProfileViewController: UIViewController {
                     self.displayError(NetworkError.noData, title: "Error: no se pudo eliminar la cuenta")
                 }
             }
-             
-            //self.showDeletionCompleted()
         }))
         
         self.present(alertView, animated: true, completion: nil)

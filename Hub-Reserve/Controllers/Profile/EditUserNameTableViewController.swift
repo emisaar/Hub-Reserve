@@ -7,28 +7,42 @@
 
 import UIKit
 
-class EditProfileViewController: UIViewController {
-
-    @IBOutlet weak var save: UIButton!
-    @IBOutlet var tapScreen: UITapGestureRecognizer!
+class EditUserNameTableViewController: UITableViewController {
+    
     @IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var lastNameTextField: UITextField!
+    @IBOutlet weak var saveUserName: UIButton!
     
     var name = ""
     
-    @IBAction func textFieldDoneEditing(sender:UITextField){
+    @IBAction func textFieldDoneEditing(sender:UITextField) {
         sender.resignFirstResponder()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        nameTextField.text = name
+
         updateSaveButtonState()
+        
+        if saveUserName.isEnabled {
+            print("Pressed")
+            
+            Task{
+                do{
+                    try await WebService().changeUserName(name: nameTextField.text!, lastname: lastNameTextField.text!)
+                    showAlertChangeNameDone()
+                } catch{
+                    print("error")
+                }
+            }
+        }
+        
         // Do any additional setup after loading the view.
     }
     
     @IBAction func screenTap(_ sender: UITapGestureRecognizer) {
         nameTextField.resignFirstResponder()
+        lastNameTextField.resignFirstResponder()
     }
     
     @IBAction func textEditingChanged(_ sender: UITextField) {
@@ -36,27 +50,22 @@ class EditProfileViewController: UIViewController {
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
     func updateSaveButtonState() {
-
         let name = nameTextField.text ?? ""
-
-        save.isEnabled = !name.isEmpty
+        let lastName = lastNameTextField.text ?? ""
+        saveUserName.isEnabled = !name.isEmpty && !lastName.isEmpty
     }
 
-    func showAlertChangePasswordDone(){
+    func showAlertChangeNameDone(){
         // Create Alert View
         let alertView = UIAlertController(title: "Contraseña Actualizada", message: "Su contraseña ha sido actualizada correctamente.", preferredStyle: .alert)
         alertView.addAction(UIAlertAction(title:"Aceptar", style: .default, handler: {(_) in self.changeScreen()}))
+        self.present(alertView, animated: true, completion: nil)
+    }
+    
+    func showError(){
+        let alertView = UIAlertController(title: "Error", message: "No se pudieron actualizar sus datos", preferredStyle: .alert)
+        alertView.addAction(UIAlertAction(title:"Ok", style: .cancel))
         self.present(alertView, animated: true, completion: nil)
     }
     

@@ -504,11 +504,15 @@ class WebService {
     func changeUserName(name: String, lastname: String) async throws -> Void{
         let defaults = UserDefaults.standard
         guard let token = defaults.string(forKey: "jwt") else {
-            print("WRONG TOKEN CHANGE")
+            print("WRONG TOKEN")
+            return
+        }
+        guard let userId = defaults.string(forKey: "userId") else {
+            print("WRONG ID")
             return
         }
         //Change URL
-        let baseURL = URL(string: "http://0.0.0.0:8000/api/user/name/")!
+        let baseURL = URL(string: "http://0.0.0.0:8000/api/user/\(userId)/")!
 
         let body = UserChangeName(name: name, lastname: lastname)
 
