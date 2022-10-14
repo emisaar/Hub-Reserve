@@ -173,6 +173,47 @@ class WebService {
         }
     }
     
+    func deleteFavorites(id: Int) async throws -> Void {
+        let defaults = UserDefaults.standard
+        guard let token = defaults.string(forKey: "jwt") else {
+            print("WRONG ID")
+            return
+        }
+        
+        let baseURL = URL(string: "http://0.0.0.0:8000/api/reservation/\(id)/")!
+        
+        //--------------------------------
+        print("PRUEBA")
+        var request = URLRequest(url: baseURL)
+        request.httpMethod = "DELETE"
+        request.addValue(token, forHTTPHeaderField: "Authorization")
+        //request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let body = UserDeleteRequestBody(Authorization: token)
+        
+        request.httpBody = try? JSONEncoder().encode(body)
+        
+        print("BODY")
+        print(body)
+        
+        print("Headers")
+        for s in request.allHTTPHeaderFields!{
+            print(s.0, s.1)
+        }
+        
+        //--------------------
+        let (data, response) = try await URLSession.shared.data(for: request)
+        print(String(data: data, encoding: .utf8))
+        print(response)
+        
+        guard let httpResponse = response as? HTTPURLResponse,
+              httpResponse.statusCode == 204 else {
+            throw NetworkError.noData
+        }
+        
+        print("\n\n\nTODO BIEN")
+    }
+    
     func getResources(token: String) async throws -> Resources {
         //        "https://hubreserve.systems/api/resources/"
         let baseURL = URL(string: "http://0.0.0.0:8000/api/resources/")!
