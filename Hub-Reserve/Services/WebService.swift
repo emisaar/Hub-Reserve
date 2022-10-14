@@ -30,6 +30,10 @@ struct LoginResponse: Codable {
     let id: Int?
 }
 
+struct addFavoritesRequestBody: Codable {
+    let resource: Int
+}
+
 struct getResourcesRequestBody: Codable {
     let Authorization: String
 }
@@ -171,6 +175,41 @@ class WebService {
             print("NOOO")
             throw NetworkError.decodingError
         }
+    }
+    
+    func addFavorites(token: String, resource: Int) async throws -> Void {
+        //        "https://hubreserve.systems/api/favourites/"
+        let baseURL = URL(string: "http://0.0.0.0:8000/api/favourites/")!
+        //        var request = URLRequest(url: baseURL)
+        //        request.httpMethod = "POST"
+        //        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        //
+        let body = addFavoritesRequestBody(resource: resource)
+        
+        var request = URLRequest(url: baseURL)
+        request.httpMethod = "POST"
+        request.addValue(token, forHTTPHeaderField: "Authorization")
+        request.httpBody = try? JSONEncoder().encode(body)
+        
+        print("BODY")
+        print(body)
+        
+        print("Headers")
+        for s in request.allHTTPHeaderFields!{
+            print(s.0, s.1)
+        }
+        
+        //--------------------
+        let (data, response) = try await URLSession.shared.data(for: request)
+        print(String(data: data, encoding: .utf8))
+        print(response)
+        
+        guard let httpResponse = response as? HTTPURLResponse,
+              httpResponse.statusCode == 200 else {
+            throw NetworkError.noData
+        }
+        
+        print("\n\n\nTODO BIEN")
     }
     
     func deleteFavorites(id: Int) async throws -> Void {
