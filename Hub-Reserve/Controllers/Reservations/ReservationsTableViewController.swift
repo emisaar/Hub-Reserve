@@ -126,7 +126,7 @@ class ReservationsTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ReservadoTableViewCell
 
         // Configure the cell...
-        let index = indexPath.section
+        let index = indexPath.row
         let resource = reservations[index]
         cell.update(r: resource)
         
