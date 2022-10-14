@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CalendarViewController: UIViewController {
+class CalendarViewController: UIViewController, UICalendarSelectionSingleDateDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,21 +17,25 @@ class CalendarViewController: UIViewController {
     
     func createCalendar() {
         if #available(iOS 16.0, *) {
-            let calendar = UICalendarView()
-            calendar.translatesAutoresizingMaskIntoConstraints = false
+            let calendarView = UICalendarView()
+            calendarView.translatesAutoresizingMaskIntoConstraints = false
             
-            calendar.calendar = .current
-            calendar.locale = .current
-            calendar.fontDesign = .rounded
-            calendar.delegate = self
+            calendarView.calendar = .current
+            calendarView.locale = .current
+            calendarView.fontDesign = .rounded
+            calendarView.delegate = self
             
-            view.addSubview(calendar)
+            view.addSubview(calendarView)
             NSLayoutConstraint.activate([
-                calendar.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
-                calendar.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
-                calendar.heightAnchor.constraint(equalToConstant: 400),
-                calendar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
+                calendarView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+                calendarView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
+                calendarView.heightAnchor.constraint(equalToConstant: 400),
+                calendarView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
             ])
+            
+            let selection = UICalendarSelectionSingleDate(delegate: self)
+            calendarView.selectionBehavior = selection
+            
                 
         } else {
             // Fallback on earlier versions
@@ -56,4 +60,9 @@ extension CalendarViewController: UICalendarViewDelegate {
     func calendarView(_ calendarView: UICalendarView, decorationFor dateComponents: DateComponents) -> UICalendarView.Decoration? {
         return nil
     }
+    
+    func dateSelection(_ selection: UICalendarSelectionSingleDate, didSelectDate dateComponents: DateComponents?) {
+        print(dateComponents?.hour)
+        print(dateComponents?.date)
+        }
 }

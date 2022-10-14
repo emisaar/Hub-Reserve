@@ -71,23 +71,25 @@ class EditReservationsTableViewController: UITableViewController {
         return toolbar
     }
     
-    func createInitialDatePicker() {
-        startDatePicker.preferredDatePickerStyle = .wheels
-//        InitialDatePicker.datePickerMode = .date
-        
-        startDate.textAlignment = .center
-        startDate.inputView = startDatePicker
-        startDate.inputAccessoryView = createToolbarInitialDate()
-    }
+//    func createInitialDatePicker() {
+//        startDatePicker.preferredDatePickerStyle = .wheels
+////        InitialDatePicker.datePickerMode = .date
+//        startDatePicker.date =
+//
+//        startDate.textAlignment = .center
+//        startDate.inputView = startDatePicker
+//        startDate.inputAccessoryView = createToolbarInitialDate()
+//
+//    }
     
-    func createEndDatePicker() {
-        endDatePicker.preferredDatePickerStyle = .wheels
-//        endDatePicker.datePickerMode = .date
-        
-        endDate.textAlignment = .center
-        endDate.inputView = endDatePicker
-        endDate.inputAccessoryView = createToolbarEndDate()
-    }
+//    func createEndDatePicker() {
+//        endDatePicker.preferredDatePickerStyle = .wheels
+////        endDatePicker.datePickerMode = .date
+//
+//        endDate.textAlignment = .center
+//        endDate.inputView = endDatePicker
+//        endDate.inputAccessoryView = createToolbarEndDate()
+//    }
     
     @objc func donePressedInitialDate() {
         let dateFormatter = DateFormatter()
@@ -119,12 +121,43 @@ class EditReservationsTableViewController: UITableViewController {
         
         if let reserva = reserva {
             nombreTextField.text = reserva.resource_name
+
+            let isoDate1 = reserva.start
+            let isoDate2 = reserva.finish
             
-            startDate.text = reserva.start
-            createInitialDatePicker()
+            let dateFormatter = DateFormatter()
+            dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
+            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
             
-            endDate.text = reserva.finish
-            createEndDatePicker()
+            let dateStart = dateFormatter.date(from:isoDate1)!
+            
+            let dateFinish = dateFormatter.date(from:isoDate2)!
+        
+            let dateSFormatter = DateFormatter()
+            dateSFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSS"
+    //        dateFormatter.timeStyle = .short
+            
+            startDate.text = dateSFormatter.string(from: dateStart)
+            
+//            startDate.text = reserva.start
+            // CREATE INITIAL DATE PICKER
+//            createInitialDatePicker()
+            startDatePicker.preferredDatePickerStyle = .wheels
+            startDatePicker.date = dateStart
+            
+            startDate.textAlignment = .center
+            startDate.inputView = startDatePicker
+            startDate.inputAccessoryView = createToolbarInitialDate()
+            
+            endDate.text = dateSFormatter.string(from: dateFinish)
+            // CREATE END DATE PICKER
+//            createEndDatePicker()
+            endDatePicker.preferredDatePickerStyle = .wheels
+            endDatePicker.date = dateFinish
+            
+            endDate.textAlignment = .center
+            endDate.inputView = endDatePicker
+            endDate.inputAccessoryView = createToolbarEndDate()
             
             comentariosTextField.text = reserva.comments
             
