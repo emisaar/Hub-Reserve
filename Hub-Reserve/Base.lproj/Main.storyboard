@@ -2532,6 +2532,9 @@ Servicio y Políticas de Seguridad</string>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Qbl-r9-MwO"/>
+                    <connections>
+                        <outlet property="userName" destination="UtZ-iW-EDb" id="OzX-Xt-9g5"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Web-xL-cH0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

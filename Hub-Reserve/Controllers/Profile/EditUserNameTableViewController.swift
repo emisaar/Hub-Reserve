@@ -28,14 +28,33 @@ class EditUserNameTableViewController: UITableViewController {
     }
     
     @IBAction func updateName(_ sender: Any) {
+        let defaults = UserDefaults.standard
+        guard let token = defaults.string(forKey: "jwt") else {
+            print("WRONG TOKEN")
+            return
+        }
+        guard let userId = defaults.string(forKey: "userId") else {
+            print("WRONG ID")
+            return
+        }
+        
         Task{
             do{
                 try await WebService().changeUserName(name: nameTextField.text!, lastname: lastnameTextField.text!)
+                Task{
+                    do{
+                        let usuario = try await WebService().getUser(token: token, id: userId)
+                                            
+                    } catch {
+                            displayError(NetworkError.noData, title: "Error al cargar nombre de usuario")
+                    }
                 showAlertChangeNameDone()
+                }
             } catch{
                 print("error")
             }
         }
+        
     }
     
     @IBAction func textFieldDoneEditing(sender:UITextField){
@@ -53,6 +72,14 @@ class EditUserNameTableViewController: UITableViewController {
             self.present(alertView, animated: true, completion: nil)
         }
         
+    func displayError(_ error: Error, title: String) {
+        DispatchQueue.main.async {
+            let alert = UIAlertController(title: title, message: error.localizedDescription, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+    
     func showError(){
         let alertView = UIAlertController(title: "Error", message: "No se pudieron actualizar sus datos", preferredStyle: .alert)
         alertView.addAction(UIAlertAction(title:"Ok", style: .cancel))

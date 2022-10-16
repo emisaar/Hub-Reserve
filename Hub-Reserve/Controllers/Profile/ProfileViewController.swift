@@ -9,6 +9,8 @@ import UIKit
 
 class ProfileViewController: UIViewController {
     
+    @IBOutlet weak var userName: UILabel!
+    
     @IBAction func deleteAccount(_ sender: Any) {
         showAlertDelete()
     }
@@ -19,6 +21,21 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let defaults = UserDefaults.standard
+        guard let username = defaults.string(forKey: "username") else {
+            return
+        }
+        guard let lastname = defaults.string(forKey: "lastname") else {
+            return
+        }
+        
+        userName.text = "\(username) \(lastname)"
+    }
+    
+    func updateUI(with usuario: User){
+        DispatchQueue.main.async {
+            self.userName.text = usuario.name
+        }
     }
     
     func showAlertDelete(){
