@@ -21,8 +21,8 @@ struct Reserva: Codable{
     var status: String
     
     // Modificar
-    init(resource_name: String, start: String, finish: String, comments: String, description: String) {
-        self.id = 0
+    init(resource_id: Int, resource_name: String, start: String, finish: String, comments: String, description: String) {
+        self.id = resource_id
         self.start = start
         self.finish = finish
         self.description = description

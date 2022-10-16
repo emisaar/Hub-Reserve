@@ -1763,6 +1763,9 @@ Servicio y Políticas de Seguridad</string>
                                                                         </fragment>
                                                                     </attributedString>
                                                                 </buttonConfiguration>
+                                                                <connections>
+                                                                    <action selector="ToS:" destination="q5j-ph-m5x" eventType="touchUpInside" id="zWa-Zr-apu"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                     </stackView>

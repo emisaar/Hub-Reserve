@@ -375,6 +375,8 @@ class WebService {
         //
         let body = editReservaRequestBody(start: start, finish: finish, description: description, comments: comments)
         
+        print(body)
+        
         var request = URLRequest(url: baseURL)
         request.httpMethod = "PUT"
         request.addValue(token, forHTTPHeaderField: "Authorization")

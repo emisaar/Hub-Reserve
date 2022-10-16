@@ -28,6 +28,11 @@ class RegisterViewController: UIViewController {
         sender.resignFirstResponder()
     }
     
+    
+    @IBAction func ToS(_ sender: UIButton) {
+        UIApplication.shared.open(URL(string: "https://market.tec.mx/terminos-y-condiciones")! as URL, options: [:], completionHandler: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }

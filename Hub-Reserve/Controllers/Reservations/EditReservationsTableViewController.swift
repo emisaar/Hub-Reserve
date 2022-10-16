@@ -269,12 +269,24 @@ class EditReservationsTableViewController: UITableViewController {
 //        dateFormatter.timeStyle = .short
         
 //        let nombre = nombreTextField.text ?? ""
-
         let startDate = startDate.text ?? ""
         let endDate = endDate.text ?? ""
         let comments = comentariosTextField.text ?? ""
         let description = descripcionTextField.text ?? ""
-        
+
+        let isoDate1 = startDate
+        let isoDate2 = endDate
+
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSS"
+
+        let dateStart = dateFormatter.date(from:isoDate1)!
+
+        let dateFinish = dateFormatter.date(from:isoDate2)!
+
+        let dateSFormatter = DateFormatter()
+        dateSFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
+        dateSFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
         
         
 //        let resourceID = resourceIDTextField.text ?? ""
@@ -304,7 +316,7 @@ class EditReservationsTableViewController: UITableViewController {
             }
         }
         
-        reserva = Reserva(resource_name: resourceName, start: startDate, finish: endDate, comments: comments, description: description)
+        reserva = Reserva(resource_id: idReserva, resource_name: resourceName, start: dateSFormatter.string(from: dateStart), finish: dateSFormatter.string(from: dateFinish), comments: comments, description: description)
 //        reserva = Reservation(name: nombre, startDate: startDate, endDate: endDate, resourceID: Int(resourceID)!, status: Int(status)!)
     }
 }
