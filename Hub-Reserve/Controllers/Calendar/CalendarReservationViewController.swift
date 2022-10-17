@@ -7,8 +7,25 @@
 
 import UIKit
 
-class CalendarReservationViewController: UITableViewController {
+fileprivate var aView : UIView?
 
+class CalendarReservationViewController: UITableViewController {
+    
+    func showSpinner(){
+        aView = UIView(frame: self.view.bounds)
+        aView?.backgroundColor = UIColor.init(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.5)
+        let ai = UIActivityIndicatorView(style: .whiteLarge)
+        ai.center = aView!.center
+        ai.startAnimating()
+        aView?.addSubview(ai)
+        self.view.addSubview(aView!)
+    }
+    
+    func removeSpinner(){
+        aView?.removeFromSuperview()
+        aView = nil
+    }
+    
     func changeDateFormat(dateString: String) -> String {
         let isoDate1 = dateString
         
@@ -41,6 +58,7 @@ class CalendarReservationViewController: UITableViewController {
         print("TOKEN")
         print(token)
         
+        showSpinner()
         Task{
             do{
                 let reservas = try await WebService().getReservas(token: token)
@@ -54,7 +72,9 @@ class CalendarReservationViewController: UITableViewController {
                 }
                 
                 updateUI(with: newReservas)
+                removeSpinner()
             }catch{
+                removeSpinner()
                 displayError(NetworkError.noData, title: "No se pudo acceder a las reservas")
             }
         }
@@ -135,6 +155,12 @@ class CalendarReservationViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
+        if reservations.count == 0 {
+            tableView.setEmptyView(title: "No tienes reservaciones para hoy.", message: "Intenta reservar algo nuevo.")
+        }
+        else {
+            tableView.restore()
+        }
         return reservations.count
     }
 

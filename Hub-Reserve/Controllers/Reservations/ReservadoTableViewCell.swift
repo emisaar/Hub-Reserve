@@ -21,8 +21,7 @@ class ReservadoTableViewCell: UITableViewCell {
         resourceLabel.text = r.resource_name
         startLabel.text = changeDateFormat(dateString: r.start)
         endLabel.text = changeDateFormat(dateString: r.finish)
-        statusLabel.text = r.description
-//        statusLabel.text = statusCheck(status: r.status)
+        statusLabel.text = r.status
     }
     
     func changeDateFormat(dateString: String) -> String {

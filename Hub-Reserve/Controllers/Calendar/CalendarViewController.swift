@@ -106,9 +106,4 @@ extension CalendarViewController: UICalendarViewDelegate {
         vc?.startDate = dateFormatter.string(from: (dateComponents?.date)!)
         navigationController?.pushViewController(vc!, animated: true)
         }
-    
-    
-        
-    
-
 }

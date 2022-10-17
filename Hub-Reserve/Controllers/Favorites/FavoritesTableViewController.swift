@@ -95,6 +95,12 @@ class FavoritesTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
+        if favorites.count == 0 {
+            tableView.setEmptyView(title: "No tienes favoritos añadidos.", message: "Tus favoritos aparecerán aquí.")
+        }
+        else {
+            tableView.restore()
+        }
         return favorites.count
     }
 
@@ -162,7 +168,4 @@ class FavoritesTableViewController: UITableViewController {
                 // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
             }
         }
-        
-
-
     }
