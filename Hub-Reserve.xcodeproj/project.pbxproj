@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4520FD7828F2B99200B29634 /* EditPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4520FD7728F2B99200B29634 /* EditPasswordViewController.swift */; };
+		45F26D8328FC85F600A192A7 /* CalendarReservationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F26D8228FC85F600A192A7 /* CalendarReservationViewController.swift */; };
 		9205F54E28EE4F5A0006C050 /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9205F54D28EE4F5A0006C050 /* Resource.swift */; };
 		E80C5BF928E122D70031515D /* ReservadoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80C5BF828E122D70031515D /* ReservadoTableViewCell.swift */; };
 		E80D88B928E2C9A40029B15A /* Stats.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80D88B828E2C9A40029B15A /* Stats.swift */; };
@@ -51,6 +52,7 @@
 
 /* Begin PBXFileReference section */
 		4520FD7728F2B99200B29634 /* EditPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPasswordViewController.swift; sourceTree = "<group>"; };
+		45F26D8228FC85F600A192A7 /* CalendarReservationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarReservationViewController.swift; sourceTree = "<group>"; };
 		9205F54D28EE4F5A0006C050 /* Resource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
 		E80C5BF828E122D70031515D /* ReservadoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservadoTableViewCell.swift; sourceTree = "<group>"; };
 		E80D88B828E2C9A40029B15A /* Stats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stats.swift; sourceTree = "<group>"; };
@@ -105,6 +107,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		45F26D8428FC860400A192A7 /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				E8C81E4428DCDDD200C826C4 /* CalendarViewController.swift */,
+				45F26D8228FC85F600A192A7 /* CalendarReservationViewController.swift */,
+			);
+			path = Calendar;
+			sourceTree = "<group>";
+		};
 		E890AF9D28ECDC1C00B89A39 /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -225,6 +236,7 @@
 		E8F6100328DD71D800F14A44 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				45F26D8428FC860400A192A7 /* Calendar */,
 				E89861ED28EA114F003342DE /* Rooms */,
 				E89861EE28EA115B003342DE /* Software */,
 				E89861EF28EA1162003342DE /* Hardware */,
@@ -238,7 +250,6 @@
 				E8BDCC8228D76CDF00480589 /* RegisterViewController.swift */,
 				E8BDCC8028D76CC300480589 /* LoginViewController.swift */,
 				E898620428EA28DD003342DE /* ReserveViewController.swift */,
-				E8C81E4428DCDDD200C826C4 /* CalendarViewController.swift */,
 				E8BDCC8428D7CA4100480589 /* RecoverPwdViewController.swift */,
 			);
 			path = Controllers;
@@ -340,6 +351,7 @@
 				E80D88BD28E2CBFF0029B15A /* StatsTableViewController.swift in Sources */,
 				E89861FF28EA16D2003342DE /* HardwaresTableViewController.swift in Sources */,
 				E80D88BF28E2CC8B0029B15A /* StatsTableViewCell.swift in Sources */,
+				45F26D8328FC85F600A192A7 /* CalendarReservationViewController.swift in Sources */,
 				E8357A0628E96A240088A4DF /* EditReservationsTableViewController.swift in Sources */,
 				E8D8513228F87EAC0079DD8D /* Favorite.swift in Sources */,
 				E89861F128EA118A003342DE /* RoomsTableViewController.swift in Sources */,
