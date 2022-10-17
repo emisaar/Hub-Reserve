@@ -257,14 +257,6 @@ class WebService {
         //        "https://hubreserve.systems/api/resources/"
         let baseURL = URL(string: "http://0.0.0.0:8000/api/resources/")!
         
-        //        var request = URLRequest(url: baseURL)
-        //        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        //        request.addValue(token, forHTTPHeaderField: "Authorization")
-        //        print("\n\n\n\nREQUEST")
-        //        for s in request.allHTTPHeaderFields!{
-        //            print(s.0, s.1)
-        //        }
-        
         let body = getResourcesRequestBody(Authorization: token)
         
         var request = URLRequest(url: baseURL)
@@ -382,6 +374,8 @@ class WebService {
         //        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         //
         let body = editReservaRequestBody(start: start, finish: finish, description: description, comments: comments)
+        
+        print(body)
         
         var request = URLRequest(url: baseURL)
         request.httpMethod = "PUT"
@@ -605,6 +599,70 @@ class WebService {
             print("is_valid!!!")
             print(changePwd.is_correct)
             return changePwd.is_correct ?? false
+        }catch{
+            print("NOOO")
+            throw NetworkError.decodingError
+        }
+    }
+    
+    func getUser(token: String, id: String) async throws -> User {
+        let baseURL = URL(string: "http://0.0.0.0:8000/api/user/\(id)/")!
+        
+        var request = URLRequest(url: baseURL)
+        request.httpMethod = "GET"
+        request.addValue(token, forHTTPHeaderField: "Authorization")
+        
+        print("Headers")
+        for s in request.allHTTPHeaderFields!{
+            print(s.0, s.1)
+        }
+        
+        //--------------------
+        let (data, response) = try await URLSession.shared.data(for: request)
+        print(String(data: data, encoding: .utf8))
+//        print(response)
+        
+        guard let httpResponse = response as? HTTPURLResponse,
+              httpResponse.statusCode == 200 else {
+            throw NetworkError.noData
+        }
+        
+        print("\n\n\nTODO BIEN")
+        
+        
+        do {
+            let jsonData = try? JSONSerialization.jsonObject(with: data, options: [])
+            
+            var id = 0
+            var name = ""
+            var lastname = ""
+            if let dictionary = jsonData as? [String: Any] {
+                if let nestedDictionary = dictionary["user"] as? [String: Any] {
+                    for (key, value) in nestedDictionary {
+                        // access all key / value pairs in dictionary
+                        if (key == "id") {
+                            id = value as! Int
+                        }
+                        
+                        if (key == "name") {
+                            name = value as! String
+                        }
+                        
+                        if (key == "lastname") {
+                            lastname = value as! String
+                        }
+                    }
+                }
+            }
+            let user = User(id: id, name: name, lastname: lastname)
+            print("BIEN")
+            print(user)
+            
+            let defaults = UserDefaults.standard
+            defaults.setValue(user.name, forKey: "username")
+            defaults.setValue(user.lastname, forKey: "lastname")
+            
+            return user
         }catch{
             print("NOOO")
             throw NetworkError.decodingError

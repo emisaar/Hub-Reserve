@@ -19,7 +19,24 @@ class LoginViewController: UIViewController {
         let email = emailTextField.text!
         doLogin (email: email, completion: {
             if self.isAuthenticated {
-                self.changeScreen()
+                let defaults = UserDefaults.standard
+                guard let token = defaults.string(forKey: "jwt") else {
+                    print("WRONG TOKEN")
+                    return
+                }
+                guard let userId = defaults.string(forKey: "userId") else {
+                    print("WRONG ID")
+                    return
+                }
+                
+                Task{
+                    do{
+                        let usuario = try await WebService().getUser(token: token, id: userId)
+                        self.changeScreen()
+                    } catch {
+                        self.displayError(NetworkError.noData, title: "Error al cargar nombre de usuario")
+                    }
+                }
             }
         })
     }
