@@ -128,39 +128,26 @@ class FavoritesTableViewController: UITableViewController {
 //                }
             
             if editingStyle == .delete {
-                let alertView = UIAlertController(title: "Advertencia", message: "¿Seguro que desea eliminar este recurso de favoritos?", preferredStyle: .alert)
+//                print("INDEX PATH")
+//                print(indexPath.row)
+//                print(reservations[indexPath.row])
+                let idFav = self.favorites[indexPath.row].resource
+//                print("ID RESERVA")
+//                print(idReserva)
+                
+                let alertView = UIAlertController(title: "Advertencia", message: "¿Seguro que desea eliminar la reservación? La acción no se puede deshacer", preferredStyle: .alert)
                 alertView.addAction(UIAlertAction(title:"Cancelar", style: .cancel, handler: nil))
                 alertView.addAction(UIAlertAction(title:"Aceptar", style: .default, handler: {_ in
                     // Delete the row from the data source
-                    Task{
-                        do{
-                            print("INDEX PATH")
-                            print(indexPath.row)
-                            
-                            if (indexPath.row == 0){
-                                let idFav = self.favorites[0].id
-                                print("ID RESERVA")
-                                print(idFav)
-                                try await WebService().deleteFavorites(id: idFav)
-                            }
-                            else {
-                                let idFav = self.favorites[indexPath.row - 1].id
-                                print("ID RESERVA")
-                                print(idFav)
-                                try await WebService().deleteFavorites(id: idFav)
-                            }
-                            // self.updateUI()
-                        }catch{
+                    Task {
+                        do {
+                            try await WebService().deleteFavorites(id: idFav)
+//                            print(self.reservations[indexPath.row])
+                            self.favorites.remove(at: indexPath.row)
+                            tableView.deleteRows(at: [indexPath], with: .fade)
+                        } catch {
                             self.displayError(NetworkError.noData, title: "No se puede eliminar")
                         }
-                    }
-                    if (indexPath.row == 0){
-                        self.favorites.remove(at: indexPath.row)
-                        tableView.deleteRows(at: [indexPath], with: .fade)
-                    }
-                    else{
-                        self.favorites.remove(at: indexPath.row - 1)
-                        tableView.deleteRows(at: [indexPath], with: .fade)
                     }
                 }))
                 self.present(alertView, animated: true, completion: nil)

@@ -97,7 +97,7 @@ struct UserChangeName: Codable {
 class WebService {
     func login(email: String, password: String, completion: @escaping (Result<(String, Int), AuthenticationError>) -> Void) {
 //        "https://hubreserve.systems/api/login/"
-        guard let url = URL(string: "http://0.0.0.0:8000/api/login/") else {
+        guard let url = URL(string: "https://hubreserve.systems/api/login/") else {
             completion(.failure(.custom(errorMessage: "URL is not correct")))
             return
         }
@@ -141,7 +141,7 @@ class WebService {
     
     func getFavorites(token: String) async throws -> Favorites {
         //        "https://hubreserve.systems/api/favourites/"
-        let baseURL = URL(string: "http://0.0.0.0:8000/api/favourites/")!
+        let baseURL = URL(string: "https://hubreserve.systems/api/favourites/")!
         
         let body = getResourcesRequestBody(Authorization: token)
         
@@ -179,7 +179,7 @@ class WebService {
     
     func addFavorites(token: String, resource: Int) async throws -> Void {
         //        "https://hubreserve.systems/api/favourites/"
-        let baseURL = URL(string: "http://0.0.0.0:8000/api/favourites/")!
+        let baseURL = URL(string: "https://hubreserve.systems/api/favourites/")!
         //        var request = URLRequest(url: baseURL)
         //        request.httpMethod = "POST"
         //        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -219,7 +219,7 @@ class WebService {
             return
         }
         
-        let baseURL = URL(string: "http://0.0.0.0:8000/api/reservation/\(id)/")!
+        let baseURL = URL(string: "https://hubreserve.systems/api/reservation/\(id)/")!
         
         //--------------------------------
         print("PRUEBA")
@@ -255,7 +255,7 @@ class WebService {
     
     func getResources(token: String) async throws -> Resources {
         //        "https://hubreserve.systems/api/resources/"
-        let baseURL = URL(string: "http://0.0.0.0:8000/api/resources/")!
+        let baseURL = URL(string: "https://hubreserve.systems/api/resources/")!
         
         let body = getResourcesRequestBody(Authorization: token)
         
@@ -293,7 +293,7 @@ class WebService {
     
     func addReserva(token: String, resource: Int, start: String, finish: String, description: String, comments: String, id_before_update: Int, changed_by_admin: Bool, changed_by_user: Bool) async throws -> Void {
         //        let baseString = "http://0.0.0.0:8000/api/reservations/"
-        let baseURL = URL(string: "http://0.0.0.0:8000/api/reservations/")!
+        let baseURL = URL(string: "https://hubreserve.systems/api/reservations/")!
         //        var request = URLRequest(url: baseURL)
         //        request.httpMethod = "POST"
         //        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -328,7 +328,7 @@ class WebService {
     
     func getReservas(token: String) async throws -> Reservas {
         //        "https://hubreserve.systems/api/reservations/"
-        let baseURL = URL(string: "http://0.0.0.0:8000/api/reservations/")!
+        let baseURL = URL(string: "https://hubreserve.systems/api/reservations/")!
         
         let body = getResourcesRequestBody(Authorization: token)
         
@@ -368,7 +368,7 @@ class WebService {
         //        let baseString = "http://0.0.0.0:8000/api/reservations/"
         print("ID RUTA")
         print(id)
-        let baseURL = URL(string: "http://0.0.0.0:8000/api/reservation/\(id)/")!
+        let baseURL = URL(string: "https://hubreserve.systems/api/reservation/\(id)/")!
         //        var request = URLRequest(url: baseURL)
         //        request.httpMethod = "POST"
         //        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -410,7 +410,7 @@ class WebService {
             print("WRONG ID")
             return
         }
-        var ep = "http://0.0.0.0:8000/api/reservation/\(id)/"
+        var ep = "https://hubreserve.systems/api/reservation/\(id)/"
         let baseURL = URL(string: ep)!
         
         //--------------------------------
@@ -447,7 +447,7 @@ class WebService {
     
     func registerUser(name: String, lastname: String, email: String, password: String, organization: String, completion: @escaping (Result<String, AuthenticationError>) -> Void) {
         
-        let baseURL = URL(string: "http://0.0.0.0:8000/api/users/")!
+        let baseURL = URL(string: "https://hubreserve.systems/api/users/")!
         
         let body = UserRequestBody(name: name, lastname: lastname, email: email, password: password, organization: organization)
         
@@ -488,7 +488,7 @@ class WebService {
             print("WRONG ID")
             return
         }
-        var ep = "http://0.0.0.0:8000/api/user/" + userId + "/"
+        var ep = "https://hubreserve.systems/api/user/" + userId + "/"
         let baseURL = URL(string: ep)!
         
         //--------------------------------
@@ -530,7 +530,7 @@ class WebService {
             return false
         }
         //Change URL
-        let baseURL = URL(string: "http://0.0.0.0:8000/api/userChangePWD/")!
+        let baseURL = URL(string: "https://hubreserve.systems/api/userChangePWD/")!
 
         let body = UserChangePwdRequestBody(email:email, password: password)
 
@@ -565,7 +565,7 @@ class WebService {
             return false
         }
         
-        let baseURL = URL(string: "http://0.0.0.0:8000/api/user/validatePWD/")!
+        let baseURL = URL(string: "https://hubreserve.systems/api/user/validatePWD/")!
         
         let body = UserChangePwdRequestBody(email: email, password: password)
         
@@ -606,7 +606,7 @@ class WebService {
     }
     
     func getUser(token: String, id: String) async throws -> User {
-        let baseURL = URL(string: "http://0.0.0.0:8000/api/user/\(id)/")!
+        let baseURL = URL(string: "https://hubreserve.systems/api/user/\(id)/")!
         
         var request = URLRequest(url: baseURL)
         request.httpMethod = "GET"
@@ -680,7 +680,7 @@ class WebService {
             return
         }
         //Change URL
-        let baseURL = URL(string: "http://0.0.0.0:8000/api/user/\(userId)/")!
+        let baseURL = URL(string: "https://hubreserve.systems/api/user/\(userId)/")!
 
         let body = UserChangeName(name: name, lastname: lastname)
 
