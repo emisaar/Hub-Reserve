@@ -7,11 +7,28 @@
 
 import UIKit
 
+fileprivate var aView : UIView?
+
 class EditUserNameTableViewController: UITableViewController {
 
     @IBOutlet weak var update: UIButton!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var lastnameTextField: UITextField!
+    
+    func showSpinner(){
+        aView = UIView(frame: self.view.bounds)
+        aView?.backgroundColor = UIColor.init(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.5)
+        let ai = UIActivityIndicatorView(style: .whiteLarge)
+        ai.center = aView!.center
+        ai.startAnimating()
+        aView?.addSubview(ai)
+        self.view.addSubview(aView!)
+    }
+    
+    func removeSpinner(){
+        aView?.removeFromSuperview()
+        aView = nil
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,7 +54,7 @@ class EditUserNameTableViewController: UITableViewController {
             print("WRONG ID")
             return
         }
-        
+        showSpinner()
         Task{
             do{
                 try await WebService().changeUserName(name: nameTextField.text!, lastname: lastnameTextField.text!)
@@ -46,11 +63,15 @@ class EditUserNameTableViewController: UITableViewController {
                         let usuario = try await WebService().getUser(token: token, id: userId)
                                             
                     } catch {
-                            displayError(NetworkError.noData, title: "Error al cargar nombre de usuario")
+                        removeSpinner()
+                        displayError(NetworkError.noData, title: "Error al cargar nombre de usuario")
                     }
-                showAlertChangeNameDone()
+                    removeSpinner()
+                    showAlertChangeNameDone()
                 }
             } catch{
+                removeSpinner()
+                displayError(NetworkError.noData, title: "Error al cargar nombre de usuario")
                 print("error")
             }
         }

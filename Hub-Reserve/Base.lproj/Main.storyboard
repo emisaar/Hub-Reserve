@@ -2587,7 +2587,7 @@ Servicio y Políticas de Seguridad</string>
                                                 <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xUf-en-nLi">
                                                     <rect key="frame" x="20" y="11" width="334" height="34"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                                                     <connections>
                                                         <action selector="textEditingChanged:" destination="GpT-Ag-JYg" eventType="editingDidEnd" id="A9q-fq-URv"/>
                                                         <action selector="textFieldDoneEditingWithSender:" destination="GpT-Ag-JYg" eventType="editingDidEndOnExit" id="fIM-9K-fB0"/>
@@ -2639,7 +2639,7 @@ Servicio y Políticas de Seguridad</string>
                                                 <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tPI-4R-WgM">
                                                     <rect key="frame" x="20" y="11" width="334" height="34"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                                                     <connections>
                                                         <action selector="textEditingChanged:" destination="GpT-Ag-JYg" eventType="editingDidEnd" id="xMk-Sp-n8a"/>
                                                         <action selector="textFieldDoneEditingWithSender:" destination="GpT-Ag-JYg" eventType="editingDidEndOnExit" id="fz6-3F-jaE"/>
@@ -2686,7 +2686,7 @@ Servicio y Políticas de Seguridad</string>
                                                 <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qKQ-zv-SJv">
                                                     <rect key="frame" x="20" y="11" width="334" height="34"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                                                     <connections>
                                                         <action selector="textEditingChanged:" destination="GpT-Ag-JYg" eventType="editingDidEnd" id="wnu-FP-QbK"/>
                                                         <action selector="textFieldDoneEditingWithSender:" destination="GpT-Ag-JYg" eventType="editingDidEndOnExit" id="tVp-rQ-5vK"/>

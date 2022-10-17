@@ -7,12 +7,29 @@
 
 import UIKit
 
+fileprivate var aView : UIView?
+
 class ReservationsTableViewController: UITableViewController {
 
 //    var reservations = Reservation.reservationList()
     var reservations = Reservas()
     var cellLabel = ""
     var cellID = 0
+    
+    func showSpinner(){
+        aView = UIView(frame: self.view.bounds)
+        aView?.backgroundColor = UIColor.init(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.5)
+        let ai = UIActivityIndicatorView(style: .whiteLarge)
+        ai.center = aView!.center
+        ai.startAnimating()
+        aView?.addSubview(ai)
+        self.view.addSubview(aView!)
+    }
+    
+    func removeSpinner(){
+        aView?.removeFromSuperview()
+        aView = nil
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +40,7 @@ class ReservationsTableViewController: UITableViewController {
         
         print("TOKEN")
         print(token)
-        
+        showSpinner()
         Task{
             do{
                 let reservas = try await WebService().getReservas(token: token)
@@ -37,7 +54,9 @@ class ReservationsTableViewController: UITableViewController {
                 }
                 
                 updateUI(with: newReservas)
+                removeSpinner()
             }catch{
+                removeSpinner()
                 displayError(NetworkError.noData, title: "No se pudo acceder a las reservas")
             }
         }

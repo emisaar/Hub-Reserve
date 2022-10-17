@@ -5,7 +5,11 @@
 //  Created by Alfonso Pineda on 09/10/22.
 //
 
+//Creo que se puede borrar este archivo
+
 import UIKit
+
+fileprivate var aView : UIView?
 
 class EditPasswordViewController: UIViewController {
 
@@ -14,6 +18,21 @@ class EditPasswordViewController: UIViewController {
     @IBOutlet weak var newPasswordTextField: UITextField!
     @IBOutlet var tapScreen: UITapGestureRecognizer!
     @IBOutlet weak var newPasswordConfirmTextField: UITextField!
+    
+    func showSpinner(){
+        aView = UIView(frame: self.view.bounds)
+        aView?.backgroundColor = UIColor.init(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.5)
+        let ai = UIActivityIndicatorView(style: .whiteLarge)
+        ai.center = aView!.center
+        ai.startAnimating()
+        aView?.addSubview(ai)
+        self.view.addSubview(aView!)
+    }
+    
+    func removeSpinner(){
+        aView?.removeFromSuperview()
+        aView = nil
+    }
     
     @IBAction func textFieldDoneEditing(sender:UITextField){
         sender.resignFirstResponder()
@@ -48,6 +67,7 @@ class EditPasswordViewController: UIViewController {
             showAlertInsecurePassword()
         }
         
+        showSpinner()
         Task{
             do{
                 let response = try await WebService().boolCheckPassword(email: userEmail, password: passwordTextField.text!)
@@ -56,21 +76,26 @@ class EditPasswordViewController: UIViewController {
                         do{
                             let response2 = try await WebService().changePassword(email: userEmail, password: newPasswordTextField.text!)
                             if response2{
+                                removeSpinner()
                                 showAlertChangePasswordDone()
                             }
                             else{
+                                removeSpinner()
                                 showAlertError()
                             }
                         } catch{
+                            removeSpinner()
                             displayError(NetworkError.noData, title: "Error: no se pudo actualizar la contraseña")
                         }
                     }
                 }
                 else{
+                    removeSpinner()
                     showAlertErrorChangePwd()
                 }
                 print("Correcto")
             } catch{
+                removeSpinner()
                 displayError(NetworkError.noData, title: "Error: no se pudo actualizar la contraseña")
             }
         }

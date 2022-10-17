@@ -7,6 +7,8 @@
 
 import UIKit
 
+fileprivate var aView : UIView?
+
 class RoomsTableViewController: UITableViewController {
     /*
      Resource type id : int
@@ -29,6 +31,21 @@ class RoomsTableViewController: UITableViewController {
     var cellLabel = ""
     var cellID = 0
     
+    func showSpinner(){
+        aView = UIView(frame: self.view.bounds)
+        aView?.backgroundColor = UIColor.init(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.5)
+        let ai = UIActivityIndicatorView(style: .whiteLarge)
+        ai.center = aView!.center
+        ai.startAnimating()
+        aView?.addSubview(ai)
+        self.view.addSubview(aView!)
+    }
+    
+    func removeSpinner(){
+        aView?.removeFromSuperview()
+        aView = nil
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let defaults = UserDefaults.standard
@@ -38,7 +55,7 @@ class RoomsTableViewController: UITableViewController {
         
         print("TOKEN")
         print(token)
-        
+        showSpinner()
         Task{
             do{
                 let recursos = try await WebService().getResources(token: token)
@@ -52,7 +69,9 @@ class RoomsTableViewController: UITableViewController {
                 }
                 
                 updateUI(with: rooms)
+                removeSpinner()
             }catch{
+                removeSpinner()
                 displayError(NetworkError.noData, title: "No se pudo acceder a los recursos")
             }
         }

@@ -7,6 +7,8 @@
 
 import UIKit
 
+fileprivate var aView : UIView?
+
 class LoginViewController: UIViewController {
     //@StateObject private var loginVM = loginViewModel()
     @IBOutlet weak var scrollView: UIScrollView!
@@ -14,6 +16,21 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     
     @Published var isAuthenticated: Bool = false
+    
+    func showSpinner(){
+        aView = UIView(frame: self.view.bounds)
+        aView?.backgroundColor = UIColor.init(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.5)
+        let ai = UIActivityIndicatorView(style: .whiteLarge)
+        ai.center = aView!.center
+        ai.startAnimating()
+        aView?.addSubview(ai)
+        self.view.addSubview(aView!)
+    }
+    
+    func removeSpinner(){
+        aView?.removeFromSuperview()
+        aView = nil
+    }
     
     @IBAction func login(_ sender: UIButton) {
         let email = emailTextField.text!
@@ -32,8 +49,10 @@ class LoginViewController: UIViewController {
                 Task{
                     do{
                         let usuario = try await WebService().getUser(token: token, id: userId)
+                        self.removeSpinner()
                         self.changeScreen()
                     } catch {
+                        self.removeSpinner()
                         self.displayError(NetworkError.noData, title: "Error al cargar nombre de usuario")
                     }
                 }
@@ -53,7 +72,7 @@ class LoginViewController: UIViewController {
     
     func doLogin(email: String, completion: @escaping () -> Void) {
         let defaults = UserDefaults.standard
-        
+        showSpinner()
         WebService().login(email: emailTextField.text ?? "", password: passwordTextField.text ?? ""){ result in
             switch result{
             case .success((let token, let id)):
@@ -63,6 +82,7 @@ class LoginViewController: UIViewController {
                 
                 DispatchQueue.main.async {
                     self.isAuthenticated = true
+//                    self.removeSpinner()
                     completion()
                 }
                 
@@ -71,6 +91,7 @@ class LoginViewController: UIViewController {
             case .failure(let error):
                 DispatchQueue.main.async {
                     self.isAuthenticated = false
+                    self.removeSpinner()
                     self.showBadLogin()
                     completion()
                     print(error)

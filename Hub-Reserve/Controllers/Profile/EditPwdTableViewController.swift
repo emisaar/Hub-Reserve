@@ -7,12 +7,29 @@
 
 import UIKit
 
+fileprivate var aView : UIView?
+
 class EditPwdTableViewController: UITableViewController {
 
     @IBOutlet weak var update: UIButton!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var newPasswordTextField: UITextField!
     @IBOutlet weak var newPasswordConfirmTextField: UITextField!
+    
+    func showSpinner(){
+        aView = UIView(frame: self.view.bounds)
+        aView?.backgroundColor = UIColor.init(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.5)
+        let ai = UIActivityIndicatorView(style: .whiteLarge)
+        ai.center = aView!.center
+        ai.startAnimating()
+        aView?.addSubview(ai)
+        self.view.addSubview(aView!)
+    }
+    
+    func removeSpinner(){
+        aView?.removeFromSuperview()
+        aView = nil
+    }
     
     var check1 = false
     var check2 = false
@@ -39,11 +56,12 @@ class EditPwdTableViewController: UITableViewController {
             print("WRONG MAIL")
             return
         }
-        
+        showSpinner()
         Task {
             do {
                 let response = try await WebService().boolCheckPassword(email: userEmail, password: passwordTextField.text!)
                 if newPasswordTextField.text != newPasswordConfirmTextField.text {
+                    removeSpinner()
                     showIncorrectNewPassword()
                 } else {
                     check1 = true
@@ -51,6 +69,7 @@ class EditPwdTableViewController: UITableViewController {
                 }
                 
                 if !checkPassword(password: newPasswordTextField.text ?? ""){
+                    removeSpinner()
                     showAlertInsecurePassword()
                 } else {
                     check2 = true
@@ -62,21 +81,26 @@ class EditPwdTableViewController: UITableViewController {
                         do {
                             let response2 = try await WebService().changePassword(email: userEmail, password: newPasswordTextField.text!)
                             if response2 {
+                                removeSpinner()
                                 showAlertChangePasswordDone()
                             }
                             else {
+                                removeSpinner()
                                 showAlertError()
                             }
                         } catch {
+                            removeSpinner()
                             displayError(NetworkError.noData, title: "Error: no se pudo actualizar la contraseña")
                         }
                     }
                 }
                 else {
+                    removeSpinner()
                     showAlertErrorChangePwd()
                 }
                 print("Correcto")
             } catch {
+                removeSpinner()
                 displayError(NetworkError.noData, title: "Error: no se pudo actualizar la contraseña")
             }
         }

@@ -7,6 +7,8 @@
 
 import UIKit
 
+fileprivate var aView : UIView?
+
 class RegisterViewController: UIViewController {
 
     @IBOutlet weak var mySwitch: UISwitch!
@@ -15,6 +17,21 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField1: UITextField!
     @IBOutlet weak var passwordTextField2: UITextField!
+    
+    func showSpinner(){
+        aView = UIView(frame: self.view.bounds)
+        aView?.backgroundColor = UIColor.init(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.5)
+        let ai = UIActivityIndicatorView(style: .whiteLarge)
+        ai.center = aView!.center
+        ai.startAnimating()
+        aView?.addSubview(ai)
+        self.view.addSubview(aView!)
+    }
+    
+    func removeSpinner(){
+        aView?.removeFromSuperview()
+        aView = nil
+    }
     
     @IBAction func register(_ sender: Any) -> Void{
         if !checkInputRegister(name: nameTextField.text ?? "", lastname: lastNameTextField.text ?? "", email: emailTextField.text ?? "", password1: passwordTextField1.text ?? "", password2: passwordTextField2.text ?? "", switchOn: mySwitch){
@@ -119,18 +136,21 @@ class RegisterViewController: UIViewController {
     }
     
     func doRegister(completion: @escaping () -> Void){
+        showSpinner()
         let organization = getOrganization(email: emailTextField.text ?? "")
         WebService().registerUser(name: nameTextField.text ?? "", lastname: lastNameTextField.text ?? "", email: emailTextField.text ?? "", password: passwordTextField1.text ?? "", organization: organization) { result in
             switch result{
             case .success(_):
                 DispatchQueue.main.async {
                     print("LOGIN SUCCESSFUL")
+                    self.removeSpinner()
                     self.showAlertRegister()
                     completion()
                 }
                 
             case .failure(let error):
                 DispatchQueue.main.async {
+                    self.removeSpinner()
                     self.showBadRegister()
                     print("ERROR")
                     print(error)
