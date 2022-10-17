@@ -3024,7 +3024,7 @@ Servicio y Políticas de Seguridad</string>
             </objects>
             <point key="canvasLocation" x="5419" y="115"/>
         </scene>
-        <!--Root View Controller-->
+        <!--Calendar Reservation View Controller-->
         <scene sceneID="UvX-5m-BXY">
             <objects>
                 <tableViewController storyboardIdentifier="CalendarReserve" id="4E4-dT-XPx" customClass="CalendarReservationViewController" customModule="Hub_Reserve" customModuleProvider="target" sceneMemberID="viewController">
@@ -3130,7 +3130,7 @@ Servicio y Políticas de Seguridad</string>
                             <outlet property="delegate" destination="4E4-dT-XPx" id="8ci-fB-o6E"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="Yw0-iC-8G8"/>
+                    <navigationItem key="navigationItem" id="Yw0-iC-8G8"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0rM-Au-xij" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
