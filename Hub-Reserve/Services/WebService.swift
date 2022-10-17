@@ -34,6 +34,10 @@ struct addFavoritesRequestBody: Codable {
     let resource: Int
 }
 
+struct deleteFavoritesRequestBody: Codable {
+    let resource: Int
+}
+
 struct getResourcesRequestBody: Codable {
     let Authorization: String
 }
@@ -219,7 +223,7 @@ class WebService {
             return
         }
         
-        let baseURL = URL(string: "https://hubreserve.systems/api/reservation/\(id)/")!
+        let baseURL = URL(string: "https://hubreserve.systems/api/favourites/")!
         
         //--------------------------------
         print("PRUEBA")
@@ -228,7 +232,7 @@ class WebService {
         request.addValue(token, forHTTPHeaderField: "Authorization")
         //request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         
-        let body = UserDeleteRequestBody(Authorization: token)
+        let body = deleteFavoritesRequestBody(resource: id)
         
         request.httpBody = try? JSONEncoder().encode(body)
         
@@ -246,7 +250,7 @@ class WebService {
         print(response)
         
         guard let httpResponse = response as? HTTPURLResponse,
-              httpResponse.statusCode == 204 else {
+              httpResponse.statusCode == 200 else {
             throw NetworkError.noData
         }
         
