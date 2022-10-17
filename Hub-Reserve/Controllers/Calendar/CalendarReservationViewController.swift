@@ -48,7 +48,7 @@ class CalendarReservationViewController: UITableViewController {
                 var newReservas = [Reserva]()
                 
                 for r in reservas {
-                    if r.status != "Cancelada" && r.status != "Terminada" && r.status != "Cambiada" && r.start.prefix(9) == startDate.prefix(9){
+                    if r.status != "Cancelada" && r.status != "Terminada" && r.status != "Cambiada" && r.start.prefix(10) == startDate.prefix(10){
                         newReservas.append(r)
                     }
                 }
