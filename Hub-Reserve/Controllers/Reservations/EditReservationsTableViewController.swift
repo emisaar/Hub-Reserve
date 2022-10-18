@@ -7,6 +7,8 @@
 
 import UIKit
 
+fileprivate var aView : UIView?
+
 class EditReservationsTableViewController: UITableViewController {
 
 //    var reserva:Reservation?
@@ -26,6 +28,21 @@ class EditReservationsTableViewController: UITableViewController {
     
 //    @IBOutlet weak var resourceIDTextField: UITextField!
 //    @IBOutlet weak var statusTextField: UITextField!
+    
+    func showSpinner(){
+        aView = UIView(frame: self.view.bounds)
+        aView?.backgroundColor = UIColor.init(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.5)
+        let ai = UIActivityIndicatorView(style: .whiteLarge)
+        ai.center = aView!.center
+        ai.startAnimating()
+        aView?.addSubview(ai)
+        self.view.addSubview(aView!)
+    }
+    
+    func removeSpinner(){
+        aView?.removeFromSuperview()
+        aView = nil
+    }
     
     let startDatePicker = UIDatePicker()
     let endDatePicker = UIDatePicker()
@@ -308,10 +325,13 @@ class EditReservationsTableViewController: UITableViewController {
         print("TOKEN")
         print(token)
         
+        showSpinner()
         Task{
             do{
                 let recursos = try await WebService().editReserva(id: String(idReserva), token: token, start: startDate, finish: endDate, description: description, comments: comments)
+                removeSpinner()
             }catch{
+                removeSpinner()
                 displayError(NetworkError.noData, title: "No se pudo editar el recurso")
             }
         }

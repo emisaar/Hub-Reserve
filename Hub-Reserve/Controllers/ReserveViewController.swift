@@ -7,6 +7,8 @@
 
 import UIKit
 
+fileprivate var aView : UIView?
+
 class ReserveViewController: UIViewController {
     
     var reservations = Reservation.reservationList()
@@ -17,6 +19,21 @@ class ReserveViewController: UIViewController {
     @IBOutlet weak var EndDateTextField: UITextField!
     @IBOutlet weak var comentariosTextField: UITextField!
     @IBOutlet weak var descripcionTextField: UITextField!
+    
+    func showSpinner(){
+        aView = UIView(frame: self.view.bounds)
+        aView?.backgroundColor = UIColor.init(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.5)
+        let ai = UIActivityIndicatorView(style: .whiteLarge)
+        ai.center = aView!.center
+        ai.startAnimating()
+        aView?.addSubview(ai)
+        self.view.addSubview(aView!)
+    }
+    
+    func removeSpinner(){
+        aView?.removeFromSuperview()
+        aView = nil
+    }
     
     @IBAction func reserveBtn(_ sender: Any) {
 //        addReserve()
@@ -30,13 +47,16 @@ class ReserveViewController: UIViewController {
         print(token)
         
         // Insertar la nueva reserva en el servidor
+        showSpinner()
         Task{
             do{
                 try await WebService().addReserva(token: token, resource: idResourceText, start: InitialDateTextField.text ?? "", finish: EndDateTextField.text ?? "", description: descripcionTextField.text ?? "", comments: comentariosTextField.text ?? "", id_before_update: 0, changed_by_admin: false, changed_by_user: false)
-                    // self.updateUI()
-                    showAlertReservationDone()
+                // self.updateUI()
+                removeSpinner()
+                showAlertReservationDone()
                 } catch {
-                displayError(NetworkError.noData, title: "No se puede insertar la reserva")
+                    removeSpinner()
+                    displayError(NetworkError.noData, title: "No se puede insertar la reserva")
             }
         }
     }
