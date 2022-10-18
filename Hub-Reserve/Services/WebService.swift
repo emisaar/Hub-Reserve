@@ -184,10 +184,6 @@ class WebService {
     func addFavorites(token: String, resource: Int) async throws -> Void {
         //        "https://hubreserve.systems/api/favourites/"
         let baseURL = URL(string: "https://hubreserve.systems/api/favourites/")!
-        //        var request = URLRequest(url: baseURL)
-        //        request.httpMethod = "POST"
-        //        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        //
         let body = addFavoritesRequestBody(resource: resource)
         
         var request = URLRequest(url: baseURL)
@@ -230,7 +226,6 @@ class WebService {
         var request = URLRequest(url: baseURL)
         request.httpMethod = "DELETE"
         request.addValue(token, forHTTPHeaderField: "Authorization")
-        //request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         
         let body = deleteFavoritesRequestBody(resource: id)
         
