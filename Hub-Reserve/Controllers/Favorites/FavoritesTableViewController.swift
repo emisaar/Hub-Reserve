@@ -62,6 +62,29 @@ class FavoritesTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        let defaults = UserDefaults.standard
+        guard let token = defaults.string(forKey: "jwt") else {
+            return
+        }
+        
+        print("TOKEN")
+        print(token)
+        removeSpinner()
+        Task{
+            do{
+                let favoritos = try await WebService().getFavorites(token: token)
+                
+                updateUI(with: favoritos)
+//                removeSpinner()
+            }catch{
+//                removeSpinner()
+                displayError(NetworkError.noData, title: "No se pudo acceder a las reservas")
+            }
+        }
+    }
+    
     func updateUI(with favoritos: Favorites){
         DispatchQueue.main.async {
             
