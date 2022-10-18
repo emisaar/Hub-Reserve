@@ -32,26 +32,26 @@ class FavoritesTableViewController: UITableViewController {
     }
         
     override func viewDidLoad() {
-        super.viewDidLoad()
-        let defaults = UserDefaults.standard
-        guard let token = defaults.string(forKey: "jwt") else {
-            return
-        }
-        
-        print("TOKEN")
-        print(token)
-        showSpinner()
-        Task{
-            do{
-                let favoritos = try await WebService().getFavorites(token: token)
-                
-                updateUI(with: favoritos)
-                removeSpinner()
-            }catch{
-                removeSpinner()
-                displayError(NetworkError.noData, title: "No se pudo acceder a las reservas")
-            }
-        }
+//        super.viewDidLoad()
+//        let defaults = UserDefaults.standard
+//        guard let token = defaults.string(forKey: "jwt") else {
+//            return
+//        }
+//
+//        print("TOKEN")
+//        print(token)
+//        showSpinner()
+//        Task{
+//            do{
+//                let favoritos = try await WebService().getFavorites(token: token)
+//
+//                updateUI(with: favoritos)
+//                removeSpinner()
+//            }catch{
+//                removeSpinner()
+//                displayError(NetworkError.noData, title: "No se pudo acceder a las reservas")
+//            }
+//        }
         
         
 
@@ -71,15 +71,15 @@ class FavoritesTableViewController: UITableViewController {
         
         print("TOKEN")
         print(token)
-        removeSpinner()
+        showSpinner()
         Task{
             do{
                 let favoritos = try await WebService().getFavorites(token: token)
                 
                 updateUI(with: favoritos)
-//                removeSpinner()
+                removeSpinner()
             }catch{
-//                removeSpinner()
+                removeSpinner()
                 displayError(NetworkError.noData, title: "No se pudo acceder a las reservas")
             }
         }

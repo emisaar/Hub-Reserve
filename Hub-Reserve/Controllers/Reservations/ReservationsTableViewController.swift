@@ -32,7 +32,12 @@ class ReservationsTableViewController: UITableViewController {
     }
     
     override func viewDidLoad() {
-        super.viewDidLoad()
+
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
         let defaults = UserDefaults.standard
         guard let token = defaults.string(forKey: "jwt") else {
             return
@@ -40,9 +45,9 @@ class ReservationsTableViewController: UITableViewController {
         
         print("TOKEN")
         print(token)
-        showSpinner()
         Task{
             do{
+                showSpinner()
                 let reservas = try await WebService().getReservas(token: token)
                 
                 var newReservas = [Reserva]()
@@ -57,18 +62,10 @@ class ReservationsTableViewController: UITableViewController {
                 updateUI(with: newReservas)
                 removeSpinner()
             }catch{
-                removeSpinner()
                 displayError(NetworkError.noData, title: "No se pudo acceder a las reservas")
+                removeSpinner()
             }
         }
-        
-        
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
     func updateUI(with reservas: Reservas){
