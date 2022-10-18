@@ -17,6 +17,8 @@ class EditReservationsTableViewController: UITableViewController {
     var idReserva = 0
     var resourceName = ""
     
+    var dateDB = ""
+    
     @IBOutlet weak var saveButton: UIBarButtonItem!
     
     @IBOutlet weak var nombreTextField: UITextField!
@@ -111,6 +113,7 @@ class EditReservationsTableViewController: UITableViewController {
     @objc func donePressedInitialDate() {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSS"
+//        dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
 //        dateFormatter.timeStyle = .short
         
         self.startDate.text = dateFormatter.string(from: startDatePicker.date)
@@ -121,6 +124,7 @@ class EditReservationsTableViewController: UITableViewController {
     @objc func donePressedEndDate() {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSS"
+//        dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
 //        dateFormatter.timeStyle = .short
         
         self.endDate.text = dateFormatter.string(from: endDatePicker.date)
@@ -152,6 +156,7 @@ class EditReservationsTableViewController: UITableViewController {
         
             let dateSFormatter = DateFormatter()
             dateSFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSS"
+//            dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
     //        dateFormatter.timeStyle = .short
             
             startDate.text = dateSFormatter.string(from: dateStart)
@@ -276,6 +281,15 @@ class EditReservationsTableViewController: UITableViewController {
                 self.present(alert, animated: true, completion: nil)
             }
         }
+    
+    func convertTimeCurr2DB(date: Date) -> String {
+        let dF = DateFormatter()
+        dF.dateFormat = "yyyy-MM-dd HH:mm:ss.SSS"
+        dF.timeZone = TimeZone(abbreviation: "UTC")
+        
+        dateDB = dF.string(from: date)
+        return dateDB
+    }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
@@ -328,7 +342,7 @@ class EditReservationsTableViewController: UITableViewController {
         showSpinner()
         Task{
             do{
-                let recursos = try await WebService().editReserva(id: String(idReserva), token: token, start: startDate, finish: endDate, description: description, comments: comments)
+                let recursos = try await WebService().editReserva(id: String(idReserva), token: token, start: convertTimeCurr2DB(date: startDatePicker.date), finish: convertTimeCurr2DB(date: endDatePicker.date), description: description, comments: comments)
                 removeSpinner()
             }catch{
                 removeSpinner()

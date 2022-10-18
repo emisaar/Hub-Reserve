@@ -35,6 +35,7 @@ class ReservadoTableViewCell: UITableViewCell {
     
         let dateSFormatter = DateFormatter()
         dateSFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSS"
+//        dateSFormatter.timeZone = TimeZone(abbreviation: "UTC")
         
         return dateSFormatter.string(from: date)
     }

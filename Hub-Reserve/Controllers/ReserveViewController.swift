@@ -12,6 +12,8 @@ fileprivate var aView : UIView?
 class ReserveViewController: UIViewController {
     
     var reservations = Reservation.reservationList()
+    
+    var dateDB = ""
 
     @IBOutlet weak var resourceTextField: UITextField!
 //    @IBOutlet weak var idResourceTextField: UITextField!
@@ -50,7 +52,7 @@ class ReserveViewController: UIViewController {
         showSpinner()
         Task{
             do{
-                try await WebService().addReserva(token: token, resource: idResourceText, start: InitialDateTextField.text ?? "", finish: EndDateTextField.text ?? "", description: descripcionTextField.text ?? "", comments: comentariosTextField.text ?? "", id_before_update: 0, changed_by_admin: false, changed_by_user: false)
+                try await WebService().addReserva(token: token, resource: idResourceText, start: convertTimeCurr2DB(date: InitialDatePicker.date), finish: convertTimeCurr2DB(date: EndDatePicker.date) , description: descripcionTextField.text ?? "", comments: comentariosTextField.text ?? "", id_before_update: 0, changed_by_admin: false, changed_by_user: false)
                 // self.updateUI()
                 removeSpinner()
                 showAlertReservationDone()
@@ -201,6 +203,7 @@ class ReserveViewController: UIViewController {
     @objc func donePressedInitialDate() {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSS"
+//        dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
 //        dateFormatter.timeStyle = .short
         
         self.InitialDateTextField.text = dateFormatter.string(from: InitialDatePicker.date)
@@ -211,10 +214,20 @@ class ReserveViewController: UIViewController {
     @objc func donePressedEndDate() {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSS"
+//        dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
 //        dateFormatter.timeStyle = .short
         
         self.EndDateTextField.text = dateFormatter.string(from: EndDatePicker.date)
         self.view.endEditing(true)
+    }
+    
+    func convertTimeCurr2DB(date: Date) -> String {
+        let dF = DateFormatter()
+        dF.dateFormat = "yyyy-MM-dd HH:mm:ss.SSS"
+        dF.timeZone = TimeZone(abbreviation: "UTC")
+        
+        dateDB = dF.string(from: date)
+        return dateDB
     }
     
     /*
