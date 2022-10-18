@@ -184,13 +184,16 @@ class ReservationsTableViewController: UITableViewController {
                 alertView.addAction(UIAlertAction(title:"Cancelar", style: .cancel, handler: nil))
                 alertView.addAction(UIAlertAction(title:"Aceptar", style: .default, handler: {_ in
                     // Delete the row from the data source
+                    self.showSpinner()
                     Task {
                         do {
                             try await WebService().deleteReserva(id: idReserva, token: token)
 //                            print(self.reservations[indexPath.row])
+                            self.removeSpinner()
                             self.reservations.remove(at: indexPath.row)
                             tableView.deleteRows(at: [indexPath], with: .fade)
                         } catch {
+                            self.removeSpinner()
                             self.displayError(NetworkError.noData, title: "No se puede eliminar")
                         }
                     }

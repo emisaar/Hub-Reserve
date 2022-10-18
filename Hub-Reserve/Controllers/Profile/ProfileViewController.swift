@@ -7,6 +7,8 @@
 
 import UIKit
 
+fileprivate var aView : UIView?
+
 class ProfileViewController: UIViewController {
     
     @IBOutlet weak var userName: UILabel!
@@ -17,6 +19,21 @@ class ProfileViewController: UIViewController {
     
     @IBAction func logOut(_ sender: Any) {
         view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+    }
+    
+    func showSpinner(){
+        aView = UIView(frame: self.view.bounds)
+        aView?.backgroundColor = UIColor.init(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.5)
+        let ai = UIActivityIndicatorView(style: .whiteLarge)
+        ai.center = aView!.center
+        ai.startAnimating()
+        aView?.addSubview(ai)
+        self.view.addSubview(aView!)
+    }
+    
+    func removeSpinner(){
+        aView?.removeFromSuperview()
+        aView = nil
     }
     
     override func viewDidLoad() {
@@ -97,12 +114,14 @@ class ProfileViewController: UIViewController {
                 return
             }
             
+            self.showSpinner()
             Task{
                 do{
                     try await WebService().deleteUser(token: token)
+                    self.removeSpinner()
                     self.showDeletionCompleted()
                 } catch {
-                    //self.showAlertIncorrectEmail()
+                    self.removeSpinner()
                     self.displayError(NetworkError.noData, title: "Error: no se pudo eliminar la cuenta")
                 }
             }

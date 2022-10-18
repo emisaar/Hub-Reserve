@@ -192,6 +192,7 @@ class CalendarReservationViewController: UITableViewController {
                 alertView.addAction(UIAlertAction(title:"Cancelar", style: .cancel, handler: nil))
                 alertView.addAction(UIAlertAction(title:"Aceptar", style: .default, handler: {_ in
                     // Delete the row from the data source
+                    self.showSpinner()
                     Task{
                         do{
                             print("INDEX PATH")
@@ -212,6 +213,7 @@ class CalendarReservationViewController: UITableViewController {
                             }
                             // self.updateUI()
                         }catch{
+                            self.removeSpinner()
                             self.displayError(NetworkError.noData, title: "No se puede eliminar")
                         }
                     }
@@ -224,6 +226,7 @@ class CalendarReservationViewController: UITableViewController {
                         tableView.deleteRows(at: [indexPath], with: .fade)
                     }
                 }))
+                self.removeSpinner()
                 self.present(alertView, animated: true, completion: nil)
                 
             } else if editingStyle == .insert {
