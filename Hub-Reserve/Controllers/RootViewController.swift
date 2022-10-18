@@ -50,8 +50,8 @@ class RootViewController: UIViewController {
     }
     
     func setUpScrollView(pages: [View]) {
-        scrollView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height)
-        scrollView.contentSize = CGSize(width: view.frame.width * CGFloat(pages.count), height: view.frame.height)
+        scrollView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height - 120)
+        scrollView.contentSize = CGSize(width: view.frame.width * CGFloat(pages.count), height: view.frame.height - 120)
         scrollView.isPagingEnabled = true
         
         for i in 0 ..< pages.count {
