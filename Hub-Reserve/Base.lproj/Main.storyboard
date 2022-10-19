@@ -3133,9 +3133,16 @@ Servicio y Políticas de Seguridad</string>
                             <outlet property="delegate" destination="4E4-dT-XPx" id="8ci-fB-o6E"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="Yw0-iC-8G8"/>
+                    <navigationItem key="navigationItem" id="Yw0-iC-8G8">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="QLR-ak-3u3">
+                            <connections>
+                                <segue destination="2IG-a4-R5s" kind="unwind" identifier="back2Calendar" unwindAction="unwindToCalendarWithSegue:" id="Uu0-GG-qjg"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0rM-Au-xij" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="2IG-a4-R5s" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="12200" y="2828"/>
         </scene>

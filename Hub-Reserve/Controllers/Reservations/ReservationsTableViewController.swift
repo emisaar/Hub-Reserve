@@ -89,7 +89,7 @@ class ReservationsTableViewController: UITableViewController {
     /*PASO 0 crear método unwindToEmojiTableView para cerrar la vista de la tabla estática
      Luego de la definición se deben crear los segues de tipo unwind, es decir, segues hacia el proxy EXIT*/
     @IBAction func unwindToEmojiTableView(segue: UIStoryboardSegue) {
-        guard segue.identifier == "saveUnwind",
+        guard segue.identifier == "back2Calendar",
             let sourceViewController = segue.source as? EditReservationsTableViewController,
               let reserva = sourceViewController.reserva else { return }
 

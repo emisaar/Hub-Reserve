@@ -66,7 +66,7 @@ class CalendarReservationViewController: UITableViewController {
                 var newReservas = [Reserva]()
                 
                 for r in reservas {
-                    if r.status != "Cancelada" && r.status != "Terminada" && r.status != "Cambiada" && r.start.prefix(10) == startDate.prefix(10){
+                    if r.status != "Cancelada" && r.status != "Terminada" && r.status != "Cambiada" && convertDateDB(date: r.start).prefix(10) == startDate.prefix(10){
                         newReservas.append(r)
                     }
                 }
@@ -102,6 +102,23 @@ class CalendarReservationViewController: UITableViewController {
             alert.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
             self.present(alert, animated: true, completion: nil)
         }
+    }
+    
+    func convertDateDB(date: String) -> String {
+        let isoDate1 = date
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        
+        let dateStart = dateFormatter.date(from:isoDate1)!
+    
+        let dateSFormatter = DateFormatter()
+        dateSFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSS"
+        
+        var output = dateSFormatter.string(from: dateStart)
+        
+        return output
     }
 
     // MARK: - Table view data source
