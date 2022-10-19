@@ -9,10 +9,13 @@ import UIKit
 
 fileprivate var aView : UIView?
 
+@available(iOS 16.0, *)
 class CalendarViewController: UIViewController, UICalendarSelectionSingleDateDelegate {
     
+    let calendarView = UICalendarView()
     var dateStr = ""
     var newReservas = [Reserva]()
+    var datesCalendar = [DateComponents]()
 
     var emptyDictionary = [Int: String]()
     func showSpinner(){
@@ -53,16 +56,19 @@ class CalendarViewController: UIViewController, UICalendarSelectionSingleDateDel
                         newReservas.append(r)
                     }
                 }
-                
                 createCalendar()
+                print("NEW RESERVAS")
+                print(newReservas)
                 removeSpinner()
             }catch{
                 displayError(NetworkError.noData, title: "No se pudo acceder a las reservas")
                 removeSpinner()
             }
         }
+        newReservas = []
     }
         
+
     func displayError(_ error: Error, title: String) {
         DispatchQueue.main.async {
             let alert = UIAlertController(title: title, message: error.localizedDescription, preferredStyle: .alert)
@@ -76,7 +82,6 @@ class CalendarViewController: UIViewController, UICalendarSelectionSingleDateDel
     
     func createCalendar() {
         if #available(iOS 16.0, *) {
-            let calendarView = UICalendarView()
             calendarView.translatesAutoresizingMaskIntoConstraints = false
             
             calendarView.calendar = .current
@@ -139,7 +144,6 @@ extension CalendarViewController: UICalendarViewDelegate {
         
         dateStr = convertDate2String(day: day)
         
-        
         if checkCalendar(day: dateStr) {
             return UICalendarView.Decoration.default(color: .systemGreen, size: .small)
         }
@@ -150,9 +154,9 @@ extension CalendarViewController: UICalendarViewDelegate {
     func checkCalendar(day: String) -> Bool {
         for r in newReservas {
             var reservaDate = convertDateDB(date: r.start)
-            if reservaDate.prefix(10) == day{
+            if reservaDate.prefix(10) == day {
                 print("Fecha DB \(r.start.prefix(10))")
-                print("Fecha convert \(reservaDate)")
+                print("Fecha convert \(reservaDate.prefix(10))")
                 print("day \(day)")
                 return true
             }
@@ -187,7 +191,6 @@ extension CalendarViewController: UICalendarViewDelegate {
     
     func dateSelection(_ selection: UICalendarSelectionSingleDate, didSelectDate dateComponents: DateComponents?) {
 //        print(dateComponents?.hour)
-        print(dateComponents?.date)
 //        let date = NSCalendar.current.date(from: (dateComponents)!)
 //        let sDate = DateFormatter()
 //        sDate.string(from: date!)
@@ -197,7 +200,7 @@ extension CalendarViewController: UICalendarViewDelegate {
 //        let date = dateFormatter.string(from: (dateComponents?.date)!)
         
         let vc = storyboard?.instantiateViewController(withIdentifier: "CalendarReserve") as? CalendarReservationViewController
-
+        self.calendarView.removeFromSuperview()
         vc?.startDate = dateFormatter.string(from: (dateComponents?.date)!)
         navigationController?.pushViewController(vc!, animated: true)
         }
