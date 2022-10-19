@@ -13,6 +13,12 @@ class StatsTableViewController: UITableViewController {
 
     var stats = Statistics()
     
+    @IBOutlet weak var hardwareStatsLabel: UILabel!
+    @IBOutlet weak var SoftwareStatsLabel: UILabel!
+    @IBOutlet weak var roomStatsLabel: UILabel!
+    @IBOutlet weak var timeStatsLabel: UILabel!
+    @IBOutlet weak var mostUsedLabel: UILabel!
+    
     func showSpinner(){
         aView = UIView(frame: self.view.bounds)
         aView?.backgroundColor = UIColor.init(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.5)
@@ -28,14 +34,6 @@ class StatsTableViewController: UITableViewController {
         aView = nil
     }
     
-    func updateUI(with estaditicas: Statistics){
-        DispatchQueue.main.async {
-            
-            self.stats = estaditicas
-            self.tableView.reloadData()
-        }
-    }
-    
     func displayError(_ error: Error, title: String) {
         DispatchQueue.main.async {
             let alert = UIAlertController(title: title, message: error.localizedDescription, preferredStyle: .alert)
@@ -46,14 +44,14 @@ class StatsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
@@ -62,47 +60,66 @@ class StatsTableViewController: UITableViewController {
             return
         }
         
-        print("TOKEN")
-        print(token)
+        
+        guard let hardware = defaults.string(forKey: "last_hardware") else {
+            return
+        }
+        
+        guard let software = defaults.string(forKey: "last_software") else {
+            return
+        }
+        
+        guard let room = defaults.string(forKey: "last_room") else {
+            return
+        }
+        
+        guard let timeUsed = defaults.string(forKey: "total_time") else {
+            return
+        }
+        
+        guard let mostUsed = defaults.string(forKey: "most_used") else {
+            return
+        }
+        
         Task{
             do{
                 showSpinner()
-                let reservas = try await WebService().getStats(token: token)
-                
-                var newStats = [Stats]()
-                
-                print(newStats)
-                updateUI(with: newStats)
-                removeSpinner()
-            }catch{
-                displayError(NetworkError.noData, title: "No se pudo acceder a las estadísticas")
-                removeSpinner()
+                let stats = try await WebService().getStats(token: token)
+                self.removeSpinner()
+            } catch {
+                self.removeSpinner()
+                self.displayError(NetworkError.noData, title: "Error al cargar nombre de usuario")
             }
         }
+        
+        hardwareStatsLabel.text = hardware
+        SoftwareStatsLabel.text = software
+        roomStatsLabel.text = room
+        timeStatsLabel.text = timeUsed
+        mostUsedLabel.text = mostUsed
     }
-
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return stats.count
-    }
-
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! StatsTableViewCell
-
-        // Configure the cell...
-        let index = indexPath.row
-        let stat = stats[index]
-        cell.update(s: stat)
-        
-        return cell
-    }
+//    override func numberOfSections(in tableView: UITableView) -> Int {
+//        // #warning Incomplete implementation, return the number of sections
+//        return 1
+//    }
+//
+//    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        // #warning Incomplete implementation, return the number of rows
+//        return stats.count
+//    }
+//
+//    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! StatsTableViewCell
+//
+//        // Configure the cell...
+//        let index = indexPath.row
+//        let stat = stats[index]
+//        cell.update(s: stat)
+//
+//        return cell
+//    }
 
     /*
     // Override to support conditional editing of the table view.

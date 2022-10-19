@@ -762,7 +762,6 @@ class WebService {
     }
     
     func getStats(token: String) async throws -> Stats{
-        
         let baseURL = URL(string: "https://hubreserve.systems/api/stats/")!
 
         var request = URLRequest(url: baseURL)
@@ -779,10 +778,57 @@ class WebService {
         }
         
         do {
-            let estadisticas = try JSONDecoder().decode(Stats.self, from: data)
+            let jsonData = try? JSONSerialization.jsonObject(with: data, options: [])
+            
+            var last_hardware = ""
+            var last_software = ""
+            var last_room = ""
+            var total_time = 0.0
+            var most_used = ""
+
+            if let dictionary = jsonData as? [String: Any] {
+                for (key, value) in dictionary {
+                    // access all key / value pairs in dictionary
+                    if (key == "last_hardware") {
+                        last_hardware = value as! String
+                    }
+                    
+                    if (key == "last_software") {
+                        last_software = value as! String
+                    }
+                    
+                    if (key == "last_room") {
+                        last_room = value as! String
+                    }
+                    
+                    if (key == "total_time") {
+                        total_time = value as! Double
+                    }
+                    
+                    if (key == "most_used") {
+                        most_used = value as! String
+                    }
+                }
+            }
+            
+            let stat = Stats(last_hardware: last_hardware, last_software: last_software, last_room: last_room, total_time: total_time, most_used: most_used)
+            
+            let defaults = UserDefaults.standard
+            defaults.setValue(stat.last_hardware, forKey: "last_hardware")
+            defaults.setValue(stat.last_software, forKey: "last_software")
+            defaults.setValue(stat.last_room, forKey: "last_room")
+            defaults.setValue(stat.total_time, forKey: "total_time")
+            defaults.setValue(stat.most_used, forKey: "most_used")
+            
             print("BIEN")
-            print(estadisticas)
-            return estadisticas
+            print(last_hardware)
+            print(last_software)
+            print(last_room)
+            print(total_time)
+            print(most_used)
+            print(stat)
+            
+            return stat
         }catch{
             print("NOOO")
             throw NetworkError.decodingError

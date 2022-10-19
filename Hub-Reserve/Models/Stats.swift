@@ -12,7 +12,9 @@ struct Stats: Codable {
     var last_hardware: String
     var last_software: String
     var last_room: String
-    var total_time: Float
+    var total_time: Double
+    var most_used: String
+        
     /*
     var icon: UIImage
     var description: String

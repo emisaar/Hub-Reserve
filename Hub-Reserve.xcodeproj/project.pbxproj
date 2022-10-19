@@ -14,7 +14,6 @@
 		E80C5BF928E122D70031515D /* ReservadoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80C5BF828E122D70031515D /* ReservadoTableViewCell.swift */; };
 		E80D88B928E2C9A40029B15A /* Stats.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80D88B828E2C9A40029B15A /* Stats.swift */; };
 		E80D88BD28E2CBFF0029B15A /* StatsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80D88BC28E2CBFF0029B15A /* StatsTableViewController.swift */; };
-		E80D88BF28E2CC8B0029B15A /* StatsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80D88BE28E2CC8B0029B15A /* StatsTableViewCell.swift */; };
 		E8224AF828EFE0B800516E92 /* Reserva.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8224AF728EFE0B800516E92 /* Reserva.swift */; };
 		E8357A0628E96A240088A4DF /* EditReservationsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8357A0528E96A240088A4DF /* EditReservationsTableViewController.swift */; };
 		E84154D528E91C9000AB023D /* Historial.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84154D428E91C9000AB023D /* Historial.swift */; };
@@ -59,7 +58,6 @@
 		E80C5BF828E122D70031515D /* ReservadoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservadoTableViewCell.swift; sourceTree = "<group>"; };
 		E80D88B828E2C9A40029B15A /* Stats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stats.swift; sourceTree = "<group>"; };
 		E80D88BC28E2CBFF0029B15A /* StatsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsTableViewController.swift; sourceTree = "<group>"; };
-		E80D88BE28E2CC8B0029B15A /* StatsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsTableViewCell.swift; sourceTree = "<group>"; };
 		E8224AF728EFE0B800516E92 /* Reserva.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reserva.swift; sourceTree = "<group>"; };
 		E8357A0528E96A240088A4DF /* EditReservationsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditReservationsTableViewController.swift; sourceTree = "<group>"; };
 		E84154D428E91C9000AB023D /* Historial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Historial.swift; sourceTree = "<group>"; };
@@ -219,7 +217,6 @@
 			isa = PBXGroup;
 			children = (
 				E80D88BC28E2CBFF0029B15A /* StatsTableViewController.swift */,
-				E80D88BE28E2CC8B0029B15A /* StatsTableViewCell.swift */,
 			);
 			path = Stats;
 			sourceTree = "<group>";
@@ -353,7 +350,6 @@
 				E8DE550628E9421F006F6DAA /* FavoritesTableViewController.swift in Sources */,
 				E80D88BD28E2CBFF0029B15A /* StatsTableViewController.swift in Sources */,
 				E89861FF28EA16D2003342DE /* HardwaresTableViewController.swift in Sources */,
-				E80D88BF28E2CC8B0029B15A /* StatsTableViewCell.swift in Sources */,
 				45F26D8328FC85F600A192A7 /* CalendarReservationViewController.swift in Sources */,
 				E8357A0628E96A240088A4DF /* EditReservationsTableViewController.swift in Sources */,
 				E8D8513228F87EAC0079DD8D /* Favorite.swift in Sources */,
