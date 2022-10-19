@@ -91,9 +91,15 @@ class HistorialTableViewController: UITableViewController {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
+        if historial.count == 0 {
+            tableView.setEmptyView(title: "No has realizado reservaciones.", message: "Tu historial de reservaciones aparecerá aquí.")
+        }
+        else {
+            tableView.restore()
+        }
         return historial.count
     }
 

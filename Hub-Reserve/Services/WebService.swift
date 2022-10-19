@@ -143,6 +143,32 @@ class WebService {
         }.resume()
     }
     
+    func logOut(token: String) async throws -> Void{
+        
+        let baseURL = URL(string: "https://hubreserve.systems/api/logout/")!
+//        let baseURL = URL(string: "http://0.0.0.0:8000/api/logout/")!
+        
+        var request = URLRequest(url: baseURL)
+        request.httpMethod = "POST"
+        request.addValue(token, forHTTPHeaderField: "Authorization")
+        
+        print("Headers")
+        for s in request.allHTTPHeaderFields!{
+            print(s.0, s.1)
+        }
+        
+        let (data, response) = try await URLSession.shared.data(for: request)
+        print(String(data: data, encoding: .utf8))
+        print(response)
+        
+        guard let httpResponse = response as? HTTPURLResponse,
+              httpResponse.statusCode == 201 else {
+            throw NetworkError.noData
+        }
+        
+        print("\n\n\nLOGOUT CORRECTO")
+    }
+    
     func getFavorites(token: String) async throws -> Favorites {
         //        "https://hubreserve.systems/api/favourites/"
         let baseURL = URL(string: "https://hubreserve.systems/api/favourites/")!

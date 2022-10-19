@@ -18,7 +18,23 @@ class ProfileViewController: UIViewController {
     }
     
     @IBAction func logOut(_ sender: Any) {
-        view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+        let defaults = UserDefaults.standard
+        guard let token = defaults.string(forKey: "jwt") else{
+            return
+        }
+        
+        showSpinner()
+        
+        Task{
+            do{
+                try await WebService().logOut(token: token)
+                removeSpinner()
+                view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+            } catch{
+                removeSpinner()
+                displayError(NetworkError.noData, title: "Error al cerrar sesión")
+            }
+        }
     }
     
     func showSpinner(){
