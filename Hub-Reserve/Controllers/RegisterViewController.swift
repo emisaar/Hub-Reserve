@@ -46,6 +46,15 @@ class RegisterViewController: UIViewController {
     }
     
     
+    @IBAction func screenTap(_ sender: Any) {
+        nameTextField.resignFirstResponder()
+        lastNameTextField.resignFirstResponder()
+        emailTextField.resignFirstResponder()
+        passwordTextField1.resignFirstResponder()
+        passwordTextField2.resignFirstResponder()
+    }
+    
+    
     @IBAction func ToS(_ sender: UIButton) {
         UIApplication.shared.open(URL(string: "https://market.tec.mx/terminos-y-condiciones")! as URL, options: [:], completionHandler: nil)
     }

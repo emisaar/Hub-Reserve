@@ -201,6 +201,10 @@ class EditReservationsTableViewController: UITableViewController {
         updateSaveButtonState()
     }
     
+    @IBAction func textFieldDoneEditing(sender:UITextField){
+        sender.resignFirstResponder()
+    }
+    
     @IBAction func textEditingChanged(_ sender: UITextField) {
         updateSaveButtonState()
     }

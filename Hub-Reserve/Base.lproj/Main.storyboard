@@ -252,6 +252,7 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="s6V-pd-mzd"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="ho7-Uo-cIk" firstAttribute="trailing" secondItem="s6V-pd-mzd" secondAttribute="trailing" id="3NU-Pz-gxI"/>
                             <constraint firstItem="ho7-Uo-cIk" firstAttribute="leading" secondItem="s6V-pd-mzd" secondAttribute="leading" id="8q1-D0-2lY"/>
@@ -262,6 +263,9 @@
                             <constraint firstItem="ho7-Uo-cIk" firstAttribute="bottom" secondItem="s6V-pd-mzd" secondAttribute="bottom" id="lPl-aA-18n"/>
                             <constraint firstItem="ho7-Uo-cIk" firstAttribute="top" secondItem="s6V-pd-mzd" secondAttribute="top" id="ypo-m1-Mah"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="c7S-n7-lvA" appends="YES" id="Yry-zV-mQe"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="2vM-bx-U5a"/>
                     <connections>
@@ -271,6 +275,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3fh-n4-rJV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="c7S-n7-lvA">
+                    <connections>
+                        <action selector="screenTap:" destination="g5Q-4L-Mgr" id="cxT-c1-R87"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="6443" y="115"/>
         </scene>
@@ -402,12 +411,16 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="XXr-5e-Szl"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="MDX-Lu-etH" firstAttribute="trailing" secondItem="XXr-5e-Szl" secondAttribute="trailing" id="IfJ-FN-cg0"/>
                             <constraint firstItem="MDX-Lu-etH" firstAttribute="bottom" secondItem="XXr-5e-Szl" secondAttribute="bottom" id="ct8-z9-yFu"/>
                             <constraint firstItem="MDX-Lu-etH" firstAttribute="top" secondItem="XXr-5e-Szl" secondAttribute="top" id="rim-An-Bd8"/>
                             <constraint firstItem="MDX-Lu-etH" firstAttribute="leading" secondItem="XXr-5e-Szl" secondAttribute="leading" id="zYT-VI-Ynf"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="hmx-PJ-guF" appends="YES" id="RN5-Np-1AW"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="ipM-pi-gcY"/>
                     <connections>
@@ -415,6 +428,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zJx-3i-cSP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="hmx-PJ-guF">
+                    <connections>
+                        <action selector="screenTap:" destination="EKw-oa-lLC" id="ISr-YV-1wK"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="7477" y="-252"/>
         </scene>
@@ -939,12 +957,16 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="iH5-WS-CT8"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="VOq-yo-jr3" firstAttribute="leading" secondItem="iH5-WS-CT8" secondAttribute="leading" id="N6t-Kt-Gz3"/>
                             <constraint firstItem="VOq-yo-jr3" firstAttribute="top" secondItem="iH5-WS-CT8" secondAttribute="top" id="Ztp-JA-qNU"/>
                             <constraint firstItem="iH5-WS-CT8" firstAttribute="trailing" secondItem="VOq-yo-jr3" secondAttribute="trailing" id="eoa-4p-mnB"/>
                             <constraint firstItem="iH5-WS-CT8" firstAttribute="bottom" secondItem="VOq-yo-jr3" secondAttribute="bottom" id="ml7-wx-Hcd"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="xYF-JC-BrD" appends="YES" id="o4l-ja-AhZ"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="gFK-dh-beC"/>
                     <connections>
@@ -957,6 +979,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lpV-uZ-Eau" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="xYF-JC-BrD">
+                    <connections>
+                        <action selector="screenTap:" destination="uQb-QZ-gBb" id="cxE-GU-iFm"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="8359" y="1367"/>
         </scene>
@@ -1070,6 +1097,7 @@
                                                     <textInputTraits key="textInputTraits"/>
                                                     <connections>
                                                         <action selector="textEditingChanged:" destination="Gxm-XZ-geC" eventType="editingDidEnd" id="QY3-g2-RrC"/>
+                                                        <action selector="textFieldDoneEditingWithSender:" destination="Gxm-XZ-geC" eventType="editingDidEndOnExit" id="cVR-oT-WOO"/>
                                                     </connections>
                                                 </textField>
                                             </subviews>
@@ -1098,6 +1126,7 @@
                                                     <textInputTraits key="textInputTraits"/>
                                                     <connections>
                                                         <action selector="textEditingChanged:" destination="Gxm-XZ-geC" eventType="editingDidEnd" id="gao-2G-bx3"/>
+                                                        <action selector="textFieldDoneEditingWithSender:" destination="Gxm-XZ-geC" eventType="editingDidEndOnExit" id="q0C-xI-QyF"/>
                                                     </connections>
                                                 </textField>
                                             </subviews>
@@ -1801,12 +1830,16 @@ Servicio y Políticas de Seguridad</string>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="RGu-dD-q28"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="Jlk-Te-N7u" firstAttribute="top" secondItem="RGu-dD-q28" secondAttribute="top" id="GNo-6M-sA0"/>
                             <constraint firstItem="Jlk-Te-N7u" firstAttribute="bottom" secondItem="RGu-dD-q28" secondAttribute="bottom" id="Jny-TM-HFH"/>
                             <constraint firstItem="Jlk-Te-N7u" firstAttribute="leading" secondItem="RGu-dD-q28" secondAttribute="leading" id="e5H-he-TmI"/>
                             <constraint firstItem="Jlk-Te-N7u" firstAttribute="trailing" secondItem="RGu-dD-q28" secondAttribute="trailing" id="qza-hl-c72"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="3x1-IM-tgi" appends="YES" id="Fx2-mu-1YC"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="Xnx-8e-7pg"/>
                     <connections>
@@ -1819,6 +1852,11 @@ Servicio y Políticas de Seguridad</string>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lj8-Sp-41D" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="3x1-IM-tgi">
+                    <connections>
+                        <action selector="screenTap:" destination="q5j-ph-m5x" id="5XU-Aa-2m2"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="7477" y="498"/>
         </scene>
@@ -2807,6 +2845,7 @@ Servicio y Políticas de Seguridad</string>
                                             <subviews>
                                                 <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="o7P-UG-5yf">
                                                     <rect key="frame" x="20" y="11" width="334" height="34"/>
+                                                    <gestureRecognizers/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <connections>
@@ -2863,6 +2902,7 @@ Servicio y Políticas de Seguridad</string>
                                             <subviews>
                                                 <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KuI-Ho-GIp">
                                                     <rect key="frame" x="20" y="11" width="334" height="34"/>
+                                                    <gestureRecognizers/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <connections>

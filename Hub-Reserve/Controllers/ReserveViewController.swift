@@ -37,6 +37,8 @@ class ReserveViewController: UIViewController {
         aView = nil
     }
     
+    
+    
     @IBAction func reserveBtn(_ sender: Any) {
 //        addReserve()
         let defaults = UserDefaults.standard
@@ -127,7 +129,13 @@ class ReserveViewController: UIViewController {
         // Actualizar botón
         updateSaveButtonState()
     }
-
+    
+    
+    @IBAction func screenTap(_ sender: Any) {
+        comentariosTextField.resignFirstResponder()
+        descripcionTextField.resignFirstResponder()
+    }
+    
     func updateSaveButtonState() {
 //        let nombre = resourceTextField.text ?? ""
 

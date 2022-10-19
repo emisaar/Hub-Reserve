@@ -66,6 +66,12 @@ class LoginViewController: UIViewController {
         sender.resignFirstResponder()
     }
     
+    
+    @IBAction func screenTap(_ sender: Any) {
+        emailTextField.resignFirstResponder()
+        passwordTextField.resignFirstResponder()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
