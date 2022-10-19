@@ -55,8 +55,8 @@ class CalendarViewController: UIViewController, UICalendarSelectionSingleDateDel
                 reservations = newReservas
                 removeSpinner()
             }catch{
-                displayError(NetworkError.noData, title: "No se pudo acceder a las reservas")
                 removeSpinner()
+                displayError(NetworkError.noData, title: "No se pudo acceder a las reservas")
             }
         }
         createCalendar()

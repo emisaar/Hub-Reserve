@@ -410,6 +410,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="ipM-pi-gcY"/>
+                    <connections>
+                        <outlet property="emailTextField" destination="1zy-5z-9pa" id="e43-7J-9cR"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zJx-3i-cSP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
