@@ -7,9 +7,42 @@
 
 import UIKit
 
+fileprivate var aView : UIView?
+
 class StatsTableViewController: UITableViewController {
 
-    var stats = Stats.statsList()
+    var stats = Statistics()
+    
+    func showSpinner(){
+        aView = UIView(frame: self.view.bounds)
+        aView?.backgroundColor = UIColor.init(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.5)
+        let ai = UIActivityIndicatorView(style: .whiteLarge)
+        ai.center = aView!.center
+        ai.startAnimating()
+        aView?.addSubview(ai)
+        self.view.addSubview(aView!)
+    }
+    
+    func removeSpinner(){
+        aView?.removeFromSuperview()
+        aView = nil
+    }
+    
+    func updateUI(with estaditicas: Statistics){
+        DispatchQueue.main.async {
+            
+            self.stats = estaditicas
+            self.tableView.reloadData()
+        }
+    }
+    
+    func displayError(_ error: Error, title: String) {
+        DispatchQueue.main.async {
+            let alert = UIAlertController(title: title, message: error.localizedDescription, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,6 +52,33 @@ class StatsTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
+        let defaults = UserDefaults.standard
+        guard let token = defaults.string(forKey: "jwt") else {
+            return
+        }
+        
+        print("TOKEN")
+        print(token)
+        Task{
+            do{
+                showSpinner()
+                let reservas = try await WebService().getStats(token: token)
+                
+                var newStats = [Stats]()
+                
+                print(newStats)
+                updateUI(with: newStats)
+                removeSpinner()
+            }catch{
+                displayError(NetworkError.noData, title: "No se pudo acceder a las estadísticas")
+                removeSpinner()
+            }
+        }
     }
 
     // MARK: - Table view data source

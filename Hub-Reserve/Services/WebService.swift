@@ -760,4 +760,32 @@ class WebService {
         print("\n\n\nTODO BIEN")
         return 
     }
+    
+    func getStats(token: String) async throws -> Stats{
+        
+        let baseURL = URL(string: "https://hubreserve.systems/api/stats/")!
+
+        var request = URLRequest(url: baseURL)
+        request.httpMethod = "GET"
+        request.addValue(token, forHTTPHeaderField: "Authorization")
+
+        let (data, response) = try await URLSession.shared.data(for: request)
+        print(String(data: data, encoding: .utf8))
+        print(response)
+
+        guard let httpResponse = response as? HTTPURLResponse,
+              httpResponse.statusCode == 200 else {
+            throw NetworkError.noData
+        }
+        
+        do {
+            let estadisticas = try JSONDecoder().decode(Stats.self, from: data)
+            print("BIEN")
+            print(estadisticas)
+            return estadisticas
+        }catch{
+            print("NOOO")
+            throw NetworkError.decodingError
+        }
+    }
 }

@@ -8,12 +8,21 @@
 import Foundation
 import UIKit
 
-struct Stats {
+struct Stats: Codable {
+    var last_hardware: String
+    var last_software: String
+    var last_room: String
+    var total_time: Float
+    /*
     var icon: UIImage
     var description: String
     var value: String
+     */
 }
 
+typealias Statistics = [Stats]
+
+/*
 extension Stats {
     static func statsList()->[Stats] {
         return [
@@ -25,3 +34,4 @@ extension Stats {
         ]
     }
 }
+*/
