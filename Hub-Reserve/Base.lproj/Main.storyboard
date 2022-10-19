@@ -1529,7 +1529,7 @@
                                                         </connections>
                                                     </button>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Computo" translatesAutoresizingMaskIntoConstraints="NO" id="4Sx-oe-dWz">
-                                                        <rect key="frame" x="49" y="9" width="316" height="195"/>
+                                                        <rect key="frame" x="49" y="13" width="316" height="187"/>
                                                     </imageView>
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -1538,7 +1538,7 @@
                                                     <constraint firstItem="eGs-kA-Pe1" firstAttribute="centerX" secondItem="4Sx-oe-dWz" secondAttribute="centerX" id="KlP-xo-Wkf"/>
                                                     <constraint firstItem="eGs-kA-Pe1" firstAttribute="centerY" secondItem="4Sx-oe-dWz" secondAttribute="centerY" id="L31-9x-gI4"/>
                                                     <constraint firstItem="4Sx-oe-dWz" firstAttribute="centerX" secondItem="3fR-wu-sLR" secondAttribute="centerX" id="S6A-Ae-2Ev"/>
-                                                    <constraint firstItem="4Sx-oe-dWz" firstAttribute="top" secondItem="3fR-wu-sLR" secondAttribute="top" constant="9" id="lhy-S0-ypw"/>
+                                                    <constraint firstItem="4Sx-oe-dWz" firstAttribute="top" secondItem="3fR-wu-sLR" secondAttribute="top" constant="13" id="lhy-S0-ypw"/>
                                                     <constraint firstItem="4Sx-oe-dWz" firstAttribute="leading" secondItem="3fR-wu-sLR" secondAttribute="leading" constant="49" id="xjx-F4-3Gg"/>
                                                 </constraints>
                                             </view>

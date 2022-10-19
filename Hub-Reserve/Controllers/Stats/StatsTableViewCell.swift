@@ -14,9 +14,9 @@ class StatsTableViewCell: UITableViewCell {
     @IBOutlet weak var valueLabel: UILabel!
     
     func update(s: Stats) {
-        icon.image = s.icon
-        descriptionLabel.text = s.description
-        valueLabel.text = s.value
+//        icon.image = s.icon
+//        descriptionLabel.text = s.description
+//        valueLabel.text = s.value
     }
     
     override func awakeFromNib() {

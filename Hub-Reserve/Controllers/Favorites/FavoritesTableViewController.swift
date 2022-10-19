@@ -139,6 +139,19 @@ class FavoritesTableViewController: UITableViewController {
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //cellLabel = rooms[indexPath.row].name
+        cellLabel = favorites[indexPath.row].resource_name
+        cellID = favorites[indexPath.row].resource
+
+//        performSegue(withIdentifier: "Reservar", sender: nil)
+        
+        let vc = storyboard?.instantiateViewController(withIdentifier: "Reservar") as? ReserveViewController
+        vc?.resourceText = cellLabel
+        vc?.idResourceText = cellID
+        navigationController?.pushViewController(vc!, animated: true)
+    }
+    
     override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         return .delete
     }
