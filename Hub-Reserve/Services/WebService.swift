@@ -98,6 +98,10 @@ struct UserChangeName: Codable {
     var lastname: String
 }
 
+struct UserRecoveryPwdRequestBody: Codable{
+    var email: String
+}
+
 class WebService {
     func login(email: String, password: String, completion: @escaping (Result<(String, Int), AuthenticationError>) -> Void) {
 //        "https://hubreserve.systems/api/login/"
@@ -728,5 +732,32 @@ class WebService {
         }
 
         print("\n\n\nTODO BIEN")
+    }
+    
+    func RecoveryPWD(email: String) async throws -> Void{
+        //Change URL
+        let baseURL = URL(string: "https://hubreserve.systems/api/RecoveryPWD/")!
+
+        let body = UserRecoveryPwdRequestBody(email:email)
+
+        var request = URLRequest(url: baseURL)
+        request.httpMethod = "POST"
+
+        print("\n\n\nBODY BEFORE")
+        print(body)
+        request.httpBody = try? JSONEncoder().encode(body)
+        print("\n\n\nBODY")
+
+        let (data, response) = try await URLSession.shared.data(for: request)
+        print(String(data: data, encoding: .utf8))
+        print(response)
+
+        guard let httpResponse = response as? HTTPURLResponse,
+              httpResponse.statusCode == 200 else {
+            throw NetworkError.noData
+        }
+
+        print("\n\n\nTODO BIEN")
+        return 
     }
 }
