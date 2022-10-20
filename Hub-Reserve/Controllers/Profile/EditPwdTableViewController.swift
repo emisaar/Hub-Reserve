@@ -68,7 +68,7 @@ class EditPwdTableViewController: UITableViewController {
                     print("CHECK1 \(check1)")
                 }
                 
-                if !checkPassword(password: newPasswordTextField.text ?? ""){
+                if !isValidPwd(password: newPasswordTextField.text ?? ""){
                     removeSpinner()
                     showAlertInsecurePassword()
                 } else {
@@ -114,38 +114,10 @@ class EditPwdTableViewController: UITableViewController {
         updateSaveButtonState()
     }
     
-    func checkPassword(password: String) -> Bool {
-        //ASCII values: a(97) - z(122)
-        //ASCII values: A(65) - Z(90)
-        //ASCII values: 0(48) - 9(57)
-        
-        var flagCapLetter = false
-        var flagLowLetter = false
-        var flagNum = false
-        var flagSymbol = false
-        
-        if password.count < 8{
-            return false
-        }
-        for p in password{
-            let ascii = p.asciiValue
-            if ascii ?? 0 >= 65, ascii ?? 0 <= 90{
-                flagCapLetter = true
-            }
-            else if ascii ?? 0 >= 48, ascii ?? 0 <= 57{
-                flagNum = true
-            }
-            else if ascii ?? 0 >= 97, ascii ?? 0 <= 122{
-                flagLowLetter = true
-            }
-            else{
-                flagSymbol = true
-            }
-        }
-        if flagNum, flagSymbol, flagLowLetter, flagCapLetter{
-            return true
-        }
-        return false
+    func isValidPwd(password: String) -> Bool {
+        let pwdRegEx = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$"
+        let pwdPred = NSPredicate(format:"SELF MATCHES %@", pwdRegEx)
+        return pwdPred.evaluate(with: password)
     }
     
 

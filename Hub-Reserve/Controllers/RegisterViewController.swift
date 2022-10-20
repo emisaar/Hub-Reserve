@@ -77,39 +77,29 @@ class RegisterViewController: UIViewController {
         return organization
     }
     
-    func checkPassword(password: String) -> Bool {
-        //ASCII values: a(97) - z(122)
-        //ASCII values: A(65) - Z(90)
-        //ASCII values: 0(48) - 9(57)
-        
-        var flagCapLetter = false
-        var flagLowLetter = false
-        var flagNum = false
-        var flagSymbol = false
-        
-        if password.count < 8{
-            return false
-        }
-        for p in password{
-            let ascii = p.asciiValue
-            if ascii ?? 0 >= 65, ascii ?? 0 <= 90{
-                flagCapLetter = true
-            }
-            else if ascii ?? 0 >= 48, ascii ?? 0 <= 57{
-                flagNum = true
-            }
-            else if ascii ?? 0 >= 97, ascii ?? 0 <= 122{
-                flagLowLetter = true
-            }
-            else{
-                flagSymbol = true
-            }
-        }
-        if flagNum, flagSymbol, flagLowLetter, flagCapLetter{
-            return true
-        }
-        return false
+    func isValidEmail(email: String) -> Bool {
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        return emailPred.evaluate(with: email)
     }
+    
+    func isValidPwd(password: String) -> Bool {
+        let pwdRegEx = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$"
+        let pwdPred = NSPredicate(format:"SELF MATCHES %@", pwdRegEx)
+        return pwdPred.evaluate(with: password)
+    }
+    
+    func isValidName(name: String) -> Bool {
+        //ASCII values: 0(48) - 9(57)
+        for n in name{
+            let ascii = n.asciiValue
+            if ascii ?? 0 >= 48, ascii ?? 0 <= 57{
+                return false
+            }
+        }
+        return true
+    }
+    
      
     
     
@@ -126,19 +116,20 @@ class RegisterViewController: UIViewController {
             showAlertSwitch()
             return false
         }
-        var flag = false
-        for e in email{
-            if e == "@"{
-                flag = true
-                break
-            }
+        if !isValidPwd(password: password1){
+            showAlertInsecurePassword()
+            return false
         }
-        if !flag{
+        if !isValidEmail(email: email){
             showAlertEmail()
             return false
         }
-        if !checkPassword(password: password1){
-            showAlertInsecurePassword()
+        if !isValidName(name: name){
+            showAlertName()
+            return false
+        }
+        if !isValidName(name: lastname){
+            showAlertName()
             return false
         }
         return true
@@ -192,6 +183,13 @@ class RegisterViewController: UIViewController {
     func showAlertWrongPasswords(){
         // Create Alert View
         let alertView = UIAlertController(title: "Atención", message: "La verificación de la contraseña es incorrecta", preferredStyle: .alert)
+        alertView.addAction(UIAlertAction(title:"Aceptar", style: .default, handler: nil))
+        self.present(alertView, animated: false, completion: nil)
+    }
+    
+    func showAlertName(){
+        // Create Alert View
+        let alertView = UIAlertController(title: "Atención", message: "Verifique su nombre", preferredStyle: .alert)
         alertView.addAction(UIAlertAction(title:"Aceptar", style: .default, handler: nil))
         self.present(alertView, animated: false, completion: nil)
     }
