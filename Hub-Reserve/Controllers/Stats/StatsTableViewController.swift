@@ -64,6 +64,33 @@ class StatsTableViewController: UITableViewController {
             do{
                 showSpinner()
                 let stats = try await WebService().getStats(token: token)
+                
+                guard let hardware = defaults.string(forKey: "last_hardware") else {
+                    return
+                }
+                
+                guard let software = defaults.string(forKey: "last_software") else {
+                    return
+                }
+                
+                guard let room = defaults.string(forKey: "last_room") else {
+                    return
+                }
+                
+                guard let timeUsed = defaults.string(forKey: "total_time") else {
+                    return
+                }
+                
+                guard let mostUsed = defaults.string(forKey: "most_used") else {
+                    return
+                }
+                
+                hardwareStatsLabel.text = hardware
+                SoftwareStatsLabel.text = software
+                roomStatsLabel.text = room
+                timeStatsLabel.text = timeUsed
+                mostUsedLabel.text = mostUsed
+                
                 self.removeSpinner()
                 print("STATS")
             } catch {
@@ -71,33 +98,6 @@ class StatsTableViewController: UITableViewController {
                 self.displayError(NetworkError.noData, title: "Error al cargar nombre de usuario")
             }
         }
-        
-        
-        guard let hardware = defaults.string(forKey: "last_hardware") else {
-            return
-        }
-        
-        guard let software = defaults.string(forKey: "last_software") else {
-            return
-        }
-        
-        guard let room = defaults.string(forKey: "last_room") else {
-            return
-        }
-        
-        guard let timeUsed = defaults.string(forKey: "total_time") else {
-            return
-        }
-        
-        guard let mostUsed = defaults.string(forKey: "most_used") else {
-            return
-        }
-        
-        hardwareStatsLabel.text = hardware
-        SoftwareStatsLabel.text = software
-        roomStatsLabel.text = room
-        timeStatsLabel.text = timeUsed
-        mostUsedLabel.text = mostUsed
     }
     // MARK: - Table view data source
 

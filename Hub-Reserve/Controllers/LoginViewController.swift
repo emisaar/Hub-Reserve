@@ -33,6 +33,7 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func login(_ sender: UIButton) {
+        self.showSpinner()
         let email = emailTextField.text!
         doLogin (email: email, completion: {
             if self.isAuthenticated {
@@ -56,6 +57,17 @@ class LoginViewController: UIViewController {
                         self.displayError(NetworkError.noData, title: "Error al cargar nombre de usuario")
                     }
                 }
+                
+//                Task{
+//                    do{
+//                        let stats = try await WebService().getStats(token: token)
+//                        self.removeSpinner()
+//                        self.changeScreen()
+//                    } catch {
+//                        self.removeSpinner()
+//                        self.displayError(NetworkError.noData, title: "Error al cargar nombre de usuario")
+//                    }
+//                }
             }
         })
     }
