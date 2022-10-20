@@ -18,35 +18,25 @@ class HistorialTableViewCell: UITableViewCell {
     func update(r: Reserva) {
         icon.image = UIImage(systemName: "checkmark.seal.fill")
         resourceLabel.text = r.resource_name
-        startLabel.text = r.start
-        endLabel.text = r.finish
+        startLabel.text = changeDateFormat(dateString: r.start)
+        endLabel.text = changeDateFormat(dateString: r.finish)
         statusLabel.text = r.status
-//        statusLabel.text = statusCheck(status: r.status)
     }
     
-    func statusCheck(status: Int) -> String {
-        if (status == 1){
-            return "Disponible"
-        } else {
-            return "No Disponible"
-        }
-    }
+    func changeDateFormat(dateString: String) -> String {
+        let isoDate1 = dateString
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        
+        let date = dateFormatter.date(from:isoDate1)!
     
-    func iconCheck(resourceID: Int) -> String {
-        var icon = ""
+        let dateSFormatter = DateFormatter()
+        dateSFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSS"
+//        dateSFormatter.timeZone = TimeZone(abbreviation: "UTC")
         
-        if (resourceID == 1){
-            icon = "signpost.right"
-        }
-        
-        if (resourceID == 2){
-            icon = "doc"
-        }
-        
-        if (resourceID == 3){
-            icon = "laptopcomputer.and.iphone"
-        }
-        return icon
+        return dateSFormatter.string(from: date)
     }
     
     override func awakeFromNib() {
