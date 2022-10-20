@@ -60,6 +60,18 @@ class StatsTableViewController: UITableViewController {
             return
         }
         
+        Task{
+            do{
+                showSpinner()
+                let stats = try await WebService().getStats(token: token)
+                self.removeSpinner()
+                print("STATS")
+            } catch {
+                self.removeSpinner()
+                self.displayError(NetworkError.noData, title: "Error al cargar nombre de usuario")
+            }
+        }
+        
         
         guard let hardware = defaults.string(forKey: "last_hardware") else {
             return
@@ -79,17 +91,6 @@ class StatsTableViewController: UITableViewController {
         
         guard let mostUsed = defaults.string(forKey: "most_used") else {
             return
-        }
-        
-        Task{
-            do{
-                showSpinner()
-                let stats = try await WebService().getStats(token: token)
-                self.removeSpinner()
-            } catch {
-                self.removeSpinner()
-                self.displayError(NetworkError.noData, title: "Error al cargar nombre de usuario")
-            }
         }
         
         hardwareStatsLabel.text = hardware
