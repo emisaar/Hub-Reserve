@@ -736,7 +736,7 @@ class WebService {
     
     func RecoveryPWD(email: String) async throws -> Void{
         //Change URL
-        let baseURL = URL(string: "https://hubreserve.systems/api/RecoveryPWD/")!
+        let baseURL = URL(string: "https://hubreserve.systems/api/sendRecoveryEmail/")!
 
         let body = UserRecoveryPwdRequestBody(email:email)
 
@@ -753,7 +753,7 @@ class WebService {
         print(response)
 
         guard let httpResponse = response as? HTTPURLResponse,
-              httpResponse.statusCode == 200 else {
+              httpResponse.statusCode == 201 else {
             throw NetworkError.noData
         }
 
